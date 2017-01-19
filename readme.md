@@ -1,5 +1,83 @@
 #Session One
 
+##Variables
+
+start-here.html
+
+* var - can be reassigned
+
+* is function scoped:
+
+```
+function setWidth(){
+  var width = 500;
+  console.log(width);
+}
+console.log(width);
+```
+
+* var - can leak when its not inside a function
+
+```
+var someNumber = 100
+if ( someNumber > 12 ) {
+  var someMultiple = 4;
+  var result = someNumber * someMultiple;
+  console.log(someNumber + ' times ' + someMultiple + ' equals ' + result)
+}
+```
+
+Here, both someMultiple and result 'leak' outside the function.
+
+* let and const are scoped to the block (function and otherwise anywhere we have curly brackets)
+
+```
+var someNumber = 100
+if ( someNumber > 12 ) {
+  let someMultiple = 4;
+  let result = someNumber * someMultiple;
+  console.log(someNumber + ' times ' + someMultiple + ' equals ' + result)
+}
+console.log(result);
+```
+
+Additionally `let` variables can only be declared once
+
+```
+let height = 300;
+```
+
+Although they can be reassigned
+
+```
+height = 300
+```
+Since they are block scoped this is allowed
+
+```
+if (height > 10){
+    let height = 300;
+}
+```
+
+* const variables cannot be updated
+
+```
+testString = 'abcd1234'
+```
+
+But they are not immutable
+
+```
+const me = {
+  hair: true,
+  age: 48
+}
+me.age = 49;
+```
+
+
+
 ##Step One
 
 Replace the existing nav items with items from an array.
