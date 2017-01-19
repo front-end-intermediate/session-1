@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Objects</title>
+</head>
+<body>
+  <script>
+
+    const person = {
+      first: 'Daniel',
+      last: 'Deverell',
+      country: 'Canada',
+      city: 'Vancouver',
+      twitter: '@dannyboynyc'
+    };
+
+    const me = {
+      first: 'Daniel',
+      last: 'Deverell',
+      links: {
+        social: {
+          twitter: '@dannyboynyc',
+          facebook: 'https://facebook.com/danieldeverell'
+        },
+        web: {
+          blog: 'http://daniel.deverell.com'
+        }
+      }  
+    }
+
+    // const twitter = me.links.social.twitter
+
+    const { twitter:tw, facebook:fb } = me.links.social;
+
+    const { first, last } = person;
+
+    console.log(last)
+
+  </script>
+</body>
+</html>
