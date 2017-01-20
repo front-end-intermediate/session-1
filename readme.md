@@ -289,6 +289,8 @@ function fixNav() {
 }
 ```
 
+Note that we add the class to the body (as opposed to - say - the nav itself) so that we can use it to target other elements on the page which may not be children of the nav.
+
 ```
 function fixNav() {
   console.log(window.scrollY)
@@ -328,7 +330,9 @@ body.fixed-nav .site-wrap {
 }
 ```
 
-Take care of the jump using offsetHeight
+When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
+
+Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav.. 
 
 ```
 function fixNav() {
@@ -341,6 +345,8 @@ function fixNav() {
   }
 }
 ```
+
+Note the use of camel case.
 
 ```
 if (i == 0){
@@ -357,11 +363,11 @@ Using setAttribute instead of classList:
 ```
 
 ```
-  if (i == 0){
-    navList.firstChild.setAttribute('class', 'logo');
-    document.querySelector('.logo').firstChild.innerHTML = '<img src="img/logo.svg" />';
-  }
-  ```
+if (i == 0){
+  navList.firstChild.setAttribute('class', 'logo');
+  document.querySelector('.logo').firstChild.innerHTML = '<img src="img/logo.svg" />';
+}
+```
 
 ```
 li.logo {
@@ -382,6 +388,8 @@ li.logo img {
   max-width:500px;
 }
 ```
+
+Note the use of max-width above. We are using this because transitions do not work with width.
 
 
 
