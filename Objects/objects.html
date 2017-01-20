@@ -6,16 +6,22 @@
 <body>
 <script>
 
-  const person = {
-    first: 'Daniel',
-    last: 'Deverell',
-    country: 'Canada',
-    city: 'Vancouver',
-    twitter: '@dannyboynyc'
-  };
+const me = {
+  first: 'Daniel',
+  last: 'Deverell',
+  links: {
+    social: {
+      twitter: '@dannyboynyc',
+      facebook: 'https://facebook.com/danieldeverell'
+    },
+    web: {
+      blog: 'http://daniel.deverell.com'
+    }
+  }  
+}
 
-  const first = person.first;
-  const last = person.last;
+  const first = me.first;
+  const last = me.last;
 
   console.log(first)
 

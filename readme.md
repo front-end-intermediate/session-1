@@ -7,11 +7,17 @@
 1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop.
 
 
-##Reading
+##Text Books
+
+Mat Marquis - [JavaScript for Web Designers](https://abookapart.com/products/javascript-for-web-designers)
 
 Ethan Marcotte - [Responsive Web Design](https://abookapart.com/products/responsive-web-design)
 
 Dan Cederholm - [SASS for Web Designers](https://abookapart.com/products/sass-for-web-designers)
+
+David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
+
+
 
 [Syllabus](http://mean.deverell.com/syllabus/)
 
@@ -19,15 +25,17 @@ Dan Cederholm - [SASS for Web Designers](https://abookapart.com/products/sass-fo
 
 start-here.html
 
-* var - can be reassigned
+* var - can be redeclared and reassigned
 
 * is function scoped:
 
 ```
 function setWidth(){
   var width = 500;
-  console.log(width);
+  console.log('inner ' + width);
+  // return('inner ' + width);
 }
+setWidth();
 console.log(width);
 ```
 
@@ -67,7 +75,7 @@ Although they can be reassigned
 ```
 height = 300
 ```
-Since they are block scoped this is allowed
+Since they are blockscoped this is allowed
 
 ```
 if (height > 10){
@@ -75,7 +83,7 @@ if (height > 10){
 }
 ```
 
-* const variables cannot be updated
+* const variables cannot be reassigned
 
 ```
 testString = 'abcd1234'
@@ -95,22 +103,34 @@ me.age = 49;
 
 ##Step One
 
+basic-DOM > index.html
+
 Replace the existing nav items with items from an array.
 
 ```
-<ul>
-  <li class="logo"><a href="#">FAQ</a></li>
-  <li><a href="#">Home</a></li>
-  <li><a href="#">About</a></li>
-  <li><a href="#">Images</a></li>
-  <li><a href="#">Locations</a></li>
-  <li><a href="#">Maps</a></li>
-</ul>
+var navItems = ['LOGO', Watchlist', 'Research', 'Markets', 'Workbook', 'Connect', 'Desktop', 'FAQ'];
 ```
+
+querySelector() vs getElementById()
+
+```
+var nav = document.getElementById('main');
+const nav = document.querySelector('#main');
+console.log(nav);
+```
+
+querySelectorAll()
 
 ```
 const navList = nav.querySelectorAll('li a');
+console.log(navList);
+```
 
+Compare navList and navItems in the console. Array vs nodeList prototypes.
+
+* for loop and innerHTML
+
+```
 for (let i =0; i < navList.length; i++ ){
   navList[i].innerHTML = navItems[i];
 }
@@ -118,34 +138,40 @@ for (let i =0; i < navList.length; i++ ){
 
 ##Step Two
 
-Dynamically generate the nav from items in the array
+Dynamically generate the nav from items in the array.
+
+* depopulate the nav children:
 
 ```
 <nav id="main"></nav>
 ```
 
+* createElement, appendChild
+
+* Append an `<ul>` tag to nav: 
+
 ```
-var navList = document.createElement('ul')
+// const navList = nav.querySelectorAll('li a');
+var navList = document.createElement('ul');
 nav.appendChild(navList);
-for (let i =0; i < navItems.length; i++ ){
-      var listItem = document.createElement('li');
-      var link = '#';
-      var linkText = navItems[i];
-      listItem.innerHTML = '<a href="' + link + '">' + linkText + '</a>';
-      navList.appendChild(listItem);
-    }
 ```
 
-Switch out the concatenation for a template string
+* dynamically create the nav based on the number of items in the array:
 
 ```
 for (let i =0; i < navItems.length; i++ ){
-  var listItem = document.createElement('li');
-  var link = '#';
-  var linkText = navItems[i];
-  listItem.innerHTML = `<a href="${link}">${linkText}</a>`;
+  let listItem = document.createElement('li');
+  let link = '#';
+  let linkText = navItems[i];
+  listItem.innerHTML = '<a href="' + link + '">' + linkText + '</a>';
   navList.appendChild(listItem);
 }
+```
+
+Switch out the concatenation for a template string:
+
+```
+  listItem.innerHTML = `<a href="${link}">${linkText}</a>`;
 ```
 
 Refactor 
@@ -163,29 +189,13 @@ for (let i =0; i < navItems.length; i++ ){
 Introduction to objects - `objects.html`
 
 ```
-const me = {
-  first: 'Daniel',
-  last: 'Deverell',
-  links: {
-    social: {
-      twitter: '@dannyboynyc',
-      facebook: 'https://facebook.com/danieldeverell'
-    },
-    web: {
-      blog: 'http://daniel.deverell.com'
-    }
-  }  
-}
-```
-
-```
 const twitter = me.links.social.twitter
 ```
 
 Destructuring
 
 ```
-const { first, last } = person;
+const { first, last } = me;
 ```
 
 ```
@@ -204,6 +214,10 @@ Objects in our page
 
 ```
 var navItemsObj = [
+{
+  label: 'LOGO',
+  link: '#'
+},
 {
   label: 'Watchlist',
   link: '#watchlist'
@@ -251,6 +265,8 @@ offSetTop
 let topOfNav = nav.offsetTop;
 ```
 
+* addEventListener('event', function)
+
 ```
 window.addEventListener('scroll', fixNav);
 ```
@@ -274,9 +290,20 @@ function fixNav() {
 ```
 
 ```
+function fixNav() {
+  console.log(window.scrollY)
+  if(window.scrollY >= topOfNav) {
+    document.body.classList.add('fixed-nav');
+  } else {
+    document.body.classList.remove('fixed-nav');
+  }
+}
+```
+
+```
 body.fixed-nav nav {
   position: fixed;
-  box-shadow:0 5px 0 rgba(0,0,0,0.1);
+  box-shadow:0 5px 3px rgba(0,0,0,0.1);
 }
 ```
 
@@ -301,24 +328,10 @@ body.fixed-nav .site-wrap {
 }
 ```
 
-
-
-```
-function fixNav() {
-  console.log(window.scrollY)
-  if(window.scrollY >= topOfNav) {
-    document.body.classList.add('fixed-nav');
-  } else {
-    document.body.classList.remove('fixed-nav');
-  }
-}
-```
-
-Take care of the jump
+Take care of the jump using offsetHeight
 
 ```
 function fixNav() {
-  console.log(window.scrollY)
   if(window.scrollY >= topOfNav) {
     document.body.style.paddingTop = nav.offsetHeight + 'px';
     document.body.classList.add('fixed-nav');
@@ -328,4 +341,51 @@ function fixNav() {
   }
 }
 ```
+
+```
+if (i == 0){
+  console.log(navList.firstChild)
+}
+```
+
+Using setAttribute instead of classList:
+
+```
+  if (i == 0){
+    navList.firstChild.setAttribute('class', 'logo')
+  }
+```
+
+```
+  if (i == 0){
+    navList.firstChild.setAttribute('class', 'logo');
+    document.querySelector('.logo').firstChild.innerHTML = '<img src="img/logo.svg" />';
+  }
+  ```
+
+```
+li.logo {
+  max-width:0;
+  overflow: hidden;
+  background: white;
+  transition: all 0.5s;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+li.logo img {
+  padding-top: 0.25rem;
+  width: 2.5rem;
+}
+
+.fixed-nav li.logo {
+  max-width:500px;
+}
+```
+
+
+
+###Notes
+
+[vh and vw in the CSS](https://css-tricks.com/viewport-sized-typography/)
 
