@@ -1,5 +1,20 @@
 #Session One
 
+##Homework
+
+1. Bring your laptop to the next class. 
+1. Create a free Github account
+1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop.
+
+
+##Reading
+
+Ethan Marcotte - [Responsive Web Design](https://abookapart.com/products/responsive-web-design)
+
+Dan Cederholm - [SASS for Web Designers](https://abookapart.com/products/sass-for-web-designers)
+
+[Syllabus](http://mean.deverell.com/syllabus/)
+
 ##Variables
 
 start-here.html
