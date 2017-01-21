@@ -27,14 +27,14 @@ Theme - cobalt
 Packages - Sublime Package Manager
 
 1. Open package control tools → Command Palette and type Install Package
-1. Search for Cobalt2 and hit enter
-1. Penultimately, open Preferences → Settings - User. Add the following lines. Only the first two are required but I recommend using all of them:
-
-  ```
-  "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
-  "theme": "Cobalt2.sublime-theme",   
-  "highlight_line": true,
-  "indent_guide_options": [ "draw_normal", "draw_active" ],
+2. Search for Cobalt2 and hit enter
+3. Penultimately, open Preferences → Settings - User. Add the following lines (only the first two are required):nd using all of them: 
+   
+   ```json
+   "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+   "theme": "Cobalt2.sublime-theme",   
+   "highlight_line": true,
+   "indent_guide_options": [ "draw_normal", "draw_active" ],
   "highlight_modified_tabs": true,
   "line_padding_bottom": 1,
   "line_padding_top": 1,
@@ -44,9 +44,9 @@ Packages - Sublime Package Manager
   "caret_extra_width": 3,
   "caret_style": "phase",
   "bold_folder_labels": true,
-  ```
+   ```
 
-1. Finally, restart Sublime for the Theme to be fully applied.
+4. Finally, restart Sublime for the Theme to be fully applied.
 
 color_scheme defines how the code looks and theme defines how the sidebar, tabs, search, command palette work.
 
