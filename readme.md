@@ -17,9 +17,8 @@ Dan Cederholm - [SASS for Web Designers](https://abookapart.com/products/sass-fo
 
 David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
-
-
 [Syllabus](http://mean.deverell.com/syllabus/)
+
 
 ##Variables
 
