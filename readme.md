@@ -450,6 +450,18 @@ logo.classList.add('logo');
 logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 ```
 
+===
+
+### Notes on SVG
+
+https://icomoon.io
+
+http://responsivelogos.co.uk
+
+http://www.svgeneration.com/recipes/Beam-Center/
+
+===
+
 ```
 li.logo img {
   padding-top: 0.25rem;
@@ -470,7 +482,191 @@ li.logo {
 }
 ```
 
-Note the use of max-width above. We are using this because transitions do not work with width.
+Note the use of max-width above. We are using this because transitions do not animate with width.
+
+
+##CSS - FlexBox
+
+* CSS Flexible Box Layout Module
+
+* A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+<img src="other-stuff/hero-1.png">
+
+```
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.site-header {
+  background: #0D1313;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding:0.5rem;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 10px;
+}
+
+.site-nav {
+  ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #CDD0D0;
+    padding: 20px;
+    display: inline-block;
+  }
+  .active {
+    a {
+      font-weight: bold;
+      color: #62DEBE;
+      background: darken(#62DEBE, 40%);
+    }
+  }
+}
+
+.account-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.account-dropdown {
+  ul {
+    display: none;
+  }
+}
+
+.sign-out-link {
+  color: #62DEBE;
+  font-size: 0.8rem;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    flex-wrap: wrap;
+  }
+  .site-nav {
+    order: 2;
+    background: #333;
+    width: 100%;
+  }
+}
+```
+[Font Awesome](http://fontawesome.io/)
+```
+
+<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+
+<i class="fa fa-bullseye fa-3x"></i>
+
+<i class="fa fa-gear"></i>
+
+```
+
+##SASS
+
+* error checking - watch out for this
+
+* variables - added padding and breakpoint
+
+* imports and structure
+
+[Bootstrap SASS](https://github.com/twbs/bootstrap-sass)
+
+##Responsive
+
+* Mobile first design
+
+* Use min-width media queries to add features to larger screens `@media (min-width: 46.25em) { }`
+
+* Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices 
+
+[Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
+
+
+##GIT and GITHUB
+
+Git Config (typically only need to do this once on your machine)
+```
+git config
+git config --global user.name "DannyBoyNYC"
+git config --global user.email "daniel.deverell@gmail.com"
+git config --list
+```
+* make sure terminal is in the correct directory
+```
+git init
+```
+Examine the .git Directory
+```
+ls -al
+cd .git
+ls
+cd ..
+```
+Git Status
+```
+git status
+On branch master
+```
+Git doesn't auto track files - only those you tell it to. Adding files creates untracked files. Create and add .gitignore run status.
+```
+git status
+git commit -m 'initial commit'
+```
+Note: By default `git commit` goes into VIM. Avoid this (unless you like VM). If this happens, hit ESC and type “:q” to exit.
+
+```
+git status
+On branch master
+nothing to commit, working directory clean
+```
+```
+git branch
+git branch <branchname>
+git checkout <branchname>
+git diff
+```
+To merge branches 
+* be in the branch you want to merge to
+* run status on that branch to make sure nothing is odd
+```
+git checkout master
+git status
+git merge <branchname>
+```
+Other useful branch commands (delete, show unmerged and merged branches)
+```
+git branch -d <branchname>
+git branch --no-merge
+git branch --merged
+```
+Pushing Files to Remote Repos - Github
+* Copy URL from github.
+```
+git remote add origin https://github.com/.../...
+git push -u origin master
+```
 
 
 
