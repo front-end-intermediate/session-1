@@ -32,7 +32,7 @@
             {
                "val":"Daily Summary E-mails",
                "qns":"How can I sign up for one Daily Summary email?",
-               "ans":"Tap on 'Edit' from your Watchlist, go to 'Tile Settings' and select "Receive daily summary by email". You can also select it to be delivered at a time of your choice. The daily summary email brings together all the publications associated with the feeds you have selected for a given tile. "
+               "ans":"Tap on 'Edit' from your Watchlist, go to 'Tile Settings' and select \"Receive daily summary by email\". You can also select it to be delivered at a time of your choice. The daily summary email brings together all the publications associated with the feeds you have selected for a given tile. "
             },
             {
                "val":"Delete Tile",

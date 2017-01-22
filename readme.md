@@ -4,6 +4,7 @@
 
 1. Bring your laptop to the next class. 
 1. Create a free Github account
+1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation)
 1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop.
 
 
@@ -26,24 +27,24 @@ Theme - cobalt
 
 Packages - Sublime Package Manager
 
-1. Open package control tools → Command Palette and type Install Package
+1. Open package control Tools → Command Palette and type Install Package
 2. Search for Cobalt2 and hit enter
-3. Penultimately, open Preferences → Settings - User. Add the following lines (only the first two are required):nd using all of them: 
+3. Penultimately, open Preferences → Settings - User. Add the following lines (only the first two are required): 
    
    ```json
-   "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
-   "theme": "Cobalt2.sublime-theme",   
-   "highlight_line": true,
-   "indent_guide_options": [ "draw_normal", "draw_active" ],
-  "highlight_modified_tabs": true,
-  "line_padding_bottom": 1,
-  "line_padding_top": 1,
-  "wide_caret": true,
-  "caret_extra_bottom": 2,
-  "caret_extra_top": 2,
-  "caret_extra_width": 3,
-  "caret_style": "phase",
-  "bold_folder_labels": true,
+    "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+    "theme": "Cobalt2.sublime-theme",   
+    "highlight_line": true,
+    "indent_guide_options": [ "draw_normal", "draw_active" ],
+    "highlight_modified_tabs": true,
+    "line_padding_bottom": 1,
+    "line_padding_top": 1,
+    "wide_caret": true,
+    "caret_extra_bottom": 2,
+    "caret_extra_top": 2,
+    "caret_extra_width": 3,
+    "caret_style": "phase",
+    "bold_folder_labels": true,
    ```
 
 4. Finally, restart Sublime for the Theme to be fully applied.
@@ -53,43 +54,49 @@ color_scheme defines how the code looks and theme defines how the sidebar, tabs,
 
 ##Variables
 
-start-here.html
+basic-DOM > index.html
+
+```
+var width = 100;
+let height = 200;
+const testString = '123456';
+```
 
 * var - can be redeclared and reassigned
 
-* is function scoped:
+* var - is function scoped:
 
 ```
 function setWidth(){
   var width = 500;
   console.log('inner ' + width);
-  // return('inner ' + width);
 }
 setWidth();
 console.log(width);
 ```
 
-* var - can leak when its not inside a function
+Install Sublime [ConsoleWrap addon](https://packagecontrol.io/packages/Console%20Wrap%20for%20js)
+
+* var - can 'leak' when its not inside a function:
 
 ```
-var someNumber = 100
-if ( someNumber > 12 ) {
+if ( width > 12 ) {
   var someMultiple = 4;
-  var result = someNumber * someMultiple;
-  console.log(someNumber + ' times ' + someMultiple + ' equals ' + result)
+  var result = width * someMultiple;
+  console.log(width + ' times ' + someMultiple + ' equals ' + result)
 }
+console.log(someMultiple);
 ```
 
-Here, both someMultiple and result 'leak' outside the function.
+Here, both someMultiple and result 'leak' outside the block.
 
-* let and const are scoped to the block (function and otherwise anywhere we have curly brackets)
+* let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
 
 ```
-var someNumber = 100
-if ( someNumber > 12 ) {
+if ( width > 12 ) {
   let someMultiple = 4;
-  let result = someNumber * someMultiple;
-  console.log(someNumber + ' times ' + someMultiple + ' equals ' + result)
+  let result = width * someMultiple;
+  console.log(width + ' times ' + someMultiple + ' equals ' + result)
 }
 console.log(result);
 ```
@@ -100,17 +107,25 @@ Additionally `let` variables can only be declared once
 let height = 300;
 ```
 
-Although they can be reassigned
+Although they can be reassigned:
 
 ```
+let height = 200;
 height = 300
 ```
-Since they are blockscoped this is allowed
+
+And, since they are blockscoped this is allowed:
 
 ```
+var width = 100;
+let height = 200;
+height = 300;
+const testString = '123456';
+
 if (height > 10){
-    let height = 300;
+    let height = 500;
 }
+console.log(height);
 ```
 
 * const variables cannot be reassigned
@@ -119,7 +134,7 @@ if (height > 10){
 testString = 'abcd1234'
 ```
 
-But they are not immutable
+But they are not immutable, they just create an immutable binding.
 
 ```
 const me = {
@@ -130,15 +145,12 @@ me.age = 49;
 ```
 
 
-
 ##Step One
-
-basic-DOM > index.html
 
 Replace the existing nav items with items from an array.
 
 ```
-var navItems = ['LOGO', Watchlist', 'Research', 'Markets', 'Workbook', 'Connect', 'Desktop', 'FAQ'];
+const navItems = ['LOGO', 'Watchlist', 'Research', 'Markets', 'Workbook', 'Connect', 'Desktop', 'FAQ'];
 ```
 
 querySelector() vs getElementById()
@@ -156,7 +168,7 @@ const navList = nav.querySelectorAll('li a');
 console.log(navList);
 ```
 
-Compare navList and navItems in the console. Array vs nodeList prototypes.
+Compare navList and navItems in the console and the Array vs nodeList prototypes.
 
 * for loop and innerHTML
 
@@ -164,11 +176,14 @@ Compare navList and navItems in the console. Array vs nodeList prototypes.
 for (let i =0; i < navList.length; i++ ){
   navList[i].innerHTML = navItems[i];
 }
+console.log(i)
 ```
 
 ##Step Two
 
-Dynamically generate the nav from items in the array.
+Problem: we are using existing `<li>` elements but have fewer of them than there are items in our array. 
+
+Solution: dynamically generate the nav from items in the array.
 
 * depopulate the nav children:
 
@@ -198,6 +213,8 @@ for (let i =0; i < navItems.length; i++ ){
 }
 ```
 
+Note how gracefully the CSS for the navbar (flex) accomodates the increased number of links.
+
 Switch out the concatenation for a template string:
 
 ```
@@ -213,6 +230,9 @@ for (let i =0; i < navItems.length; i++ ){
   navList.appendChild(listItem);
 }
 ```
+
+Check out https://babeljs.io
+
 
 ##Objects
 
@@ -232,15 +252,18 @@ const { first, last } = me;
 const { twitter, facebook } = me.links.social;
 ```
 
-Change the variable
+Change the variable name:
 
 ```
 const { twitter:tw, facebook:fb } = me.links.social;
 ```
 
+Examine faq.js as a sample of an object.
+
+
 ##Back to Layout
 
-Objects in our page
+Links for our page - an array that contains multiple objects:
 
 ```
 var navItemsObj = [
@@ -287,6 +310,20 @@ for (let i =0; i < navItemsObj.length; i++ ){
 }
 ```
 
+##Array Methods
+
+```
+const markup = `
+  <ul>
+    ${navItemsObj.map( function(listItem) { 
+    `<li>${listItem.link} - ${listItem.label}</li>` 
+    })}
+  </ul>
+`;
+console.log(markup)
+```
+
+
 ##Sticky Menu
 
 offSetTop
@@ -305,6 +342,7 @@ scrollY
 
 ```
 function fixNav() {
+  console.log(topOfNav)
   console.log(window.scrollY)
 }
 ```
@@ -362,7 +400,7 @@ body.fixed-nav .site-wrap {
 
 When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
 
-Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav.. 
+Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav. 
 
 ```
 function fixNav() {
@@ -379,8 +417,13 @@ function fixNav() {
 Note the use of camel case.
 
 ```
-if (i == 0){
-  console.log(navList.firstChild)
+for (let i =0; i < navItemsObj.length; i++ ){
+  var listItem = document.createElement('li');
+  listItem.innerHTML = `<a href="${navItemsObj[i].link}">${navItemsObj[i].label}</a>`;
+  navList.appendChild(listItem);
+  if (i == 0){
+    console.log(navList.firstChild)
+  }
 }
 ```
 
@@ -393,13 +436,26 @@ Using setAttribute instead of classList:
 ```
 
 ```
-if (i == 0){
+if (navItemsObj[i].label = 'LOGO'){
   navList.firstChild.setAttribute('class', 'logo');
   document.querySelector('.logo').firstChild.innerHTML = '<img src="img/logo.svg" />';
 }
 ```
 
+Or without the use of the loop
+
 ```
+var logo = document.querySelector('#main ul li');
+logo.classList.add('logo');
+logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
+```
+
+```
+li.logo img {
+  padding-top: 0.25rem;
+  width: 2.5rem;
+}
+
 li.logo {
   max-width:0;
   overflow: hidden;
@@ -407,11 +463,6 @@ li.logo {
   transition: all 0.5s;
   font-weight: 600;
   font-size: 30px;
-}
-
-li.logo img {
-  padding-top: 0.25rem;
-  width: 2.5rem;
 }
 
 .fixed-nav li.logo {

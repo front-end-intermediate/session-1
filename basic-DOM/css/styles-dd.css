@@ -19,11 +19,16 @@ body {
   max-width: 780px;
   margin: 40px auto;
   background:white;
-  padding: 20px 40px;
+  padding:40px;
   text-align: justify;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  /* add these two */
+  transform: scale(0.98);
+  transition: transform 0.5s;
 }
-
+body.fixed-nav .site-wrap {
+  transform: scale(1);
+}
 header {
   text-align: center;
   height:50vh;
@@ -39,6 +44,11 @@ h1 {
   font-size: 7vw;
   font-weight: 300;
   text-shadow: 3px 4px 0 rgba(0,0,0,0.2)
+}
+
+body.fixed-nav nav {
+  position: fixed;
+  box-shadow:0 5px 3px rgba(0,0,0,0.1);
 }
 
 nav {
@@ -71,3 +81,21 @@ nav a {
   display: inline-block;
   color:white;
 }
+
+
+li.logo {
+  max-width:0;
+  overflow: hidden;
+  background: white;
+  transition: all 0.5s;
+  font-weight: 600;
+  font-size: 30px;
+}
+li.logo img {
+  padding-top: 0.25rem;
+  width: 2.5rem;
+}
+.fixed-nav li.logo {
+  max-width:500px;
+}
+
