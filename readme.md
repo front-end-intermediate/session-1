@@ -10,7 +10,7 @@
 1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop.
 
 
-##Text Books
+##Text Books (part one)
 
 Mat Marquis - [JavaScript for Web Designers](https://abookapart.com/products/javascript-for-web-designers)
 
@@ -23,7 +23,7 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 [Syllabus](http://mean.deverell.com/syllabus/)
 
 
-##Text Editor - Sublime
+##Text Editor - [Sublime Text](http://www.sublimetext.com)
 
 Packages - Sublime [Package Manager](https://packagecontrol.io/installation)
 
@@ -150,7 +150,7 @@ console.log(me);
 ```
 
 
-##Step One
+##EXERSIZE - Step One
 
 Replace the existing nav labels with items from an array.
 
@@ -186,7 +186,7 @@ navList[i].innerHTML = navItems[i];
 console.log(i) // not defined
 ```
 
-##Step Two - Dynamic Generation
+##EXERSIZE Step Two - Dynamic Generation
 
 Problem: we are using existing `<li>` elements but have fewer of them than there are items in our array. 
 
@@ -283,7 +283,7 @@ const { twitter:tw, facebook:fb } = me.links.social;
 Examine navitems.js as a sample of an object.
 
 
-##Back to Layout
+##EXERSIZE Step Three - Dynamic Generation with an Object
 
 Links for our page - an array that contains multiple objects:
 
@@ -394,7 +394,7 @@ nav.innerHTML = (markup);
 ```
 
 
-##Sticky Menu
+##EXERSIZE Step Four - Sticky Menu
 
 offSetTop
 
@@ -485,7 +485,7 @@ document.body.style.paddingTop = 0;
 
 Note the use of camel case.
 
-##Adding the Logo Image
+##EXERSIZE Step Five - Adding the Logo Image
 
 ```
 const logo = document.querySelector('#main ul li');
@@ -523,7 +523,7 @@ max-width:500px;
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
 
-##Faking It
+##EXERSIZE Ending - Faking It
 
 Note the use of hashes in the nav links:
 
@@ -557,7 +557,7 @@ e.preventDefault();
 ```
 
 
-##CSS Flexible Box Layout Module
+##HOMEWORK - CSS Flexible Box Layout Module
 
 * A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
