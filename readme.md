@@ -57,7 +57,7 @@ Packages - Sublime [Package Manager](https://packagecontrol.io/installation)
 2. Search for Emmet and hit enter
 
 
-##Variables
+####Variables
 
 basic-DOM > index.html
 
@@ -256,7 +256,7 @@ navList.appendChild(listItem);
 Template strings and Let and Const variables are ES6 (ecmascript version 6). Translate the code back to ES5 at https://babeljs.io
 
 
-##Objects
+####Objects
 
 Introduction to objects - `objects.html`
 
@@ -336,7 +336,7 @@ navList.appendChild(listItem);
 }
 ```
 
-##Array Methods
+####Array Methods
 
 1. Array.prototype.filter()
 
@@ -523,7 +523,7 @@ max-width:500px;
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
 
-##EXERSIZE Ending - Faking It
+##EXERSIZE End (for today) - Faking It!
 
 Note the use of hashes in the nav links:
 
