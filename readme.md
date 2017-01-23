@@ -2,10 +2,11 @@
 
 ##Homework - TBD
 
-1. Complete the navbar exersize as outlined in class, log into Slack
+1. Complete the navbar exersize as outlined in class (in flex-nav)
+1. Log into the class Slack account and say hi.
 1. Bring your laptop to the next class. 
-1. Create a free Github account
-1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation)
+1. Create a Github account
+1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation), our Cobalt 2 theme and Emmet
 1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop.
 
 
@@ -31,22 +32,22 @@ Packages - Sublime [Package Manager](https://packagecontrol.io/installation)
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Cobalt2 and hit enter
 3. Open Preferences → Settings - User. Add the following lines (only the first two are required): 
-   
-   ```json
-    "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
-    "theme": "Cobalt2.sublime-theme",   
-    "highlight_line": true,
-    "indent_guide_options": [ "draw_normal", "draw_active" ],
-    "highlight_modified_tabs": true,
-    "line_padding_bottom": 1,
-    "line_padding_top": 1,
-    "wide_caret": true,
-    "caret_extra_bottom": 2,
-    "caret_extra_top": 2,
-    "caret_extra_width": 3,
-    "caret_style": "phase",
-    "bold_folder_labels": true,
-   ```
+
+```json
+"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+"theme": "Cobalt2.sublime-theme",   
+"highlight_line": true,
+"indent_guide_options": [ "draw_normal", "draw_active" ],
+"highlight_modified_tabs": true,
+"line_padding_bottom": 1,
+"line_padding_top": 1,
+"wide_caret": true,
+"caret_extra_bottom": 2,
+"caret_extra_top": 2,
+"caret_extra_width": 3,
+"caret_style": "phase",
+"bold_folder_labels": true,
+```
 
 4. Restart Sublime for the Theme to be fully applied.
 
@@ -72,8 +73,8 @@ const testString = '123456';
 
 ```
 function setWidth(){
-  var width = 500;
-  console.log('inner ' + width);
+var width = 500;
+console.log('inner ' + width);
 }
 setWidth();
 console.log(width);
@@ -85,9 +86,9 @@ Install Sublime [ConsoleWrap addon](https://packagecontrol.io/packages/Console%2
 
 ```
 if ( width > 12 ) {
-  var someMultiple = 4;
-  var result = width * someMultiple;
-  console.log(width + ' times ' + someMultiple + ' equals ' + result)
+var someMultiple = 4;
+var result = width * someMultiple;
+console.log(width + ' times ' + someMultiple + ' equals ' + result)
 }
 console.log(someMultiple);
 ```
@@ -98,9 +99,9 @@ Here, both someMultiple and result 'leak' outside the block.
 
 ```
 if ( width > 12 ) {
-  let someMultiple = 10;
-  let result = width * someMultiple;
-  console.log(width + ' times ' + someMultiple + ' equals ' + result)
+let someMultiple = 10;
+let result = width * someMultiple;
+console.log(width + ' times ' + someMultiple + ' equals ' + result)
 }
 console.log(result);
 ```
@@ -126,7 +127,7 @@ let height = 200;
 const testString = '123456';
 
 if (height > 10){
-    let height = 500;
+let height = 500;
 }
 console.log(height);
 ```
@@ -141,8 +142,8 @@ But they are not immutable, they just create an immutable binding.
 
 ```
 const me = {
-  hair: true,
-  age: 48
+hair: true,
+age: 48
 }
 me.age = 49;
 console.log(me);
@@ -180,7 +181,7 @@ Compare navList and navItems in the console and the Array vs nodeList prototypes
 
 ```
 for (let i =0; i < navList.length; i++ ){
-  navList[i].innerHTML = navItems[i];
+navList[i].innerHTML = navItems[i];
 }
 console.log(i) // not defined
 ```
@@ -211,10 +212,10 @@ nav.appendChild(navList);
 
 ```
 for (let i =0; i < navItems.length; i++ ){
-  let listItem = document.createElement('li');
-  let linkText = navItems[i];
-  listItem.innerHTML = '<a href="#">' + linkText + '</a>';
-  navList.appendChild(listItem);
+let listItem = document.createElement('li');
+let linkText = navItems[i];
+listItem.innerHTML = '<a href="#">' + linkText + '</a>';
+navList.appendChild(listItem);
 }
 ```
 
@@ -222,33 +223,33 @@ Note how gracefully the CSS for the navbar (flex) accomodates the increased numb
 
 ```
 nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
+margin: 0;
+padding: 0;
+list-style: none;
+display: flex;
 }
 nav li {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+flex: 1;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 ```
 
 Switch out the concatenation for a template string:
 
 ```
-  listItem.innerHTML = `<a href="${link}">${linkText}</a>`;
+listItem.innerHTML = `<a href="${link}">${linkText}</a>`;
 ```
 
 Refactor:
 
 ```
 for (let i=0; i < navItems.length; i++ ){
-  var listItem = document.createElement('li');
-  listItem.innerHTML = `<a href="#">${navItems[i]}</a>`;
-  navList.appendChild(listItem);
+var listItem = document.createElement('li');
+listItem.innerHTML = `<a href="#">${navItems[i]}</a>`;
+navList.appendChild(listItem);
 }
 ```
 
@@ -304,19 +305,19 @@ var navItems = [
   label: 'Markets',
   link: '#markets'
 },
-    {
+{
   label: 'Workbook',
   link: '#workbook'
 },
-    {
+{
   label: 'Connect',
   link: '#connect'
 },
-    {
+{
   label: 'Desktop',
   link: '#desktop'
 },
-    {
+{
   label: 'FAQ',
   link: '#faq'
 }
@@ -329,9 +330,9 @@ var navItems = [
 
 ```
 for (let i =0; i < navItems.length; i++ ){
-  var listItem = document.createElement('li');
-  listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
-  navList.appendChild(listItem);
+var listItem = document.createElement('li');
+listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
+navList.appendChild(listItem);
 }
 ```
 
@@ -341,13 +342,13 @@ for (let i =0; i < navItems.length; i++ ){
 
 ```
 const inventors = [
-  { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
-  { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
-  { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
-  { first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
-  { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
-  { first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
-  { first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
+{ first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+{ first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+{ first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+{ first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+{ first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+{ first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
+{ first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
 ];
 ```
 
@@ -355,11 +356,11 @@ Filter the list of inventors for those who were born in the 1500's
 
 ```
 const fifteen = inventors.filter ( 
-  function(inventor){
-    if (inventor.year >= 1500 && inventor.year <= 1599 ) {
-      return true; // keep it
-    }
-  }
+function(inventor){
+if (inventor.year >= 1500 && inventor.year <= 1599 ) {
+return true; // keep it
+}
+}
 );
 
 console.table(fifteen);
@@ -411,8 +412,8 @@ scrollY
 
 ```
 function fixNav() {
-  console.log(topOfNav)
-  console.log(window.scrollY)
+console.log(topOfNav)
+console.log(window.scrollY)
 }
 ```
 
@@ -420,9 +421,9 @@ classList
 
 ```
 function fixNav() {
-  if(window.scrollY >= topOfNav) {
-    document.body.classList.add('fixed-nav');
-  }
+if(window.scrollY >= topOfNav) {
+document.body.classList.add('fixed-nav');
+}
 }
 ```
 
@@ -430,39 +431,39 @@ Note that we add the class to the body (as opposed to - say - the nav itself) so
 
 ```
 function fixNav() {
-  if(window.scrollY >= topOfNav) {
-    document.body.classList.add('fixed-nav');
-  } else {
-    document.body.classList.remove('fixed-nav');
-  }
+if(window.scrollY >= topOfNav) {
+document.body.classList.add('fixed-nav');
+} else {
+document.body.classList.remove('fixed-nav');
+}
 }
 ```
 
 ```
 body.fixed-nav nav {
-  position: fixed;
-  box-shadow:0 5px 3px rgba(0,0,0,0.1);
+position: fixed;
+box-shadow:0 5px 3px rgba(0,0,0,0.1);
 }
 ```
 
 ```
 .site-wrap {
-  max-width: 780px;
-  margin: 40px auto;
-  background:white;
-  padding:40px;
-  text-align: justify;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
-  /* add these two */
-  transform: scale(0.98);
-  transition: transform 0.5s;
+max-width: 780px;
+margin: 40px auto;
+background:white;
+padding:40px;
+text-align: justify;
+box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+/* add these two */
+transform: scale(0.98);
+transition: transform 0.5s;
 }
 
 ```
 
 ```
 body.fixed-nav .site-wrap {
-  transform: scale(1);
+transform: scale(1);
 }
 ```
 
@@ -472,13 +473,13 @@ Take care of the jankey jump using offsetHeight to add padding equal to the heig
 
 ```
 function fixNav() {
-  if(window.scrollY >= topOfNav) {
-    document.body.style.paddingTop = nav.offsetHeight + 'px';
-    document.body.classList.add('fixed-nav');
-  } else {
-    document.body.classList.remove('fixed-nav');
-    document.body.style.paddingTop = 0;
-  }
+if(window.scrollY >= topOfNav) {
+document.body.style.paddingTop = nav.offsetHeight + 'px';
+document.body.classList.add('fixed-nav');
+} else {
+document.body.classList.remove('fixed-nav');
+document.body.style.paddingTop = 0;
+}
 }
 ```
 
@@ -502,21 +503,21 @@ Format the logo and create behaviour - CSS only, no JavaScript:
 
 ```
 li.logo img {
-  padding-top: 0.25rem;
-  width: 2.5rem;
+padding-top: 0.25rem;
+width: 2.5rem;
 }
 
 li.logo {
-  max-width:0;
-  overflow: hidden;
-  background: white;
-  transition: all 0.5s;
-  font-weight: 600;
-  font-size: 30px;
+max-width:0;
+overflow: hidden;
+background: white;
+transition: all 0.5s;
+font-weight: 600;
+font-size: 30px;
 }
 
 .fixed-nav li.logo {
-  max-width:500px;
+max-width:500px;
 }
 ```
 
@@ -538,20 +539,20 @@ However one of them behaves differently, the Workbook link.
 const sitewrap = document.querySelector('.site-wrap');
 const navTest = document.querySelectorAll('#main ul li a');
 for (let i=0; i<navTest.length; i++){
-  // console.log('hash ', navTest[i].hash);
-  navTest[i].addEventListener('click', prepContent)
+// console.log('hash ', navTest[i].hash);
+navTest[i].addEventListener('click', prepContent)
 }
 
 function prepContent(e){
-  if (this.hash == "#workbook"){
-    const header = "Workbook";
-    const para = "Workbooks are good. "
-    sitewrap.innerHTML = `
-    <h1 style="color: black;">${header}</h1>
-    <p>${para}</p>
-    `;
-    e.preventDefault();
-  }
+if (this.hash == "#workbook"){
+const header = "Workbook";
+const para = "Workbooks are good. "
+sitewrap.innerHTML = `
+<h1 style="color: black;">${header}</h1>
+<p>${para}</p>
+`;
+e.preventDefault();
+}
 }
 ```
 
@@ -570,88 +571,96 @@ function prepContent(e){
 
 <img src="other-stuff/hero-1.png">
 
-```
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+[Use a system font instead of custom?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/). 
 
+[In SVG](https://css-tricks.com/system-fonts-svg/).
+
+```
 body {
-  font-family: 'Roboto', sans-serif;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+```
+
+```
+.site-nav ul {
+list-style: none;
+display: flex;
+margin: 0;
+padding: 0;
 }
 
-.site-nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
+.site-nav li {
+width: 100px;
+height: 100px;
+background-color: #8cacea;
+margin: 8px;
+}
+```
+
+```
+.account-dropdown ul {
+display: none;
 }
 
 .site-header {
-  background: #0D1313;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding:0.5rem;
-}
-
-li {
-  width: 100px;
-  height: 100px;
-  background-color: #8cacea;
-  margin: 8px;
-}
-
-.account-dropdown ul {
-  display: none;
+background: #0D1313;
+color: white;
+display: flex;
+align-items: center;
+padding:0.5rem;
 }
 
 .logo {
-  text-decoration: none;
-  color: white;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  padding: 10px;
+text-decoration: none;
+color: white;
+font-size: 0.9rem;
+text-transform: uppercase;
+letter-spacing: 3px;
+padding: 10px;
 }
 
 a {
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #CDD0D0;
-  padding: 20px;
-  display: inline-block;
+text-transform: uppercase;
+text-decoration: none;
+color: #CDD0D0;
+padding: 20px;
+display: inline-block;
 }
+
 .active a {
-  font-weight: bold;
-  color: #62DEBE;
-  background: darken(#62DEBE, 40%);
+font-weight: bold;
+color: #62DEBE;
+background: darken(#62DEBE, 40%);
 }
 
 .account-actions {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
+margin-left: auto;
+display: flex;
+align-items: center;
+margin-right: 10px;
 }
 
 .sign-out-link {
-  color: #62DEBE;
-  font-size: 0.8rem;
-  margin-left: 10px;
-  text-transform: uppercase;
+color: #62DEBE;
+font-size: 0.8rem;
+margin-left: 10px;
+text-transform: uppercase;
 }
 
 @media (max-width: 600px) {
-  .site-header {
-    flex-wrap: wrap;
-  }
-  .site-nav {
-    order: 2;
-    background: #333;
-    width: 100%;
-  }
+.site-header {
+flex-wrap: wrap;
+}
+.site-nav {
+order: 2;
+background: #333;
+width: 100%;
+}
 }
 ```
+
 [Font Awesome](http://fontawesome.io/)
+
 ```
 
 <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
@@ -662,18 +671,40 @@ a {
 
 ```
 
-```
-<p>Create an object with a new set of labels and links for the site-nav</p>
-
-<p>Use JavaScript to dynamically generate the unordered list</p>
-
-<p>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</p>
-
-<p>Add some content to the page and make the navigation sticky</p>
+Comment out the contents of the ul:
 
 ```
+<nav class="site-nav">
+  <ul>
+    <!-- <li class="active"><a href="#0">Recipes</a></li>
+    <li><a href="#0">Reviews</a></li>
+    <li><a href="#0">Delivery</a></li> -->
+  </ul>
+</nav>
+```
 
-##Responsive
+```
+<div class="site-wrap">
+  <h4>Homework</h4>
+
+  <p>The items below all come from today's work on the Basic DOM scripting page. You should attempt each one if possible.</p>
+
+  <ol>
+    <li>Create an object with a new set of labels and links for the site-nav li's and use the JavaScript techniques we covered today to dynamically generate the nav menu</li>
+
+    <li>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</li>
+
+    <li>Use the 'Faking It' code stubb to change the content of the site-wrap when a link is clicked.</li>
+
+    <li>Optional: Add some paragraphs to the page and make the navigation sticky</li>
+  </ol>
+
+  <p>Post your efforts to the class Slack Channel and a web server (if you don't have I can provide)</p>
+</div>
+
+```
+
+##TO DO - Make It Responsive
 
 * Mobile first design
 
@@ -684,7 +715,7 @@ a {
 [Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
 
 
-##SASS
+##TO DO - Use SASS
 
 * error checking - watch out for this
 
@@ -698,6 +729,7 @@ a {
 ##GIT and GITHUB
 
 Git Config (typically only need to do this once on your machine)
+
 ```
 git config
 git config --global user.name "DannyBoyNYC"
@@ -705,55 +737,77 @@ git config --global user.email "daniel.deverell@gmail.com"
 git config --list
 ```
 * make sure terminal is in the correct directory
+
 ```
 git init
 ```
 Examine the .git Directory
+
 ```
 ls -al
 cd .git
 ls
 cd ..
 ```
+
 Git Status
+
 ```
 git status
 On branch master
 ```
-Git doesn't auto track files - only those you tell it to. Adding files creates untracked files. Create and add .gitignore run status.
+Git doesn't auto track files - only those you tell it to. 
+
+Adding files creates untracked files. 
+
+Create and add .gitignore run status.
+
 ```
 git status
 git commit -m 'initial commit'
 ```
-Note: By default `git commit` goes into VIM. Avoid this (unless you like VM). If this happens, hit ESC and type “:q” to exit.
+
+Note: `git commit`  without the `-m` flag goes into VIM. 
+
+Avoid this unless you like VIM. If this happens, hit ESC and type “:q” to exit.
 
 ```
 git status
 On branch master
 nothing to commit, working directory clean
 ```
+
 ```
 git branch
 git branch <branchname>
 git checkout <branchname>
 git diff
 ```
+
 To merge branches 
+
 * be in the branch you want to merge to
+
 * run status on that branch to make sure nothing is odd
+
 ```
 git checkout master
 git status
 git merge <branchname>
 ```
+
 Other useful branch commands (delete, show unmerged and merged branches)
+
 ```
 git branch -d <branchname>
 git branch --no-merge
 git branch --merged
 ```
+
 Pushing Files to Remote Repos - Github
+
 * Copy URL from github.
+
 ```
 git remote add origin https://github.com/.../...
 git push -u origin master
