@@ -560,15 +560,7 @@ e.preventDefault();
 ##HOMEWORK - CSS Flexible Box Layout Module
 
 * A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-
-```
-<ul> <!--parent element-->
-  <li></li> <!--first child element-->
-  <li></li> <!--second child element-->
-  <li></li> <!--third child element-->
-</ul>
-```
-
+ 
 <img src="other-stuff/hero-1.png">
 
 [Use a system font instead of custom?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/). 
