@@ -454,8 +454,6 @@ logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 
 ### Notes on SVG
 
-https://icomoon.io
-
 http://responsivelogos.co.uk
 
 http://www.svgeneration.com/recipes/Beam-Center/
@@ -485,11 +483,17 @@ li.logo {
 Note the use of max-width above. We are using this because transitions do not animate with width.
 
 
-##CSS - FlexBox
-
-* CSS Flexible Box Layout Module
+##CSS Flexible Box Layout Module
 
 * A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+```
+<ul> <!--parent element-->
+  <li></li> <!--first child element-->
+  <li></li> <!--second child element-->
+  <li></li> <!--third child element-->
+</ul>
+```
 
 <img src="other-stuff/hero-1.png">
 
@@ -501,12 +505,30 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
 .site-header {
   background: #0D1313;
   color: white;
   display: flex;
   align-items: center;
   padding:0.5rem;
+}
+
+li {
+  width: 100px;
+  height: 100px;
+  background-color: #8cacea;
+  margin: 8px;
+}
+
+.account-dropdown ul {
+  display: none;
 }
 
 .logo {
@@ -518,27 +540,17 @@ body {
   padding: 10px;
 }
 
-.site-nav {
-  ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  a {
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #CDD0D0;
-    padding: 20px;
-    display: inline-block;
-  }
-  .active {
-    a {
-      font-weight: bold;
-      color: #62DEBE;
-      background: darken(#62DEBE, 40%);
-    }
-  }
+a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #CDD0D0;
+  padding: 20px;
+  display: inline-block;
+}
+.active a {
+  font-weight: bold;
+  color: #62DEBE;
+  background: darken(#62DEBE, 40%);
 }
 
 .account-actions {
@@ -546,12 +558,6 @@ body {
   display: flex;
   align-items: center;
   margin-right: 10px;
-}
-
-.account-dropdown {
-  ul {
-    display: none;
-  }
 }
 
 .sign-out-link {
@@ -583,15 +589,16 @@ body {
 
 ```
 
-##SASS
+```
+<p>Create an object with the labels for the site-nav</p>
 
-* error checking - watch out for this
+<p>Use JavaScript to dynamically generate the unordered list</p>
 
-* variables - added padding and breakpoint
+<p>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</p>
 
-* imports and structure
+<p>Add some content to the page and make the navigation sticky</p>
 
-[Bootstrap SASS](https://github.com/twbs/bootstrap-sass)
+```
 
 ##Responsive
 
@@ -602,6 +609,17 @@ body {
 * Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices 
 
 [Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
+
+
+##SASS
+
+* error checking - watch out for this
+
+* variables - added padding and breakpoint
+
+* imports and structure
+
+[Bootstrap SASS](https://github.com/twbs/bootstrap-sass)
 
 
 ##GIT and GITHUB
