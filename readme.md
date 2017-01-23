@@ -1,7 +1,8 @@
 #Session One
 
-##Homework
+##Homework - TBD
 
+1. Complete the navbar exersize as outlined in class
 1. Bring your laptop to the next class. 
 1. Create a free Github account
 1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation)
@@ -22,8 +23,6 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
 
 ##Text Editor - Sublime
-
-Theme - cobalt
 
 Packages - Sublime Package Manager
 
@@ -47,7 +46,7 @@ Packages - Sublime Package Manager
     "bold_folder_labels": true,
    ```
 
-4. Finally, restart Sublime for the Theme to be fully applied.
+4. Restart Sublime for the Theme to be fully applied.
 
 color_scheme defines how the code looks and theme defines how the sidebar, tabs, search, command palette work.
 
