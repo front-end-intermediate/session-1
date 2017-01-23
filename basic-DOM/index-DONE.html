@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Barclays Live</title>
-  <link rel="stylesheet" href="css/styles-dd.css">
+  <title>DONE Barclays Live</title>
+  <link rel="stylesheet" href="css/styles-DONE.css">
 </head>
 <body>
 
@@ -47,14 +47,14 @@
     const navList = document.createElement('ul');
     nav.appendChild(navList);
 
-    // for (let i=0; i < navItemsObj.length; i++ ){
+    // for (let i=0; i < navItems.length; i++ ){
     //   const listItem = document.createElement('li');
-    //   listItem.innerHTML = `<a href="${navItemsObj[i].link}">${navItemsObj[i].label}</a>`;
+    //   listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
     //   navList.appendChild(listItem);
     // }
     const markup = `
     <ul>
-      ${navItemsObj.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
+      ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
     </ul>
     `;
     nav.innerHTML = (markup);
@@ -76,7 +76,7 @@
       const header = "Workbook";
       const para = "Workbooks are good."
       sitewrap.innerHTML = `
-      <h1>${header}</h1>
+      <h1 style="color: black; font-size: 2rem; text-shadow: none;">${header}</h1>
       <p>${para}</p>
       `;
       e.preventDefault();

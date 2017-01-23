@@ -26,7 +26,7 @@ body {
 
 header {
   text-align: center;
-  height:50vh;
+  height:30vh;
   background:url(../img/img.jpg) bottom center no-repeat;
   background-size:cover;
   display:flex;
@@ -67,7 +67,6 @@ nav li {
 
 nav a {
   text-decoration: none;
-  padding:1rem;
   display: inline-block;
   color:white;
 }

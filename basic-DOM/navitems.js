@@ -1,4 +1,4 @@
-var navItemsObj = [
+var navItems = [
     {
       label: 'LOGO',
       link: '#'

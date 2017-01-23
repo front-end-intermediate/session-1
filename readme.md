@@ -2,7 +2,7 @@
 
 ##Homework - TBD
 
-1. Complete the navbar exersize as outlined in class
+1. Complete the navbar exersize as outlined in class, log into Slack
 1. Bring your laptop to the next class. 
 1. Create a free Github account
 1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation)
@@ -24,11 +24,13 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
 ##Text Editor - Sublime
 
-Packages - Sublime Package Manager
+Packages - Sublime [Package Manager](https://packagecontrol.io/installation)
+
+####Cobalt
 
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Cobalt2 and hit enter
-3. Penultimately, open Preferences → Settings - User. Add the following lines (only the first two are required): 
+3. Open Preferences → Settings - User. Add the following lines (only the first two are required): 
    
    ```json
     "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
@@ -48,7 +50,10 @@ Packages - Sublime Package Manager
 
 4. Restart Sublime for the Theme to be fully applied.
 
-color_scheme defines how the code looks and theme defines how the sidebar, tabs, search, command palette work.
+####Emmet
+
+1. Open package control Tools → Command Palette and type Install Package
+2. Search for Emmet and hit enter
 
 
 ##Variables
@@ -93,7 +98,7 @@ Here, both someMultiple and result 'leak' outside the block.
 
 ```
 if ( width > 12 ) {
-  let someMultiple = 4;
+  let someMultiple = 10;
   let result = width * someMultiple;
   console.log(width + ' times ' + someMultiple + ' equals ' + result)
 }
@@ -113,12 +118,11 @@ let height = 200;
 height = 300
 ```
 
-And, since they are blockscoped this is allowed:
+And, since they are blockscoped the internal height variable below is isolated:
 
 ```
 var width = 100;
 let height = 200;
-height = 300;
 const testString = '123456';
 
 if (height > 10){
@@ -141,22 +145,25 @@ const me = {
   age: 48
 }
 me.age = 49;
+console.log(me);
 ```
 
 
 ##Step One
 
-Replace the existing nav items with items from an array.
+Replace the existing nav labels with items from an array.
 
 ```
 const navItems = ['LOGO', 'Watchlist', 'Research', 'Markets', 'Workbook', 'Connect', 'Desktop', 'FAQ'];
+
+console.log(navItems[2])
 ```
 
 querySelector() vs getElementById()
 
 ```
-var nav = document.getElementById('main');
 const nav = document.querySelector('#main');
+var nav = document.getElementById('main');
 console.log(nav);
 ```
 
@@ -175,10 +182,10 @@ Compare navList and navItems in the console and the Array vs nodeList prototypes
 for (let i =0; i < navList.length; i++ ){
   navList[i].innerHTML = navItems[i];
 }
-console.log(i)
+console.log(i) // not defined
 ```
 
-##Step Two
+##Step Two - Dynamic Generation
 
 Problem: we are using existing `<li>` elements but have fewer of them than there are items in our array. 
 
@@ -205,14 +212,29 @@ nav.appendChild(navList);
 ```
 for (let i =0; i < navItems.length; i++ ){
   let listItem = document.createElement('li');
-  let link = '#';
   let linkText = navItems[i];
-  listItem.innerHTML = '<a href="' + link + '">' + linkText + '</a>';
+  listItem.innerHTML = '<a href="#">' + linkText + '</a>';
   navList.appendChild(listItem);
 }
 ```
 
 Note how gracefully the CSS for the navbar (flex) accomodates the increased number of links.
+
+```
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+nav li {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
 
 Switch out the concatenation for a template string:
 
@@ -220,17 +242,17 @@ Switch out the concatenation for a template string:
   listItem.innerHTML = `<a href="${link}">${linkText}</a>`;
 ```
 
-Refactor 
+Refactor:
 
 ```
-for (let i =0; i < navItems.length; i++ ){
+for (let i=0; i < navItems.length; i++ ){
   var listItem = document.createElement('li');
   listItem.innerHTML = `<a href="#">${navItems[i]}</a>`;
   navList.appendChild(listItem);
 }
 ```
 
-Check out https://babeljs.io
+Template strings and Let and Const variables are ES6 (ecmascript version 6). Translate the code back to ES5 at https://babeljs.io
 
 
 ##Objects
@@ -257,7 +279,7 @@ Change the variable name:
 const { twitter:tw, facebook:fb } = me.links.social;
 ```
 
-Examine faq.js as a sample of an object.
+Examine navitems.js as a sample of an object.
 
 
 ##Back to Layout
@@ -265,7 +287,7 @@ Examine faq.js as a sample of an object.
 Links for our page - an array that contains multiple objects:
 
 ```
-var navItemsObj = [
+var navItems = [
 {
   label: 'LOGO',
   link: '#'
@@ -302,24 +324,72 @@ var navItemsObj = [
 ```
 
 ```
-for (let i =0; i < navItemsObj.length; i++ ){
+<script src="navitems.js"></script>
+```
+
+```
+for (let i =0; i < navItems.length; i++ ){
   var listItem = document.createElement('li');
-  listItem.innerHTML = `<a href="${navItemsObj[i].link}">${navItemsObj[i].label}</a>`;
+  listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
   navList.appendChild(listItem);
 }
 ```
 
 ##Array Methods
 
+1. Array.prototype.filter()
+
+```
+const inventors = [
+  { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+  { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+  { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+  { first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+  { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+  { first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
+  { first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
+];
+```
+
+Filter the list of inventors for those who were born in the 1500's
+
+```
+const fifteen = inventors.filter ( 
+  function(inventor){
+    if (inventor.year >= 1500 && inventor.year <= 1599 ) {
+      return true; // keep it
+    }
+  }
+);
+
+console.table(fifteen);
+```
+
+Refactor using arrow function and implicit return:
+
+```
+const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
+```
+
+2. Array.prototype.map() and join()
+
+Give an array of the inventors first and last names
+
+```
+const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
+console.log('Fullnames: ' + fullNames);
+```
+
+An alternate method for creating the list items using map():
+
 ```
 const markup = `
-  <ul>
-    ${navItemsObj.map( function(listItem) { 
-    `<li>${listItem.link} - ${listItem.label}</li>` 
-    })}
-  </ul>
+<ul>
+  ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
+</ul>
 `;
 console.log(markup)
+nav.innerHTML = (markup);
 ```
 
 
@@ -360,7 +430,6 @@ Note that we add the class to the body (as opposed to - say - the nav itself) so
 
 ```
 function fixNav() {
-  console.log(window.scrollY)
   if(window.scrollY >= topOfNav) {
     document.body.classList.add('fixed-nav');
   } else {
@@ -415,49 +484,21 @@ function fixNav() {
 
 Note the use of camel case.
 
-```
-for (let i =0; i < navItemsObj.length; i++ ){
-  var listItem = document.createElement('li');
-  listItem.innerHTML = `<a href="${navItemsObj[i].link}">${navItemsObj[i].label}</a>`;
-  navList.appendChild(listItem);
-  if (i == 0){
-    console.log(navList.firstChild)
-  }
-}
-```
-
-Using setAttribute instead of classList:
+##Adding the Logo Image
 
 ```
-  if (i == 0){
-    navList.firstChild.setAttribute('class', 'logo')
-  }
-```
-
-```
-if (navItemsObj[i].label = 'LOGO'){
-  navList.firstChild.setAttribute('class', 'logo');
-  document.querySelector('.logo').firstChild.innerHTML = '<img src="img/logo.svg" />';
-}
-```
-
-Or without the use of the loop
-
-```
-var logo = document.querySelector('#main ul li');
+const logo = document.querySelector('#main ul li');
 logo.classList.add('logo');
 logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 ```
 
-===
-
-### Notes on SVG
+* Examine the SVG file
 
 http://responsivelogos.co.uk
 
 http://www.svgeneration.com/recipes/Beam-Center/
 
-===
+Format the logo and create behaviour - CSS only, no JavaScript:
 
 ```
 li.logo img {
@@ -479,7 +520,40 @@ li.logo {
 }
 ```
 
-Note the use of max-width above. We are using this because transitions do not animate with width.
+(Note the use of max-width above. We are using this because transitions do not animate width.)
+
+##Faking It
+
+Note the use of hashes in the nav links:
+
+`<a href="#watchlist">Watchlist</a>`
+
+These allow us to navigate to sections of the document marked up with the matching id: 
+
+`<p id="watchlist">`
+
+However one of them behaves differently, the Workbook link.
+
+```
+const sitewrap = document.querySelector('.site-wrap');
+const navTest = document.querySelectorAll('#main ul li a');
+for (let i=0; i<navTest.length; i++){
+  // console.log('hash ', navTest[i].hash);
+  navTest[i].addEventListener('click', prepContent)
+}
+
+function prepContent(e){
+  if (this.hash == "#workbook"){
+    const header = "Workbook";
+    const para = "Workbooks are good. "
+    sitewrap.innerHTML = `
+    <h1 style="color: black;">${header}</h1>
+    <p>${para}</p>
+    `;
+    e.preventDefault();
+  }
+}
+```
 
 
 ##CSS Flexible Box Layout Module

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Objects</title>
+</head>
+<body>
+<script>
+
+const me = {
+  first: 'Daniel',
+  last: 'Deverell',
+  links: {
+    social: {
+      twitter: '@dannyboynyc',
+      facebook: 'https://facebook.com/danieldeverell'
+    },
+    web: {
+      blog: 'http://daniel.deverell.com'
+    }
+  }  
+}
+
+const { first, last } = me;
+
+const { twitter:tw, facebook:fb } = me.links.social;
+
+  console.log(fb)
+
+</script>
+</body>
+</html>
