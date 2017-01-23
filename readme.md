@@ -590,7 +590,7 @@ a {
 ```
 
 ```
-<p>Create an object with the labels for the site-nav</p>
+<p>Create an object with a new set of labels and links for the site-nav</p>
 
 <p>Use JavaScript to dynamically generate the unordered list</p>
 
