@@ -2,7 +2,7 @@
 
 ##Homework - TBD
 
-1. Complete the navbar exerCiSe as outlined in class (in flex-nav)
+1. Complete the navbar exercise as outlined in class (in flex-nav)
 1. Log into the class Slack account and say hi.
 1. Bring your laptop to the next class. 
 1. Create a Github account
@@ -194,7 +194,7 @@ Solution: dynamically generate the nav from items in the array.
 
 * depopulate the nav children:
 
-```
+```html
 <nav id="main"></nav>
 ```
 
@@ -202,7 +202,7 @@ Solution: dynamically generate the nav from items in the array.
 
 * Append an `<ul>` tag to nav: 
 
-```
+```js
 // const navList = nav.querySelectorAll('li a');
 var navList = document.createElement('ul');
 nav.appendChild(navList);
@@ -221,7 +221,7 @@ for (let i =0; i < navItems.length; i++ ){
 
 Note how gracefully the CSS for the navbar (flex) accomodates the increased number of links.
 
-```
+```css
 nav ul {
   margin: 0;
   padding: 0;
@@ -239,13 +239,13 @@ nav li {
 
 Switch out the concatenation for a template string:
 
-```
+```js
 listItem.innerHTML = `<a href="${link}">${linkText}</a>`;
 ```
 
 Refactor:
 
-```
+```js
 for (let i=0; i < navItems.length; i++ ){
   var listItem = document.createElement('li');
   listItem.innerHTML = `<a href="#">${navItems[i]}</a>`;
@@ -260,23 +260,23 @@ Template strings and Let and Const variables are ES6 (ecmascript version 6). Tra
 
 Introduction to objects - `objects.html`
 
-```
+```js
 const twitter = me.links.social.twitter
 ```
 
 Destructuring
 
-```
+```js
 const { first, last } = me;
 ```
 
-```
+```js
 const { twitter, facebook } = me.links.social;
 ```
 
 Change the variable name:
 
-```
+```js
 const { twitter:tw, facebook:fb } = me.links.social;
 ```
 
@@ -287,7 +287,7 @@ Examine navitems.js as a sample of an object.
 
 Links for our page - an array that contains multiple objects:
 
-```
+```js
 var navItems = [
 {
   label: 'LOGO',
@@ -324,11 +324,11 @@ var navItems = [
 ];
 ```
 
-```
+```html
 <script src="navitems.js"></script>
 ```
 
-```
+```js
 for (let i =0; i < navItems.length; i++ ){
   var listItem = document.createElement('li');
   listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
