@@ -632,7 +632,7 @@ Flexbox can be quite difficult to master. You could do worse than checking out:
 
 <img src="other/hero-1.png">
 
-[Use a system font instead of a custom font?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/). [In SVG?](https://css-tricks.com/system-fonts-svg/).
+[Use a system font instead of a custom font?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/) [In SVG?](https://css-tricks.com/system-fonts-svg/)
 
 ```css
 body {
