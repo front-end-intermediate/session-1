@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Arrow functions → → </title>
+</head>
+<body>
+<script>
+  const names = ['Daniel', 'William', 'Sophia'];
+
+  const fullNames = names.map(function(name) {
+    return `${name} Deverell`;
+  });
+
+  // 1. remove the word function
+  // const fullNames2 = names.map((name) => {
+  //   return `${name} Deverell`;
+  // });
+
+  // 2. if you've only one variable remove the ()'s'
+  // const fullNames3 = names.map(name => {
+  //   return `${name} Deverell`;
+  // });
+
+  // 3. Implicit returns
+  // const fullNames4 = names.map(name => `${name} Deverell`);
+
+  // 4. If no variable
+  // const fullNames5 = names.map(() => `Whoa Deverell`);
+
+  // 5. Named arrow function - stored in a variable
+  // const sayMyName = (name) => {
+  //   alert(`Hello ${name}!`)
+  // }
+
+  // sayMyName('Daniel');
+
+  console.log(fullNames)
+
+</script>
+</body>
+</html>

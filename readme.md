@@ -1,5 +1,9 @@
 #Session One
 
+Today we are looking at Arrays, Objects, Template Srings, Functions and Arrow Functions, and Flexbox.
+
+At the end of today's class you should be able to manipulate the DOM and insert content from an Array.
+
 ##Homework
 
 1. Complete the navbar exercise as outlined in class (in flex-nav)
@@ -46,7 +50,7 @@ Packages - first install the Sublime Text [Package Manager](https://packagecontr
     "caret_style": "phase",
     "bold_folder_labels": true,
     ```
-4. Restart Sublime for the Theme to be fully applied.
+4. Restart Sublime for the theme to be fully applied.
 
 ####Emmet
 
@@ -54,7 +58,7 @@ Packages - first install the Sublime Text [Package Manager](https://packagecontr
 2. Search for Emmet and hit enter
 
 
-####Variables
+##EXERCISE JavaScript - Variables
 
 basic-DOM > index.html
 
@@ -71,10 +75,10 @@ const testString = '123456';
 ```js
 function setWidth(){
   var width = 500;
-  console.log('inner ' + width);
+  console.log('inner width ' + width);
 }
 setWidth();
-console.log(width);
+console.log('outer width ' + width);
 ```
 
 Install Sublime [ConsoleWrap addon](https://packagecontrol.io/packages/Console%20Wrap%20for%20js)
@@ -83,56 +87,40 @@ Install Sublime [ConsoleWrap addon](https://packagecontrol.io/packages/Console%2
 
 ```js
 if ( width > 12 ) {
-  var someMultiple = 4;
-  var result = width * someMultiple;
-  console.log(width + ' times ' + someMultiple + ' equals ' + result)
+  var width = 4;
+  console.log(width)
 }
-console.log(someMultiple);
+console.log(width);
 ```
 
-Here, both someMultiple and result 'leak' outside the block.
+Here, the var result 'leaks' outside the block.
 
 * let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
 
 ```js
-if ( width > 12 ) {
-  let someMultiple = 10;
-  let result = width * someMultiple;
-  console.log(width + ' times ' + someMultiple + ' equals ' + result)
+if ( height > 12 ) {
+  let height = 4;
+  console.log(height)
 }
-console.log(result);
+console.log(height);
 ```
 
-Additionally `let` variables can only be declared once
+* `let` variables can only be declared once
 
 ```js
-let height = 300;
+let height = 300; // error
 ```
 
 Although they can be reassigned:
 
 ```js
-let height = 200;
-height = 300
+height = 3
 ```
 
-And, since they are blockscoped the internal height variable below is isolated:
-
-```js
-var width = 100;
-let height = 200;
-const testString = '123456';
-
-if (height > 10){
-  let height = 500;
-}
-console.log(height);
-```
-
-* const variables cannot be reassigned
+* const variables cannot be declared more than once OR reassigned
 
 ```
-testString = 'abcd1234'
+testString = 'abcd1234' // error
 ```
 
 But they are not 'immutable', they just create an immutable binding.
@@ -146,22 +134,25 @@ me.age = 49;
 console.log(me);
 ```
 
+me is an object - `typeof me`
+
 
 ##EXERCISE - Step One
 
-Replace the existing nav labels with items from an array.
+Replace the existing nav labels with items from an array. 
+
+```html
+<script src="navitems.js"></script>
+```
 
 ```js
-const navItems = ['LOGO', 'Watchlist', 'Research', 'Markets', 'Workbook', 'Connect', 'Desktop', 'FAQ'];
-
-console.log(navItems[2])
+console.log(navItemsArray[2])
 ```
 
-[querySelector() vs getElementById()](https://plainjs.com/javascript/selecting/)
+[getElementById()](https://plainjs.com/javascript/selecting/)
 
 ```
-const nav = document.querySelector('#main');
-var nav = document.getElementById('main');
+const nav = document.getElementById('main');
 console.log(nav);
 ```
 
@@ -172,13 +163,15 @@ const navList = nav.querySelectorAll('li a');
 console.log(navList);
 ```
 
-Compare navList and navItems in the console and the Array vs nodeList prototypes.
+Compare navList and navItemsArray in the console. Note Array vs nodeList types and prototypes. 
+
+A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`
 
 * for loop and innerHTML
 
 ```
-for (let i =0; i < navList.length; i++ ){
-  navList[i].innerHTML = navItems[i];
+for (let i=0; i < navList.length; i++ ){
+  navList[i].innerHTML = navItemsArray[i];
 }
 console.log(i) // not defined
 ```
@@ -195,26 +188,43 @@ Solution: dynamically generate the nav from items in the array.
 <nav id="main"></nav>
 ```
 
-* Append an `<ul>` tag to nav ( [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/), [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) : 
+* Append a `<ul>` tag to nav ( [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/), [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) : 
 
 ```js
 // const navList = nav.querySelectorAll('li a');
-var navList = document.createElement('ul');
+const navList = document.createElement('ul');
 nav.appendChild(navList);
 ```
 
 * dynamically create the nav based on the number of items in the array:
 
 ```js
-for (let i =0; i < navItems.length; i++ ){
+for (let i =0; i < navItemsArray.length; i++ ){
   let listItem = document.createElement('li');
-  let linkText = navItems[i];
+  let linkText = navItemsArray[i];
   listItem.innerHTML = '<a href="#">' + linkText + '</a>';
   navList.appendChild(listItem);
 }
 ```
 
-Note how gracefully the CSS for the navbar (flex) accomodates the increased number of links.
+Switch out the concatenation for a template string:
+
+```js
+listItem.innerHTML = `<a href="#">${linkText}</a>`;
+```
+
+Refactor to use JS in the template string:
+
+```js
+for (let i=0; i < navItemsArray.length; i++ ){
+  const listItem = document.createElement('li');
+  listItem.innerHTML = `<a href="#">${navItemsArray[i]}</a>`;
+  navList.appendChild(listItem);
+}
+```
+
+
+Note how gracefully the CSS for the navbar accomodates the increased number of links.
 
 ```css
 nav ul {
@@ -222,6 +232,7 @@ nav ul {
   padding: 0;
   list-style: none;
   display: flex;
+  min-height: 2.5rem;
 }
 nav li {
   flex: 1;
@@ -232,28 +243,14 @@ nav li {
 }
 ```
 
-Switch out the concatenation for a template string:
-
-```js
-listItem.innerHTML = `<a href="${link}">${linkText}</a>`;
-```
-
-Refactor:
-
-```js
-for (let i=0; i < navItems.length; i++ ){
-  var listItem = document.createElement('li');
-  listItem.innerHTML = `<a href="#">${navItems[i]}</a>`;
-  navList.appendChild(listItem);
-}
-```
-
-Template strings and Let and Const variables are ES6 (ecmascript version 6). Translate the code back to ES5 at https://babeljs.io
+Note: Template strings and Let and Const variables are ES6 (ecmascript version 6). While they work on new browsers they may not in older. Translate the code back to ES5 at https://babeljs.io
 
 
 ####Objects
 
-Introduction to objects - `objects.html`
+Examine navitems.js as a sample of an object.
+
+objects - `objects.html`
 
 ```js
 const twitter = me.links.social.twitter
@@ -274,8 +271,6 @@ Change the variable name:
 ```js
 const { twitter:tw, facebook:fb } = me.links.social;
 ```
-
-Examine navitems.js as a sample of an object.
 
 
 ##EXERCISE Step Three - Dynamic Generation with an Object
@@ -318,20 +313,27 @@ var navItems = [
 }
 ];
 ```
+Located in 
 
 ```html
 <script src="navitems.js"></script>
 ```
 
+Refresh - duplicate const variable - remove array and refresh.
+
+Add the links:
+
 ```js
 for (let i =0; i < navItems.length; i++ ){
-  var listItem = document.createElement('li');
+  const listItem = document.createElement('li');
   listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
   navList.appendChild(listItem);
 }
 ```
 
 ####Array Methods
+
+We will look at another method for developing our nav - using an Array method.
 
 1. Array.prototype.filter()
 
@@ -359,6 +361,8 @@ const fifteen = inventors.filter ( function(inventor){
 console.table(fifteen);
 ```
 
+Arrow functions.
+
 Refactor using arrow function and implicit return:
 
 ```js
@@ -370,6 +374,12 @@ const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.
 Give an array of the inventors first and last names
 
 ```
+var fullNames = inventors.map(function(inventor){
+  return `${inventor.first} ${inventor.last}`;
+})
+```
+
+```
 const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
 console.log('Fullnames: ' + fullNames);
 ```
@@ -378,17 +388,32 @@ An alternate method for creating the list items using [map()](https://forum.free
 
 ```js
 const markup = `
-    <ul>
+    <ul> 
+      ${navItems.map( 
+        function(listItem) {
+          return `<li><a href="${listItem.link}">${listItem.label}</a></li>` }
+        )}
+    </ul>
+    `;
+console.log(markup)
+nav.innerHTML = markup;
+```
+
+Join on the comma.
+
+```js
+const markup = `
+    <ul> 
       ${navItems.map( 
         function(listItem) {
           return `<li><a href="${listItem.link}">${listItem.label}</a></li>` }
         ).join('')}
     </ul>
     `;
-console.log(markup)
+nav.innerHTML = markup;
 ```
 
-Refactored using an arrow expression:
+Refactored using an arrow function:
 
 ```js
 const markup = `
@@ -396,8 +421,28 @@ const markup = `
   ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
 </ul>
 `;
-nav.innerHTML = (markup);
+nav.innerHTML = markup;
 ```
+
+Since we are including a `<ul>` in our markup constant we can remove it from our script.
+
+Final scrips:
+
+```html
+<script src="navitems.js"></script>
+
+<script>
+const nav = document.getElementById('main');
+const markup = `
+    <ul> 
+      ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>`).join('')}
+    </ul>
+    `;
+nav.innerHTML = markup;
+</script>
+```
+
+Try translating this in babeljs.
 
 
 ##EXERCISE Step Four - Sticky Menu
@@ -699,7 +744,7 @@ Comment out the contents of the ul:
   <p>The items below all come from today's work on the Basic DOM scripting page. You should attempt each one if possible.</p>
 
   <ol>
-    <li>Create an object with a new set of labels and links for the site-nav li's and use the JavaScript techniques we covered today to dynamically generate the nav menu</li>
+    <li>Create an object with a new set of labels and links for the site-nav li's above and use the JavaScript techniques we covered today to dynamically generate the nav menu</li>
 
     <li>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</li>
 
