@@ -52,7 +52,7 @@ Packages - first install the Sublime Text [Package Manager](https://packagecontr
 ```
 Restart Sublime for the theme to be fully applied.
 
-####Emmet
+####[Emmet](http://emmet.io)
 
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Emmet and hit enter
