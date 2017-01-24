@@ -81,7 +81,7 @@ setWidth();
 console.log('outer width ' + width);
 ```
 
-Install Sublime [ConsoleWrap addon](https://packagecontrol.io/packages/Console%20Wrap%20for%20js)
+<!-- Install Sublime [ConsoleWrap addon](https://packagecontrol.io/packages/Console%20Wrap%20for%20js) -->
 
 * var - can 'leak' when its not inside a function:
 
