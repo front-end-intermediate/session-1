@@ -34,7 +34,7 @@ Packages - first install the Sublime Text [Package Manager](https://packagecontr
 
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Cobalt2 and hit enter
-3. Open Preferences → Settings - User. Add the following lines (only the first two are required): 
+3. Open Preferences → Settings - User. Add the following lines (only the first two are required):
 ```json
 "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
 "theme": "Cobalt2.sublime-theme",   
@@ -143,7 +143,7 @@ me is an object - `typeof me`
 
 ##EXERCISE - Step One
 
-Replace the existing nav labels with items from an array. 
+Replace the existing nav labels with items from an array.
 
 ```html
 <script src="navitems.js"></script>
@@ -167,7 +167,7 @@ const navList = nav.querySelectorAll('li a');
 console.log(navList);
 ```
 
-Compare navList and navItemsArray in the console. Note Array vs nodeList types and prototypes. 
+Compare navList and navItemsArray in the console. Note Array vs nodeList types and prototypes.
 
 A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`
 
@@ -182,7 +182,7 @@ console.log(i) // not defined
 
 ##EXERCISE Step Two - Dynamic Generation
 
-Problem: we are using existing `<li>` elements but have fewer of them than there are items in our array. 
+Problem: we are using existing `<li>` elements but have fewer of them than there are items in our array.
 
 Solution: dynamically generate the nav from items in the array.
 
@@ -192,7 +192,7 @@ Solution: dynamically generate the nav from items in the array.
 <nav id="main"></nav>
 ```
 
-* Append a `<ul>` tag to nav ( [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/), [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) : 
+* Append a `<ul>` tag to nav ( [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/), [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) :
 
 ```js
 // const navList = nav.querySelectorAll('li a');
@@ -290,7 +290,7 @@ var navItems = [
 {
   label: 'Watchlist',
   link: '#watchlist'
-}, 
+},
 {
   label: 'Research',
   link: '#research'
@@ -317,7 +317,7 @@ var navItems = [
 }
 ];
 ```
-Located in 
+Located in
 
 ```html
 <script src="navitems.js"></script>
@@ -392,8 +392,8 @@ An alternate method for creating the list items using [map()](https://forum.free
 
 ```js
 const markup = `
-    <ul> 
-      ${navItems.map( 
+    <ul>
+      ${navItems.map(
         function(listItem) {
           return `<li><a href="${listItem.link}">${listItem.label}</a></li>` }
         )}
@@ -407,8 +407,8 @@ Join on the comma.
 
 ```js
 const markup = `
-    <ul> 
-      ${navItems.map( 
+    <ul>
+      ${navItems.map(
         function(listItem) {
           return `<li><a href="${listItem.link}">${listItem.label}</a></li>` }
         ).join('')}
@@ -438,7 +438,7 @@ Final scrips:
 <script>
 const nav = document.getElementById('main');
 const markup = `
-    <ul> 
+    <ul>
       ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>`).join('')}
     </ul>
     `;
@@ -524,7 +524,7 @@ body.fixed-nav .site-wrap {
 
 When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
 
-Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav. 
+Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav.
 
 ```js
 function fixNav() {
@@ -548,7 +548,7 @@ logo.classList.add('logo');
 logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 ```
 
-* Examine the SVG file 
+* Examine the SVG file
 * some interesting applications of SVG:
 
 http://responsivelogos.co.uk
@@ -584,7 +584,7 @@ Note the use of hashes in the nav links:
 
 `<a href="#watchlist">Watchlist</a>`
 
-These allow us to navigate to sections of the document marked up with the matching id: 
+These allow us to navigate to sections of the document marked up with the matching id:
 
 `<p id="watchlist">`
 
@@ -630,7 +630,7 @@ Flexbox can be quite difficult to master. You could do worse than checking out:
 
 * A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-<img src="other-stuff/hero-1.png">
+<img src="other/hero-1.png">
 
 [Use a system font instead of a custom font?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/). [In SVG?](https://css-tricks.com/system-fonts-svg/).
 
@@ -768,7 +768,7 @@ Comment out the contents of the ul:
 
 * Use min-width media queries to add features to larger screens `@media (min-width: 46.25em) { }`
 
-* Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices 
+* Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices
 
 [Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
 
@@ -814,9 +814,9 @@ Git Status
 git status
 On branch master
 ```
-Git doesn't auto track files - only those you tell it to. 
+Git doesn't auto track files - only those you tell it to.
 
-Adding files creates untracked files. 
+Adding files creates untracked files.
 
 Create and add .gitignore run status.
 
@@ -825,7 +825,7 @@ git status
 git commit -m 'initial commit'
 ```
 
-Note: `git commit`  without the `-m` flag goes into VIM. 
+Note: `git commit`  without the `-m` flag goes into VIM.
 
 Avoid this unless you like VIM. If this happens, hit ESC and type “:q” to exit.
 
@@ -842,7 +842,7 @@ git checkout <branchname>
 git diff
 ```
 
-To merge branches 
+To merge branches
 
 * be in the branch you want to merge to
 
@@ -876,4 +876,3 @@ git push -u origin master
 ###Notes
 
 [vh and vw in the CSS](https://css-tricks.com/viewport-sized-typography/)
-
