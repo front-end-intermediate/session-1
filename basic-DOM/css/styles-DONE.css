@@ -30,8 +30,8 @@ body.fixed-nav .site-wrap {
 }
 header {
   text-align: center;
-  height:30vh;
-  background:url(../img/img.jpg) bottom center no-repeat;
+  height:40vh;
+  background:url(../img/img.jpg) center no-repeat;
   background-size:cover;
   display:flex;
   align-items:center;

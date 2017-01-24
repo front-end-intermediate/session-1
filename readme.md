@@ -529,7 +529,7 @@ These allow us to navigate to sections of the document marked up with the matchi
 
 `<p id="watchlist">`
 
-However one of them behaves differently, the Workbook link.
+We'll set up one of them, the Workbook link, to behave differently. This emulates a single page application (SPA).
 
 ```js
 const sitewrap = document.querySelector('.site-wrap');
@@ -538,14 +538,24 @@ for (let i=0; i<navTest.length; i++){
   // console.log('hash ', navTest[i].hash);
   navTest[i].addEventListener('click', prepContent)
 }
+```
 
+```js
 function prepContent(e){
   if (this.hash == "#workbook"){
-    const header = "Workbook";
-    const para = "Workbooks are good. "
+    e.preventDefault();
+  }
+}
+```
+
+```js
+function prepContent(e){
+  if (this.hash == "#workbook"){
+    const header = fakeContent[0].header;
+    const content = fakeContent[0].content;
     sitewrap.innerHTML = `
-    <h1 style="color: black;">${header}</h1>
-    <p>${para}</p>
+      <h2>${header}</h2>
+      <p>${content}</p>
     `;
     e.preventDefault();
   }

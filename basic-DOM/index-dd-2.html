@@ -96,13 +96,12 @@ for (let i=0; i<navTest.length; i++){
 }
 
 function prepContent(e){
-  console.log(this.firstChild)
   if (this.hash == "#workbook"){
-    const header = `${this.firstChild}`;
-    const para = "Workbooks are good. "
+    const header = fakeContent[0].header;
+    const content = fakeContent[0].content;
     sitewrap.innerHTML = `
-    <h1 style="color: black;">${header}</h1>
-    <p>${para}</p>
+      <h2>${header}</h2>
+      <p>${content}</p>
     `;
     e.preventDefault();
   }
