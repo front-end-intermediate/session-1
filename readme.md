@@ -555,7 +555,9 @@ function prepContent(e){
 
 ##HOMEWORK - CSS Flexible Box Layout Module
 
-Flexbox can be quite difficult to master. 
+Flexbox can be quite difficult to master. You could do worse than checking out:
+
+* Free Code Camp's [article on Medium.com](https://medium.freecodecamp.com/understanding-flexbox-everything-you-need-to-know-b4013d4dc9af#.usjz1l93w), or
 
 * A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
