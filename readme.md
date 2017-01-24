@@ -415,7 +415,7 @@ function fixNav() {
 
 [classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/)
 
-```
+```js
 function fixNav() {
   if(window.scrollY >= topOfNav) {
     document.body.classList.add('fixed-nav');
@@ -425,7 +425,7 @@ function fixNav() {
 
 Note that we add the class fixed-nav to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). We'll do this with the site-wrap.
 
-```css
+```js
 function fixNav() {
   if(window.scrollY >= topOfNav) {
     document.body.classList.add('fixed-nav');
