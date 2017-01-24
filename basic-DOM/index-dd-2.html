@@ -88,12 +88,25 @@ const markup = `
 `;
 nav.innerHTML = (markup);
 
-// const sitewrap = document.querySelector('.site-wrap');
-// const navTest = document.querySelectorAll('#main ul li a');
-// for (let i=0; i<navTest.length; i++){
-//   console.log('hash ', navTest[i].hash);
-  // navTest[i].addEventListener('click', prepContent)
-// }
+const sitewrap = document.querySelector('.site-wrap');
+const navTest = document.querySelectorAll('#main ul li a');
+for (let i=0; i<navTest.length; i++){
+  // console.log('hash ', navTest[i].hash);
+  navTest[i].addEventListener('click', prepContent)
+}
+
+function prepContent(e){
+  console.log(this.firstChild)
+  if (this.hash == "#workbook"){
+    const header = `${this.firstChild}`;
+    const para = "Workbooks are good. "
+    sitewrap.innerHTML = `
+    <h1 style="color: black;">${header}</h1>
+    <p>${para}</p>
+    `;
+    e.preventDefault();
+  }
+}
 
 let topOfNav = nav.offsetTop;
 

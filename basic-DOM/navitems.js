@@ -1,4 +1,4 @@
-var navItems = [
+const navItems = [
     {
       label: 'LOGO',
       link: '#'
@@ -32,3 +32,10 @@ var navItems = [
       link: '#faq'
     }
     ];
+
+
+const fakeContent = [
+  {
+    
+  }
+]

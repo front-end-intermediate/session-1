@@ -338,7 +338,7 @@ for (let i =0; i < navItems.length; i++ ){
 
 1. Array.prototype.filter()
 
-```
+```js
 const inventors = [
 { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
 { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -352,7 +352,7 @@ const inventors = [
 
 Filter the list of inventors for those who were born in the 1500's
 
-```
+```js
 const fifteen = inventors.filter ( function(inventor){
   if (inventor.year >= 1500 && inventor.year <= 1599 ) {
     return true; // keep it
@@ -364,7 +364,7 @@ console.table(fifteen);
 
 Refactor using arrow function and implicit return:
 
-```
+```js
 const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
 ```
 
@@ -379,7 +379,7 @@ console.log('Fullnames: ' + fullNames);
 
 An alternate method for creating the list items using map():
 
-```
+```js
 const markup = `
 <ul>
   ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
@@ -394,19 +394,19 @@ nav.innerHTML = (markup);
 
 offSetTop
 
-```
+```js
 let topOfNav = nav.offsetTop;
 ```
 
 * addEventListener('event', function)
 
-```
+```js
 window.addEventListener('scroll', fixNav);
 ```
 
 scrollY
 
-```
+```js
 function fixNav() {
   console.log(topOfNav)
   console.log(window.scrollY)
