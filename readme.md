@@ -2,7 +2,7 @@
 
 ##Homework - TBD
 
-1. Complete the navbar exersize as outlined in class (in flex-nav)
+1. Complete the navbar exerCiSe as outlined in class (in flex-nav)
 1. Log into the class Slack account and say hi.
 1. Bring your laptop to the next class. 
 1. Create a Github account
@@ -71,10 +71,10 @@ const testString = '123456';
 
 * var - is function scoped:
 
-```
+```js
 function setWidth(){
-var width = 500;
-console.log('inner ' + width);
+  var width = 500;
+  console.log('inner ' + width);
 }
 setWidth();
 console.log(width);
@@ -84,11 +84,11 @@ Install Sublime [ConsoleWrap addon](https://packagecontrol.io/packages/Console%2
 
 * var - can 'leak' when its not inside a function:
 
-```
+```js
 if ( width > 12 ) {
-var someMultiple = 4;
-var result = width * someMultiple;
-console.log(width + ' times ' + someMultiple + ' equals ' + result)
+  var someMultiple = 4;
+  var result = width * someMultiple;
+  console.log(width + ' times ' + someMultiple + ' equals ' + result)
 }
 console.log(someMultiple);
 ```
@@ -97,37 +97,37 @@ Here, both someMultiple and result 'leak' outside the block.
 
 * let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
 
-```
+```js
 if ( width > 12 ) {
-let someMultiple = 10;
-let result = width * someMultiple;
-console.log(width + ' times ' + someMultiple + ' equals ' + result)
+  let someMultiple = 10;
+  let result = width * someMultiple;
+  console.log(width + ' times ' + someMultiple + ' equals ' + result)
 }
 console.log(result);
 ```
 
 Additionally `let` variables can only be declared once
 
-```
+```js
 let height = 300;
 ```
 
 Although they can be reassigned:
 
-```
+```js
 let height = 200;
 height = 300
 ```
 
 And, since they are blockscoped the internal height variable below is isolated:
 
-```
+```js
 var width = 100;
 let height = 200;
 const testString = '123456';
 
 if (height > 10){
-let height = 500;
+  let height = 500;
 }
 console.log(height);
 ```
@@ -142,15 +142,15 @@ But they are not immutable, they just create an immutable binding.
 
 ```
 const me = {
-hair: true,
-age: 48
+  hair: true,
+  age: 48
 }
 me.age = 49;
 console.log(me);
 ```
 
 
-##EXERSIZE - Step One
+##EXERCISE - Step One
 
 Replace the existing nav labels with items from an array.
 
@@ -181,12 +181,12 @@ Compare navList and navItems in the console and the Array vs nodeList prototypes
 
 ```
 for (let i =0; i < navList.length; i++ ){
-navList[i].innerHTML = navItems[i];
+  navList[i].innerHTML = navItems[i];
 }
 console.log(i) // not defined
 ```
 
-##EXERSIZE Step Two - Dynamic Generation
+##EXERCISE Step Two - Dynamic Generation
 
 Problem: we are using existing `<li>` elements but have fewer of them than there are items in our array. 
 
@@ -210,12 +210,12 @@ nav.appendChild(navList);
 
 * dynamically create the nav based on the number of items in the array:
 
-```
+```js
 for (let i =0; i < navItems.length; i++ ){
-let listItem = document.createElement('li');
-let linkText = navItems[i];
-listItem.innerHTML = '<a href="#">' + linkText + '</a>';
-navList.appendChild(listItem);
+  let listItem = document.createElement('li');
+  let linkText = navItems[i];
+  listItem.innerHTML = '<a href="#">' + linkText + '</a>';
+  navList.appendChild(listItem);
 }
 ```
 
@@ -223,17 +223,17 @@ Note how gracefully the CSS for the navbar (flex) accomodates the increased numb
 
 ```
 nav ul {
-margin: 0;
-padding: 0;
-list-style: none;
-display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
 }
 nav li {
-flex: 1;
-text-align: center;
-display: flex;
-justify-content: center;
-align-items: center;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 ```
 
@@ -247,9 +247,9 @@ Refactor:
 
 ```
 for (let i=0; i < navItems.length; i++ ){
-var listItem = document.createElement('li');
-listItem.innerHTML = `<a href="#">${navItems[i]}</a>`;
-navList.appendChild(listItem);
+  var listItem = document.createElement('li');
+  listItem.innerHTML = `<a href="#">${navItems[i]}</a>`;
+  navList.appendChild(listItem);
 }
 ```
 
@@ -283,7 +283,7 @@ const { twitter:tw, facebook:fb } = me.links.social;
 Examine navitems.js as a sample of an object.
 
 
-##EXERSIZE Step Three - Dynamic Generation with an Object
+##EXERCISE Step Three - Dynamic Generation with an Object
 
 Links for our page - an array that contains multiple objects:
 
@@ -330,9 +330,9 @@ var navItems = [
 
 ```
 for (let i =0; i < navItems.length; i++ ){
-var listItem = document.createElement('li');
-listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
-navList.appendChild(listItem);
+  var listItem = document.createElement('li');
+  listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
+  navList.appendChild(listItem);
 }
 ```
 
@@ -356,458 +356,458 @@ Filter the list of inventors for those who were born in the 1500's
 
 ```
 const fifteen = inventors.filter ( 
-function(inventor){
-if (inventor.year >= 1500 && inventor.year <= 1599 ) {
-return true; // keep it
-}
-}
-);
+  function(inventor){
+    if (inventor.year >= 1500 && inventor.year <= 1599 ) {
+      return true; // keep it
+    }
+  }
+  );
 
-console.table(fifteen);
-```
+  console.table(fifteen);
+  ```
 
-Refactor using arrow function and implicit return:
+  Refactor using arrow function and implicit return:
 
-```
-const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
-```
+  ```
+  const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
+  ```
 
-2. Array.prototype.map() and join()
+  2. Array.prototype.map() and join()
 
-Give an array of the inventors first and last names
+  Give an array of the inventors first and last names
 
-```
-const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
-console.log('Fullnames: ' + fullNames);
-```
+  ```
+  const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
+  console.log('Fullnames: ' + fullNames);
+  ```
 
-An alternate method for creating the list items using map():
+  An alternate method for creating the list items using map():
 
-```
-const markup = `
-<ul>
-  ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
-</ul>
-`;
-console.log(markup)
-nav.innerHTML = (markup);
-```
-
-
-##EXERSIZE Step Four - Sticky Menu
-
-offSetTop
-
-```
-let topOfNav = nav.offsetTop;
-```
-
-* addEventListener('event', function)
-
-```
-window.addEventListener('scroll', fixNav);
-```
-
-scrollY
-
-```
-function fixNav() {
-console.log(topOfNav)
-console.log(window.scrollY)
-}
-```
-
-classList 
-
-```
-function fixNav() {
-if(window.scrollY >= topOfNav) {
-document.body.classList.add('fixed-nav');
-}
-}
-```
-
-Note that we add the class to the body (as opposed to - say - the nav itself) so that we can use it to target other elements on the page which may not be children of the nav.
-
-```
-function fixNav() {
-if(window.scrollY >= topOfNav) {
-document.body.classList.add('fixed-nav');
-} else {
-document.body.classList.remove('fixed-nav');
-}
-}
-```
-
-```
-body.fixed-nav nav {
-position: fixed;
-box-shadow:0 5px 3px rgba(0,0,0,0.1);
-}
-```
-
-```
-.site-wrap {
-max-width: 780px;
-margin: 40px auto;
-background:white;
-padding:40px;
-text-align: justify;
-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
-/* add these two */
-transform: scale(0.98);
-transition: transform 0.5s;
-}
-
-```
-
-```
-body.fixed-nav .site-wrap {
-transform: scale(1);
-}
-```
-
-When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
-
-Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav. 
-
-```
-function fixNav() {
-if(window.scrollY >= topOfNav) {
-document.body.style.paddingTop = nav.offsetHeight + 'px';
-document.body.classList.add('fixed-nav');
-} else {
-document.body.classList.remove('fixed-nav');
-document.body.style.paddingTop = 0;
-}
-}
-```
-
-Note the use of camel case.
-
-##EXERSIZE Step Five - Adding the Logo Image
-
-```
-const logo = document.querySelector('#main ul li');
-logo.classList.add('logo');
-logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
-```
-
-* Examine the SVG file
-
-http://responsivelogos.co.uk
-
-http://www.svgeneration.com/recipes/Beam-Center/
-
-Format the logo and create behaviour - CSS only, no JavaScript:
-
-```
-li.logo img {
-padding-top: 0.25rem;
-width: 2.5rem;
-}
-
-li.logo {
-max-width:0;
-overflow: hidden;
-background: white;
-transition: all 0.5s;
-font-weight: 600;
-font-size: 30px;
-}
-
-.fixed-nav li.logo {
-max-width:500px;
-}
-```
-
-(Note the use of max-width above. We are using this because transitions do not animate width.)
-
-##EXERSIZE End (for today) - Faking It!
-
-Note the use of hashes in the nav links:
-
-`<a href="#watchlist">Watchlist</a>`
-
-These allow us to navigate to sections of the document marked up with the matching id: 
-
-`<p id="watchlist">`
-
-However one of them behaves differently, the Workbook link.
-
-```
-const sitewrap = document.querySelector('.site-wrap');
-const navTest = document.querySelectorAll('#main ul li a');
-for (let i=0; i<navTest.length; i++){
-// console.log('hash ', navTest[i].hash);
-navTest[i].addEventListener('click', prepContent)
-}
-
-function prepContent(e){
-if (this.hash == "#workbook"){
-const header = "Workbook";
-const para = "Workbooks are good. "
-sitewrap.innerHTML = `
-<h1 style="color: black;">${header}</h1>
-<p>${para}</p>
-`;
-e.preventDefault();
-}
-}
-```
-
-
-##HOMEWORK - CSS Flexible Box Layout Module
-
-* A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
- 
-<img src="other-stuff/hero-1.png">
-
-[Use a system font instead of custom?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/). 
-
-[In SVG](https://css-tricks.com/system-fonts-svg/).
-
-```
-body {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
-```
-
-```
-.site-nav ul {
-list-style: none;
-display: flex;
-margin: 0;
-padding: 0;
-}
-
-.site-nav li {
-width: 100px;
-height: 100px;
-background-color: #8cacea;
-margin: 8px;
-}
-```
-
-```
-.account-dropdown ul {
-display: none;
-}
-
-.site-header {
-background: #0D1313;
-color: white;
-display: flex;
-align-items: center;
-padding:0.5rem;
-}
-
-.logo {
-text-decoration: none;
-color: white;
-font-size: 0.9rem;
-text-transform: uppercase;
-letter-spacing: 3px;
-padding: 10px;
-}
-
-a {
-text-transform: uppercase;
-text-decoration: none;
-color: #CDD0D0;
-padding: 20px;
-display: inline-block;
-}
-
-.active a {
-font-weight: bold;
-color: #62DEBE;
-background: darken(#62DEBE, 40%);
-}
-
-.account-actions {
-margin-left: auto;
-display: flex;
-align-items: center;
-margin-right: 10px;
-}
-
-.sign-out-link {
-color: #62DEBE;
-font-size: 0.8rem;
-margin-left: 10px;
-text-transform: uppercase;
-}
-
-@media (max-width: 600px) {
-.site-header {
-flex-wrap: wrap;
-}
-.site-nav {
-order: 2;
-background: #333;
-width: 100%;
-}
-}
-```
-
-[Font Awesome](http://fontawesome.io/)
-
-```
-
-<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
-
-<i class="fa fa-bullseye fa-3x"></i>
-
-<i class="fa fa-gear"></i>
-
-```
-
-Comment out the contents of the ul:
-
-```
-<nav class="site-nav">
+  ```
+  const markup = `
   <ul>
-    <!-- <li class="active"><a href="#0">Recipes</a></li>
-    <li><a href="#0">Reviews</a></li>
-    <li><a href="#0">Delivery</a></li> -->
+    ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
   </ul>
-</nav>
-```
-
-```
-<div class="site-wrap">
-  <h4>Homework</h4>
-
-  <p>The items below all come from today's work on the Basic DOM scripting page. You should attempt each one if possible.</p>
-
-  <ol>
-    <li>Create an object with a new set of labels and links for the site-nav li's and use the JavaScript techniques we covered today to dynamically generate the nav menu</li>
-
-    <li>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</li>
-
-    <li>Use the 'Faking It' code stubb to change the content of the site-wrap when a link is clicked.</li>
-
-    <li>Optional: Add some paragraphs to the page and make the navigation sticky</li>
-  </ol>
-
-  <p>Post your efforts to the class Slack Channel and a web server (if you don't have I can provide)</p>
-</div>
-
-```
-
-##TO DO - Make It Responsive
-
-* Mobile first design
-
-* Use min-width media queries to add features to larger screens `@media (min-width: 46.25em) { }`
-
-* Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices 
-
-[Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
+  `;
+  console.log(markup)
+  nav.innerHTML = (markup);
+  ```
 
 
-##TO DO - Use SASS
+  ##EXERCISE Step Four - Sticky Menu
 
-* error checking - watch out for this
+  offSetTop
 
-* variables - added padding and breakpoint
+  ```
+  let topOfNav = nav.offsetTop;
+  ```
 
-* imports and structure
+  * addEventListener('event', function)
 
-[Bootstrap SASS](https://github.com/twbs/bootstrap-sass)
+  ```
+  window.addEventListener('scroll', fixNav);
+  ```
+
+  scrollY
+
+  ```
+  function fixNav() {
+    console.log(topOfNav)
+    console.log(window.scrollY)
+  }
+  ```
+
+  classList 
+
+  ```
+  function fixNav() {
+    if(window.scrollY >= topOfNav) {
+      document.body.classList.add('fixed-nav');
+    }
+  }
+  ```
+
+  Note that we add the class to the body (as opposed to - say - the nav itself) so that we can use it to target other elements on the page which may not be children of the nav.
+
+  ```
+  function fixNav() {
+    if(window.scrollY >= topOfNav) {
+      document.body.classList.add('fixed-nav');
+    } else {
+      document.body.classList.remove('fixed-nav');
+    }
+  }
+  ```
+
+  ```
+  body.fixed-nav nav {
+    position: fixed;
+    box-shadow:0 5px 3px rgba(0,0,0,0.1);
+  }
+  ```
+
+  ```
+  .site-wrap {
+    max-width: 780px;
+    margin: 40px auto;
+    background:white;
+    padding:40px;
+    text-align: justify;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+    /* add these two */
+    transform: scale(0.98);
+    transition: transform 0.5s;
+  }
+
+  ```
+
+  ```
+  body.fixed-nav .site-wrap {
+    transform: scale(1);
+  }
+  ```
+
+  When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
+
+  Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav. 
+
+  ```
+  function fixNav() {
+    if(window.scrollY >= topOfNav) {
+      document.body.style.paddingTop = nav.offsetHeight + 'px';
+      document.body.classList.add('fixed-nav');
+    } else {
+      document.body.classList.remove('fixed-nav');
+      document.body.style.paddingTop = 0;
+    }
+  }
+  ```
+
+  Note the use of camel case.
+
+  ##EXERCISE Step Five - Adding the Logo Image
+
+  ```
+  const logo = document.querySelector('#main ul li');
+  logo.classList.add('logo');
+  logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
+  ```
+
+  * Examine the SVG file
+
+  http://responsivelogos.co.uk
+
+  http://www.svgeneration.com/recipes/Beam-Center/
+
+  Format the logo and create behaviour - CSS only, no JavaScript:
+
+  ```
+  li.logo img {
+    padding-top: 0.25rem;
+    width: 2.5rem;
+  }
+
+  li.logo {
+    max-width:0;
+    overflow: hidden;
+    background: white;
+    transition: all 0.5s;
+    font-weight: 600;
+    font-size: 30px;
+  }
+
+  .fixed-nav li.logo {
+    max-width:500px;
+  }
+  ```
+
+  (Note the use of max-width above. We are using this because transitions do not animate width.)
+
+  ##EXERCISE End (for today) - Faking It!
+
+  Note the use of hashes in the nav links:
+
+  `<a href="#watchlist">Watchlist</a>`
+
+  These allow us to navigate to sections of the document marked up with the matching id: 
+
+  `<p id="watchlist">`
+
+  However one of them behaves differently, the Workbook link.
+
+  ```
+  const sitewrap = document.querySelector('.site-wrap');
+  const navTest = document.querySelectorAll('#main ul li a');
+  for (let i=0; i<navTest.length; i++){
+    // console.log('hash ', navTest[i].hash);
+    navTest[i].addEventListener('click', prepContent)
+  }
+
+  function prepContent(e){
+    if (this.hash == "#workbook"){
+      const header = "Workbook";
+      const para = "Workbooks are good. "
+      sitewrap.innerHTML = `
+      <h1 style="color: black;">${header}</h1>
+      <p>${para}</p>
+      `;
+      e.preventDefault();
+    }
+  }
+  ```
 
 
-##GIT and GITHUB
+  ##HOMEWORK - CSS Flexible Box Layout Module
 
-Git Config (typically only need to do this once on your machine)
+  * A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-```
-git config
-git config --global user.name "DannyBoyNYC"
-git config --global user.email "daniel.deverell@gmail.com"
-git config --list
-```
-* make sure terminal is in the correct directory
+  <img src="other-stuff/hero-1.png">
 
-```
-git init
-```
-Examine the .git Directory
+  [Use a system font instead of custom?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/). 
 
-```
-ls -al
-cd .git
-ls
-cd ..
-```
+  [In SVG](https://css-tricks.com/system-fonts-svg/).
 
-Git Status
+  ```
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  }
+  ```
 
-```
-git status
-On branch master
-```
-Git doesn't auto track files - only those you tell it to. 
+  ```
+  .site-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
 
-Adding files creates untracked files. 
+  .site-nav li {
+    width: 100px;
+    height: 100px;
+    background-color: #8cacea;
+    margin: 8px;
+  }
+  ```
 
-Create and add .gitignore run status.
+  ```
+  .account-dropdown ul {
+    display: none;
+  }
 
-```
-git status
-git commit -m 'initial commit'
-```
+  .site-header {
+    background: #0D1313;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding:0.5rem;
+  }
 
-Note: `git commit`  without the `-m` flag goes into VIM. 
+  .logo {
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 10px;
+  }
 
-Avoid this unless you like VIM. If this happens, hit ESC and type “:q” to exit.
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #CDD0D0;
+    padding: 20px;
+    display: inline-block;
+  }
 
-```
-git status
-On branch master
-nothing to commit, working directory clean
-```
+  .active a {
+    font-weight: bold;
+    color: #62DEBE;
+    background: darken(#62DEBE, 40%);
+  }
 
-```
-git branch
-git branch <branchname>
-git checkout <branchname>
-git diff
-```
+  .account-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
 
-To merge branches 
+  .sign-out-link {
+    color: #62DEBE;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    text-transform: uppercase;
+  }
 
-* be in the branch you want to merge to
+  @media (max-width: 600px) {
+    .site-header {
+      flex-wrap: wrap;
+    }
+    .site-nav {
+      order: 2;
+      background: #333;
+      width: 100%;
+    }
+  }
+  ```
 
-* run status on that branch to make sure nothing is odd
+  [Font Awesome](http://fontawesome.io/)
 
-```
-git checkout master
-git status
-git merge <branchname>
-```
+  ```
 
-Other useful branch commands (delete, show unmerged and merged branches)
+  <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
 
-```
-git branch -d <branchname>
-git branch --no-merge
-git branch --merged
-```
+  <i class="fa fa-bullseye fa-3x"></i>
 
-Pushing Files to Remote Repos - Github
+  <i class="fa fa-gear"></i>
 
-* Copy URL from github.
+  ```
 
-```
-git remote add origin https://github.com/.../...
-git push -u origin master
-```
+  Comment out the contents of the ul:
+
+  ```
+  <nav class="site-nav">
+    <ul>
+      <!-- <li class="active"><a href="#0">Recipes</a></li>
+      <li><a href="#0">Reviews</a></li>
+      <li><a href="#0">Delivery</a></li> -->
+    </ul>
+  </nav>
+  ```
+
+  ```
+  <div class="site-wrap">
+    <h4>Homework</h4>
+
+    <p>The items below all come from today's work on the Basic DOM scripting page. You should attempt each one if possible.</p>
+
+    <ol>
+      <li>Create an object with a new set of labels and links for the site-nav li's and use the JavaScript techniques we covered today to dynamically generate the nav menu</li>
+
+      <li>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</li>
+
+      <li>Use the 'Faking It' code stubb to change the content of the site-wrap when a link is clicked.</li>
+
+      <li>Optional: Add some paragraphs to the page and make the navigation sticky</li>
+    </ol>
+
+    <p>Post your efforts to the class Slack Channel and a web server (if you don't have I can provide)</p>
+  </div>
+
+  ```
+
+  ##TO DO - Make It Responsive
+
+  * Mobile first design
+
+  * Use min-width media queries to add features to larger screens `@media (min-width: 46.25em) { }`
+
+  * Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices 
+
+  [Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
+
+
+  ##TO DO - Use SASS
+
+  * error checking - watch out for this
+
+  * variables - added padding and breakpoint
+
+  * imports and structure
+
+  [Bootstrap SASS](https://github.com/twbs/bootstrap-sass)
+
+
+  ##GIT and GITHUB
+
+  Git Config (typically only need to do this once on your machine)
+
+  ```
+  git config
+  git config --global user.name "DannyBoyNYC"
+  git config --global user.email "daniel.deverell@gmail.com"
+  git config --list
+  ```
+  * make sure terminal is in the correct directory
+
+  ```
+  git init
+  ```
+  Examine the .git Directory
+
+  ```
+  ls -al
+  cd .git
+  ls
+  cd ..
+  ```
+
+  Git Status
+
+  ```
+  git status
+  On branch master
+  ```
+  Git doesn't auto track files - only those you tell it to. 
+
+  Adding files creates untracked files. 
+
+  Create and add .gitignore run status.
+
+  ```
+  git status
+  git commit -m 'initial commit'
+  ```
+
+  Note: `git commit`  without the `-m` flag goes into VIM. 
+
+  Avoid this unless you like VIM. If this happens, hit ESC and type “:q” to exit.
+
+  ```
+  git status
+  On branch master
+  nothing to commit, working directory clean
+  ```
+
+  ```
+  git branch
+  git branch <branchname>
+  git checkout <branchname>
+  git diff
+  ```
+
+  To merge branches 
+
+  * be in the branch you want to merge to
+
+  * run status on that branch to make sure nothing is odd
+
+  ```
+  git checkout master
+  git status
+  git merge <branchname>
+  ```
+
+  Other useful branch commands (delete, show unmerged and merged branches)
+
+  ```
+  git branch -d <branchname>
+  git branch --no-merge
+  git branch --merged
+  ```
+
+  Pushing Files to Remote Repos - Github
+
+  * Copy URL from github.
+
+  ```
+  git remote add origin https://github.com/.../...
+  git push -u origin master
+  ```
 
 
 
-###Notes
+  ###Notes
 
-[vh and vw in the CSS](https://css-tricks.com/viewport-sized-typography/)
+  [vh and vw in the CSS](https://css-tricks.com/viewport-sized-typography/)
 
