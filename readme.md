@@ -198,7 +198,7 @@ Solution: dynamically generate the nav from items in the array.
 <nav id="main"></nav>
 ```
 
-* Append an `<ul>` tag to nav ( createElement, appendChild ) : 
+* Append an `<ul>` tag to nav ( [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/), [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) : 
 
 ```js
 // const navList = nav.querySelectorAll('li a');
@@ -413,7 +413,7 @@ function fixNav() {
 }
 ```
 
-classList 
+[classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/)
 
 ```
 function fixNav() {
@@ -423,9 +423,9 @@ function fixNav() {
 }
 ```
 
-Note that we add the class to the body (as opposed to - say - the nav itself) so that we can use it to target other elements on the page which may not be children of the nav.
+Note that we add the class fixed-nav to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). We'll do this with the site-wrap.
 
-```
+```css
 function fixNav() {
   if(window.scrollY >= topOfNav) {
     document.body.classList.add('fixed-nav');
@@ -435,14 +435,14 @@ function fixNav() {
 }
 ```
 
-```
+```css
 body.fixed-nav nav {
   position: fixed;
   box-shadow:0 5px 3px rgba(0,0,0,0.1);
 }
 ```
 
-```
+```css
 .site-wrap {
   max-width: 780px;
   margin: 40px auto;
@@ -457,7 +457,7 @@ body.fixed-nav nav {
 
 ```
 
-```
+```css
 body.fixed-nav .site-wrap {
   transform: scale(1);
 }
@@ -467,7 +467,7 @@ When the nav gets position fixed it no longer takes up space in the window so th
 
 Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav. 
 
-```
+```js
 function fixNav() {
   if(window.scrollY >= topOfNav) {
     document.body.style.paddingTop = nav.offsetHeight + 'px';
@@ -483,19 +483,19 @@ Note the use of camel case.
 
 ##EXERCISE Step Five - Adding the SVG Image
 
-```
+```js
 const logo = document.querySelector('#main ul li');
 logo.classList.add('logo');
 logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 ```
 
-* Examine the SVG file
+* Examine the SVG file 
+* some interesting applications of SVG:
 
 http://responsivelogos.co.uk
-
 http://www.svgeneration.com/recipes/Beam-Center/
 
-Format the logo and create behaviour - CSS only, no JavaScript:
+Format the logo and create the sliding logo behaviour. Note: CSS only, no JavaScript:
 
 ```css
 li.logo img {
