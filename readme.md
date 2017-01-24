@@ -61,6 +61,10 @@ Restart Sublime for the theme to be fully applied.
 
 [Sublime Tutor](https://sublimetutor.com)
 
+* Select next word - Cmd-D 
+* Multiple cursors - `Cmd key with left mouse button` or Cmd-Opt-click
+* Column selection using mouse - `Option + click and drag`
+
 
 ##EXERCISE JavaScript - Variables
 
