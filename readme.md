@@ -1,16 +1,15 @@
 #Session One
 
-##Homework - TBD
+##Homework
 
 1. Complete the navbar exercise as outlined in class (in flex-nav)
-1. Log into the class Slack account and say hi.
-1. Bring your laptop to the next class. 
 1. Create a Github account
 1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation), our Cobalt 2 theme and Emmet
-1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop.
+1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
+1. Bring your laptop to the next class
 
 
-##Text Books (part one)
+##Texts (for the first part of the semester)
 
 Mat Marquis - [JavaScript for Web Designers](https://abookapart.com/products/javascript-for-web-designers)
 
@@ -25,7 +24,7 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
 ##Text Editor - [Sublime Text](http://www.sublimetext.com)
 
-Packages - Sublime [Package Manager](https://packagecontrol.io/installation)
+Packages - first install the Sublime Text [Package Manager](https://packagecontrol.io/installation)
 
 ####Cobalt
 
@@ -33,21 +32,21 @@ Packages - Sublime [Package Manager](https://packagecontrol.io/installation)
 2. Search for Cobalt2 and hit enter
 3. Open Preferences → Settings - User. Add the following lines (only the first two are required): 
 
-```json
-"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
-"theme": "Cobalt2.sublime-theme",   
-"highlight_line": true,
-"indent_guide_options": [ "draw_normal", "draw_active" ],
-"highlight_modified_tabs": true,
-"line_padding_bottom": 1,
-"line_padding_top": 1,
-"wide_caret": true,
-"caret_extra_bottom": 2,
-"caret_extra_top": 2,
-"caret_extra_width": 3,
-"caret_style": "phase",
-"bold_folder_labels": true,
-```
+  ```json
+  "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+  "theme": "Cobalt2.sublime-theme",   
+  "highlight_line": true,
+  "indent_guide_options": [ "draw_normal", "draw_active" ],
+  "highlight_modified_tabs": true,
+  "line_padding_bottom": 1,
+  "line_padding_top": 1,
+  "wide_caret": true,
+  "caret_extra_bottom": 2,
+  "caret_extra_top": 2,
+  "caret_extra_width": 3,
+  "caret_style": "phase",
+  "bold_folder_labels": true,
+  ```
 
 4. Restart Sublime for the Theme to be fully applied.
 
@@ -377,7 +376,21 @@ const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`
 console.log('Fullnames: ' + fullNames);
 ```
 
-An alternate method for creating the list items using map():
+An alternate method for creating the list items using [map()](https://forum.freecodecamp.com/t/javascript-array-prototype-map/14294) and template strings:
+
+```js
+const markup = `
+    <ul>
+      ${navItems.map( 
+        function(listItem) {
+          return `<li><a href="${listItem.link}">${listItem.label}</a></li>` }
+        ).join('')}
+    </ul>
+    `;
+console.log(markup)
+```
+
+Refactored using an arrow expression:
 
 ```js
 const markup = `
@@ -385,7 +398,6 @@ const markup = `
   ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
 </ul>
 `;
-console.log(markup)
 nav.innerHTML = (markup);
 ```
 
