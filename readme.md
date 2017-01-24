@@ -138,9 +138,9 @@ console.log(height);
 testString = 'abcd1234'
 ```
 
-But they are not immutable, they just create an immutable binding.
+But they are not 'immutable', they just create an immutable binding.
 
-```
+```js
 const me = {
   hair: true,
   age: 48
@@ -154,13 +154,13 @@ console.log(me);
 
 Replace the existing nav labels with items from an array.
 
-```
+```js
 const navItems = ['LOGO', 'Watchlist', 'Research', 'Markets', 'Workbook', 'Connect', 'Desktop', 'FAQ'];
 
 console.log(navItems[2])
 ```
 
-querySelector() vs getElementById()
+[querySelector() vs getElementById()](https://plainjs.com/javascript/selecting/)
 
 ```
 const nav = document.querySelector('#main');
@@ -198,9 +198,7 @@ Solution: dynamically generate the nav from items in the array.
 <nav id="main"></nav>
 ```
 
-* createElement, appendChild
-
-* Append an `<ul>` tag to nav: 
+* Append an `<ul>` tag to nav ( createElement, appendChild ) : 
 
 ```js
 // const navList = nav.querySelectorAll('li a');
@@ -355,459 +353,456 @@ const inventors = [
 Filter the list of inventors for those who were born in the 1500's
 
 ```
-const fifteen = inventors.filter ( 
-  function(inventor){
-    if (inventor.year >= 1500 && inventor.year <= 1599 ) {
-      return true; // keep it
-    }
+const fifteen = inventors.filter ( function(inventor){
+  if (inventor.year >= 1500 && inventor.year <= 1599 ) {
+    return true; // keep it
   }
-  );
+});
 
-  console.table(fifteen);
-  ```
+console.table(fifteen);
+```
 
-  Refactor using arrow function and implicit return:
+Refactor using arrow function and implicit return:
 
-  ```
-  const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
-  ```
+```
+const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
+```
 
-  2. Array.prototype.map() and join()
+2. Array.prototype.map() and join()
 
-  Give an array of the inventors first and last names
+Give an array of the inventors first and last names
 
-  ```
-  const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
-  console.log('Fullnames: ' + fullNames);
-  ```
+```
+const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
+console.log('Fullnames: ' + fullNames);
+```
 
-  An alternate method for creating the list items using map():
+An alternate method for creating the list items using map():
 
-  ```
-  const markup = `
-  <ul>
-    ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
-  </ul>
-  `;
-  console.log(markup)
-  nav.innerHTML = (markup);
-  ```
+```
+const markup = `
+<ul>
+  ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
+</ul>
+`;
+console.log(markup)
+nav.innerHTML = (markup);
+```
 
 
-  ##EXERCISE Step Four - Sticky Menu
+##EXERCISE Step Four - Sticky Menu
 
-  offSetTop
+offSetTop
 
-  ```
-  let topOfNav = nav.offsetTop;
-  ```
+```
+let topOfNav = nav.offsetTop;
+```
 
-  * addEventListener('event', function)
+* addEventListener('event', function)
 
-  ```
-  window.addEventListener('scroll', fixNav);
-  ```
+```
+window.addEventListener('scroll', fixNav);
+```
 
-  scrollY
+scrollY
 
-  ```
-  function fixNav() {
-    console.log(topOfNav)
-    console.log(window.scrollY)
+```
+function fixNav() {
+  console.log(topOfNav)
+  console.log(window.scrollY)
+}
+```
+
+classList 
+
+```
+function fixNav() {
+  if(window.scrollY >= topOfNav) {
+    document.body.classList.add('fixed-nav');
   }
-  ```
+}
+```
 
-  classList 
+Note that we add the class to the body (as opposed to - say - the nav itself) so that we can use it to target other elements on the page which may not be children of the nav.
 
-  ```
-  function fixNav() {
-    if(window.scrollY >= topOfNav) {
-      document.body.classList.add('fixed-nav');
-    }
+```
+function fixNav() {
+  if(window.scrollY >= topOfNav) {
+    document.body.classList.add('fixed-nav');
+  } else {
+    document.body.classList.remove('fixed-nav');
   }
-  ```
+}
+```
 
-  Note that we add the class to the body (as opposed to - say - the nav itself) so that we can use it to target other elements on the page which may not be children of the nav.
+```
+body.fixed-nav nav {
+  position: fixed;
+  box-shadow:0 5px 3px rgba(0,0,0,0.1);
+}
+```
 
-  ```
-  function fixNav() {
-    if(window.scrollY >= topOfNav) {
-      document.body.classList.add('fixed-nav');
-    } else {
-      document.body.classList.remove('fixed-nav');
-    }
+```
+.site-wrap {
+  max-width: 780px;
+  margin: 40px auto;
+  background:white;
+  padding:40px;
+  text-align: justify;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  /* add these two */
+  transform: scale(0.98);
+  transition: transform 0.5s;
+}
+
+```
+
+```
+body.fixed-nav .site-wrap {
+  transform: scale(1);
+}
+```
+
+When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
+
+Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav. 
+
+```
+function fixNav() {
+  if(window.scrollY >= topOfNav) {
+    document.body.style.paddingTop = nav.offsetHeight + 'px';
+    document.body.classList.add('fixed-nav');
+  } else {
+    document.body.classList.remove('fixed-nav');
+    document.body.style.paddingTop = 0;
   }
-  ```
+}
+```
 
-  ```
-  body.fixed-nav nav {
-    position: fixed;
-    box-shadow:0 5px 3px rgba(0,0,0,0.1);
+Note the use of camel case.
+
+##EXERCISE Step Five - Adding the SVG Image
+
+```
+const logo = document.querySelector('#main ul li');
+logo.classList.add('logo');
+logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
+```
+
+* Examine the SVG file
+
+http://responsivelogos.co.uk
+
+http://www.svgeneration.com/recipes/Beam-Center/
+
+Format the logo and create behaviour - CSS only, no JavaScript:
+
+```css
+li.logo img {
+  padding-top: 0.25rem;
+  width: 2.5rem;
+}
+
+li.logo {
+  max-width:0;
+  overflow: hidden;
+  background: white;
+  transition: all 0.5s;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.fixed-nav li.logo {
+  max-width:500px;
+}
+```
+
+(Note the use of max-width above. We are using this because transitions do not animate width.)
+
+##EXERCISE End (for today) - Faking It!
+
+Note the use of hashes in the nav links:
+
+`<a href="#watchlist">Watchlist</a>`
+
+These allow us to navigate to sections of the document marked up with the matching id: 
+
+`<p id="watchlist">`
+
+However one of them behaves differently, the Workbook link.
+
+```js
+const sitewrap = document.querySelector('.site-wrap');
+const navTest = document.querySelectorAll('#main ul li a');
+for (let i=0; i<navTest.length; i++){
+  // console.log('hash ', navTest[i].hash);
+  navTest[i].addEventListener('click', prepContent)
+}
+
+function prepContent(e){
+  if (this.hash == "#workbook"){
+    const header = "Workbook";
+    const para = "Workbooks are good. "
+    sitewrap.innerHTML = `
+    <h1 style="color: black;">${header}</h1>
+    <p>${para}</p>
+    `;
+    e.preventDefault();
   }
-  ```
-
-  ```
-  .site-wrap {
-    max-width: 780px;
-    margin: 40px auto;
-    background:white;
-    padding:40px;
-    text-align: justify;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
-    /* add these two */
-    transform: scale(0.98);
-    transition: transform 0.5s;
-  }
-
-  ```
-
-  ```
-  body.fixed-nav .site-wrap {
-    transform: scale(1);
-  }
-  ```
-
-  When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
-
-  Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav. 
-
-  ```
-  function fixNav() {
-    if(window.scrollY >= topOfNav) {
-      document.body.style.paddingTop = nav.offsetHeight + 'px';
-      document.body.classList.add('fixed-nav');
-    } else {
-      document.body.classList.remove('fixed-nav');
-      document.body.style.paddingTop = 0;
-    }
-  }
-  ```
-
-  Note the use of camel case.
-
-  ##EXERCISE Step Five - Adding the Logo Image
-
-  ```
-  const logo = document.querySelector('#main ul li');
-  logo.classList.add('logo');
-  logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
-  ```
-
-  * Examine the SVG file
-
-  http://responsivelogos.co.uk
-
-  http://www.svgeneration.com/recipes/Beam-Center/
-
-  Format the logo and create behaviour - CSS only, no JavaScript:
-
-  ```
-  li.logo img {
-    padding-top: 0.25rem;
-    width: 2.5rem;
-  }
-
-  li.logo {
-    max-width:0;
-    overflow: hidden;
-    background: white;
-    transition: all 0.5s;
-    font-weight: 600;
-    font-size: 30px;
-  }
-
-  .fixed-nav li.logo {
-    max-width:500px;
-  }
-  ```
-
-  (Note the use of max-width above. We are using this because transitions do not animate width.)
-
-  ##EXERCISE End (for today) - Faking It!
-
-  Note the use of hashes in the nav links:
-
-  `<a href="#watchlist">Watchlist</a>`
-
-  These allow us to navigate to sections of the document marked up with the matching id: 
-
-  `<p id="watchlist">`
-
-  However one of them behaves differently, the Workbook link.
-
-  ```
-  const sitewrap = document.querySelector('.site-wrap');
-  const navTest = document.querySelectorAll('#main ul li a');
-  for (let i=0; i<navTest.length; i++){
-    // console.log('hash ', navTest[i].hash);
-    navTest[i].addEventListener('click', prepContent)
-  }
-
-  function prepContent(e){
-    if (this.hash == "#workbook"){
-      const header = "Workbook";
-      const para = "Workbooks are good. "
-      sitewrap.innerHTML = `
-      <h1 style="color: black;">${header}</h1>
-      <p>${para}</p>
-      `;
-      e.preventDefault();
-    }
-  }
-  ```
+}
+```
 
 
-  ##HOMEWORK - CSS Flexible Box Layout Module
+##HOMEWORK - CSS Flexible Box Layout Module
 
-  * A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+Flexbox can be quite difficult to master. 
 
-  <img src="other-stuff/hero-1.png">
+* A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-  [Use a system font instead of custom?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/). 
+<img src="other-stuff/hero-1.png">
 
-  [In SVG](https://css-tricks.com/system-fonts-svg/).
+[Use a system font instead of a custom font?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/). [In SVG?](https://css-tricks.com/system-fonts-svg/).
 
-  ```
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  }
-  ```
+```css
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+```
 
-  ```
-  .site-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
+```css
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
 
-  .site-nav li {
-    width: 100px;
-    height: 100px;
-    background-color: #8cacea;
-    margin: 8px;
-  }
-  ```
+.site-nav li {
+  width: 100px;
+  height: 100px;
+  background-color: #8cacea;
+  margin: 8px;
+}
+```
 
-  ```
-  .account-dropdown ul {
-    display: none;
-  }
+```css
+.account-dropdown ul {
+  display: none;
+}
 
+.site-header {
+  background: #0D1313;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding:0.5rem;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 10px;
+}
+
+a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #CDD0D0;
+  padding: 20px;
+  display: inline-block;
+}
+
+.active a {
+  font-weight: bold;
+  color: #62DEBE;
+  background: darken(#62DEBE, 40%);
+}
+
+.account-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.sign-out-link {
+  color: #62DEBE;
+  font-size: 0.8rem;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
   .site-header {
-    background: #0D1313;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding:0.5rem;
+    flex-wrap: wrap;
   }
-
-  .logo {
-    text-decoration: none;
-    color: white;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    padding: 10px;
+  .site-nav {
+    order: 2;
+    background: #333;
+    width: 100%;
   }
+}
+```
 
-  a {
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #CDD0D0;
-    padding: 20px;
-    display: inline-block;
-  }
+[Font Awesome](http://fontawesome.io/)
 
-  .active a {
-    font-weight: bold;
-    color: #62DEBE;
-    background: darken(#62DEBE, 40%);
-  }
+```html
+<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
 
-  .account-actions {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
+<i class="fa fa-bullseye fa-3x"></i>
 
-  .sign-out-link {
-    color: #62DEBE;
-    font-size: 0.8rem;
-    margin-left: 10px;
-    text-transform: uppercase;
-  }
+<i class="fa fa-gear"></i>
 
-  @media (max-width: 600px) {
-    .site-header {
-      flex-wrap: wrap;
-    }
-    .site-nav {
-      order: 2;
-      background: #333;
-      width: 100%;
-    }
-  }
-  ```
+```
 
-  [Font Awesome](http://fontawesome.io/)
+Comment out the contents of the ul:
 
-  ```
+```html
+<nav class="site-nav">
+  <ul>
+    <!-- <li class="active"><a href="#0">Recipes</a></li>
+    <li><a href="#0">Reviews</a></li>
+    <li><a href="#0">Delivery</a></li> -->
+  </ul>
+</nav>
+```
 
-  <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+```html
+<div class="site-wrap">
+  <h4>Homework</h4>
 
-  <i class="fa fa-bullseye fa-3x"></i>
+  <p>The items below all come from today's work on the Basic DOM scripting page. You should attempt each one if possible.</p>
 
-  <i class="fa fa-gear"></i>
+  <ol>
+    <li>Create an object with a new set of labels and links for the site-nav li's and use the JavaScript techniques we covered today to dynamically generate the nav menu</li>
 
-  ```
+    <li>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</li>
 
-  Comment out the contents of the ul:
+    <li>Use the 'Faking It' code stubb to change the content of the site-wrap when a link is clicked.</li>
 
-  ```
-  <nav class="site-nav">
-    <ul>
-      <!-- <li class="active"><a href="#0">Recipes</a></li>
-      <li><a href="#0">Reviews</a></li>
-      <li><a href="#0">Delivery</a></li> -->
-    </ul>
-  </nav>
-  ```
+    <li>Optional: Add some paragraphs to the page and make the navigation sticky</li>
+  </ol>
 
-  ```
-  <div class="site-wrap">
-    <h4>Homework</h4>
+  <p>Post your efforts to the class Slack Channel and a web server (if you don't have I can provide)</p>
+</div>
 
-    <p>The items below all come from today's work on the Basic DOM scripting page. You should attempt each one if possible.</p>
+```
 
-    <ol>
-      <li>Create an object with a new set of labels and links for the site-nav li's and use the JavaScript techniques we covered today to dynamically generate the nav menu</li>
+##TO DO - Make It Responsive
 
-      <li>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</li>
+* Mobile first design
 
-      <li>Use the 'Faking It' code stubb to change the content of the site-wrap when a link is clicked.</li>
+* Use min-width media queries to add features to larger screens `@media (min-width: 46.25em) { }`
 
-      <li>Optional: Add some paragraphs to the page and make the navigation sticky</li>
-    </ol>
+* Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices 
 
-    <p>Post your efforts to the class Slack Channel and a web server (if you don't have I can provide)</p>
-  </div>
-
-  ```
-
-  ##TO DO - Make It Responsive
-
-  * Mobile first design
-
-  * Use min-width media queries to add features to larger screens `@media (min-width: 46.25em) { }`
-
-  * Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices 
-
-  [Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
+[Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
 
 
-  ##TO DO - Use SASS
+##TO DO - Use SASS
 
-  * error checking - watch out for this
+* error checking - watch out for this
 
-  * variables - added padding and breakpoint
+* variables - added padding and breakpoint
 
-  * imports and structure
+* imports and structure
 
-  [Bootstrap SASS](https://github.com/twbs/bootstrap-sass)
+[Bootstrap SASS](https://github.com/twbs/bootstrap-sass)
 
 
-  ##GIT and GITHUB
+##GIT and GITHUB
 
-  Git Config (typically only need to do this once on your machine)
+Git Config (typically only need to do this once on your machine)
 
-  ```
-  git config
-  git config --global user.name "DannyBoyNYC"
-  git config --global user.email "daniel.deverell@gmail.com"
-  git config --list
-  ```
-  * make sure terminal is in the correct directory
+```
+git config
+git config --global user.name "DannyBoyNYC"
+git config --global user.email "daniel.deverell@gmail.com"
+git config --list
+```
+* make sure terminal is in the correct directory
 
-  ```
-  git init
-  ```
-  Examine the .git Directory
+```
+git init
+```
+Examine the .git Directory
 
-  ```
-  ls -al
-  cd .git
-  ls
-  cd ..
-  ```
+```
+ls -al
+cd .git
+ls
+cd ..
+```
 
-  Git Status
+Git Status
 
-  ```
-  git status
-  On branch master
-  ```
-  Git doesn't auto track files - only those you tell it to. 
+```
+git status
+On branch master
+```
+Git doesn't auto track files - only those you tell it to. 
 
-  Adding files creates untracked files. 
+Adding files creates untracked files. 
 
-  Create and add .gitignore run status.
+Create and add .gitignore run status.
 
-  ```
-  git status
-  git commit -m 'initial commit'
-  ```
+```
+git status
+git commit -m 'initial commit'
+```
 
-  Note: `git commit`  without the `-m` flag goes into VIM. 
+Note: `git commit`  without the `-m` flag goes into VIM. 
 
-  Avoid this unless you like VIM. If this happens, hit ESC and type “:q” to exit.
+Avoid this unless you like VIM. If this happens, hit ESC and type “:q” to exit.
 
-  ```
-  git status
-  On branch master
-  nothing to commit, working directory clean
-  ```
+```
+git status
+On branch master
+nothing to commit, working directory clean
+```
 
-  ```
-  git branch
-  git branch <branchname>
-  git checkout <branchname>
-  git diff
-  ```
+```
+git branch
+git branch <branchname>
+git checkout <branchname>
+git diff
+```
 
-  To merge branches 
+To merge branches 
 
-  * be in the branch you want to merge to
+* be in the branch you want to merge to
 
-  * run status on that branch to make sure nothing is odd
+* run status on that branch to make sure nothing is odd
 
-  ```
-  git checkout master
-  git status
-  git merge <branchname>
-  ```
+```
+git checkout master
+git status
+git merge <branchname>
+```
 
-  Other useful branch commands (delete, show unmerged and merged branches)
+Other useful branch commands (delete, show unmerged and merged branches)
 
-  ```
-  git branch -d <branchname>
-  git branch --no-merge
-  git branch --merged
-  ```
+```
+git branch -d <branchname>
+git branch --no-merge
+git branch --merged
+```
 
-  Pushing Files to Remote Repos - Github
+Pushing Files to Remote Repos - Github
 
-  * Copy URL from github.
+* Copy URL from github.
 
-  ```
-  git remote add origin https://github.com/.../...
-  git push -u origin master
-  ```
+```
+git remote add origin https://github.com/.../...
+git push -u origin master
+```
 
 
 
-  ###Notes
+###Notes
 
-  [vh and vw in the CSS](https://css-tricks.com/viewport-sized-typography/)
+[vh and vw in the CSS](https://css-tricks.com/viewport-sized-typography/)
 
