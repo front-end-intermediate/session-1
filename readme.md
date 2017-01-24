@@ -35,22 +35,22 @@ Packages - first install the Sublime Text [Package Manager](https://packagecontr
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Cobalt2 and hit enter
 3. Open Preferences → Settings - User. Add the following lines (only the first two are required): 
-    ```json
-    "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
-    "theme": "Cobalt2.sublime-theme",   
-    "highlight_line": true,
-    "indent_guide_options": [ "draw_normal", "draw_active" ],
-    "highlight_modified_tabs": true,
-    "line_padding_bottom": 1,
-    "line_padding_top": 1,
-    "wide_caret": true,
-    "caret_extra_bottom": 2,
-    "caret_extra_top": 2,
-    "caret_extra_width": 3,
-    "caret_style": "phase",
-    "bold_folder_labels": true,
-    ```
-4. Restart Sublime for the theme to be fully applied.
+```json
+"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+"theme": "Cobalt2.sublime-theme",   
+"highlight_line": true,
+"indent_guide_options": [ "draw_normal", "draw_active" ],
+"highlight_modified_tabs": true,
+"line_padding_bottom": 1,
+"line_padding_top": 1,
+"wide_caret": true,
+"caret_extra_bottom": 2,
+"caret_extra_top": 2,
+"caret_extra_width": 3,
+"caret_style": "phase",
+"bold_folder_labels": true,
+```
+Restart Sublime for the theme to be fully applied.
 
 ####Emmet
 
