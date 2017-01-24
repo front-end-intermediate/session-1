@@ -1,6 +1,6 @@
 #Session One
 
-Today we are looking at Arrays, Objects, Template Srings, Functions and Arrow Functions, and Flexbox.
+Today we are looking at Arrays, Objects, Template Strings, Functions and Arrow Functions, DOM Scriptng, and Flexbox.
 
 At the end of today's class you should be able to manipulate the DOM and insert content from an Array.
 
