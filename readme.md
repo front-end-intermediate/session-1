@@ -756,14 +756,11 @@ Comment out the contents of the ul:
 
     <li>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</li>
 
-    <li>Use the 'Faking It' code stubb to change the content of the site-wrap when a link is clicked.</li>
-
-    <li>Optional: Add some paragraphs to the page and make the navigation sticky</li>
+    <li>Add some paragraphs to the page and make the navigation sticky</li>
   </ol>
 
   <p>Post your efforts to the class Slack Channel and a web server (if you don't have I can provide)</p>
 </div>
-
 ```
 
 ##TO DO - Make It Responsive
