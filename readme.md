@@ -6,7 +6,7 @@ At the end of today's class you should be able to manipulate the DOM and insert 
 
 ##Homework
 
-1. Complete the navbar exercise as outlined in class (in flex-nav)
+1. Complete the navbar exercise as outlined in class (see the bottom of this readme and the `flex-nav` directory)
 1. Create a Github account
 1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation), our Cobalt 2 theme and Emmet
 1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
@@ -761,115 +761,6 @@ Comment out the contents of the ul:
 
   <p>Post your efforts to the class Slack Channel and a web server (if you don't have I can provide)</p>
 </div>
-```
-
-##TO DO - Make It Responsive
-
-* Mobile first design
-
-* Use min-width media queries to add features to larger screens `@media (min-width: 46.25em) { }`
-
-* Use the meta tag `<meta name="viewport" content="width=device-width, initial-scale=1.0">` to ensure this works on devices
-
-[Viewport Demo for Phone](http://daniel.deverell.com/css-files/responsive-meta-example/)
-
-
-##TO DO - Use SASS
-
-* error checking - watch out for this
-
-* variables - added padding and breakpoint
-
-* imports and structure
-
-[Bootstrap SASS](https://github.com/twbs/bootstrap-sass)
-
-
-##GIT and GITHUB
-
-Git Config (typically only need to do this once on your machine)
-
-```
-git config
-git config --global user.name "DannyBoyNYC"
-git config --global user.email "daniel.deverell@gmail.com"
-git config --list
-```
-* make sure terminal is in the correct directory
-
-```
-git init
-```
-Examine the .git Directory
-
-```
-ls -al
-cd .git
-ls
-cd ..
-```
-
-Git Status
-
-```
-git status
-On branch master
-```
-Git doesn't auto track files - only those you tell it to.
-
-Adding files creates untracked files.
-
-Create and add .gitignore run status.
-
-```
-git status
-git commit -m 'initial commit'
-```
-
-Note: `git commit`  without the `-m` flag goes into VIM.
-
-Avoid this unless you like VIM. If this happens, hit ESC and type “:q” to exit.
-
-```
-git status
-On branch master
-nothing to commit, working directory clean
-```
-
-```
-git branch
-git branch <branchname>
-git checkout <branchname>
-git diff
-```
-
-To merge branches
-
-* be in the branch you want to merge to
-
-* run status on that branch to make sure nothing is odd
-
-```
-git checkout master
-git status
-git merge <branchname>
-```
-
-Other useful branch commands (delete, show unmerged and merged branches)
-
-```
-git branch -d <branchname>
-git branch --no-merge
-git branch --merged
-```
-
-Pushing Files to Remote Repos - Github
-
-* Copy URL from github.
-
-```
-git remote add origin https://github.com/.../...
-git push -u origin master
 ```
 
 
