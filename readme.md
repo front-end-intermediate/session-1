@@ -9,7 +9,7 @@ At the end of today's class you should be able to manipulate the DOM and insert 
 1. Complete the navbar exercise as outlined in class (see the bottom of this readme and the `flex-nav` directory)
 1. Create a Github account
 1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation), our Cobalt 2 theme and Emmet
-1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
+1. Install [node.js](https://nodejs.org/en/), [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), and the command line version of [SASS](http://sass-lang.com/install) on your laptop
 1. Bring your laptop to the next class
 
 
