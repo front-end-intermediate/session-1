@@ -1,10 +1,10 @@
-#Session One
+# Session One
 
 Today we are looking at Arrays, Objects, Template Strings, Functions and Arrow Functions, DOM Scriptng, and Flexbox.
 
 At the end of today's class you should be able to manipulate the DOM and insert content from an Array.
 
-##Homework
+## Homework
 
 1. Complete the navbar exercise as outlined in class (see the bottom of this readme and the `flex-nav` directory)
 1. Create a Github account
@@ -13,7 +13,7 @@ At the end of today's class you should be able to manipulate the DOM and insert 
 1. Bring your laptop to the next class
 
 
-##Texts (for the first part of the semester)
+## Texts (for the first part of the semester)
 
 Mat Marquis - [JavaScript for Web Designers](https://abookapart.com/products/javascript-for-web-designers)
 
@@ -26,15 +26,16 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 [Syllabus](http://mean.deverell.com/syllabus/)
 
 
-##Text Editor - [Sublime Text](http://www.sublimetext.com)
+## Text Editor - [Sublime Text](http://www.sublimetext.com)
 
 Packages - first install the Sublime Text [Package Manager](https://packagecontrol.io/installation)
 
-####Cobalt
+#### Cobalt
 
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Cobalt2 and hit enter
 3. Open Preferences → Settings - User. Add the following lines (only the first two are required):
+
 ```json
 "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
 "theme": "Cobalt2.sublime-theme",   
@@ -52,21 +53,21 @@ Packages - first install the Sublime Text [Package Manager](https://packagecontr
 ```
 Restart Sublime for the theme to be fully applied.
 
-####[Emmet](http://emmet.io)
+#### [Emmet](http://emmet.io)
 
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Emmet and hit enter
 
-####Tutor
+#### Tutor
 
 [Sublime Tutor](https://sublimetutor.com)
 
-* Select next word - Cmd-D 
+* Select next word - `Cmd-D`
 * Multiple cursors - `Cmd key with left mouse button` or Cmd-Opt-click
 * Column selection using mouse - `Option + click and drag`
 
 
-##EXERCISE JavaScript - Variables
+## EXERCISE JavaScript - Variables
 
 basic-DOM > index.html
 
@@ -145,7 +146,7 @@ console.log(me);
 me is an object - `typeof me`
 
 
-##EXERCISE - Step One
+## EXERCISE - Step One
 
 Replace the existing nav labels with items from an array.
 
@@ -184,7 +185,7 @@ for (let i=0; i < navList.length; i++ ){
 console.log(i) // not defined
 ```
 
-##EXERCISE Step Two - Dynamic Generation
+## EXERCISE Step Two - Dynamic Generation
 
 Problem: we are using existing `<li>` elements but have fewer of them than there are items in our array.
 
@@ -254,7 +255,7 @@ nav li {
 Note: Template strings and Let and Const variables are ES6 (ecmascript version 6). While they work on new browsers they may not in older. Translate the code back to ES5 at https://babeljs.io
 
 
-####Objects
+#### Objects
 
 Examine navitems.js as a sample of an object.
 
@@ -281,7 +282,7 @@ const { twitter:tw, facebook:fb } = me.links.social;
 ```
 
 
-##EXERCISE Step Three - Dynamic Generation with an Object
+## EXERCISE Step Three - Dynamic Generation with an Object
 
 Links for our page - an array that contains multiple objects:
 
@@ -323,7 +324,7 @@ var navItems = [
 ```
 Located in
 
-```html
+```
 <script src="navitems.js"></script>
 ```
 
@@ -331,7 +332,7 @@ Refresh - duplicate const variable - remove array and refresh.
 
 Add the links:
 
-```js
+```
 for (let i =0; i < navItems.length; i++ ){
   const listItem = document.createElement('li');
   listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
@@ -339,13 +340,13 @@ for (let i =0; i < navItems.length; i++ ){
 }
 ```
 
-####Array Methods
+#### Array Methods
 
 We will look at another method for developing our nav - using an Array method.
 
-1. Array.prototype.filter()
+1 Array.prototype.filter()
 
-```js
+```
 const inventors = [
 { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
 { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -394,7 +395,7 @@ console.log('Fullnames: ' + fullNames);
 
 An alternate method for creating the list items using [map()](https://forum.freecodecamp.com/t/javascript-array-prototype-map/14294) and template strings:
 
-```js
+```
 const markup = `
     <ul>
       ${navItems.map(
@@ -409,7 +410,7 @@ nav.innerHTML = markup;
 
 Join on the comma.
 
-```js
+```
 const markup = `
     <ul>
       ${navItems.map(
@@ -423,7 +424,7 @@ nav.innerHTML = markup;
 
 Refactored using an arrow function:
 
-```js
+```
 const markup = `
 <ul>
   ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
@@ -436,7 +437,7 @@ Since we are including a `<ul>` in our markup constant we can remove it from our
 
 Final scrips:
 
-```html
+```
 <script src="navitems.js"></script>
 
 <script>
@@ -453,7 +454,7 @@ nav.innerHTML = markup;
 Try translating this in babeljs.
 
 
-##EXERCISE Step Four - Sticky Menu
+## EXERCISE Step Four - Sticky Menu
 
 offSetTop
 
