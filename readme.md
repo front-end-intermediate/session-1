@@ -201,9 +201,9 @@ DOM scripting is not really pure JavaScript. It uses JS (but only in the browser
 
 See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
 
-## EXERCISE - Step One
+## EXERCISE - Step One - Generated content from an Array
 
-Replace the existing nav labels with items from an array.
+Replace the existing nav labels with items from an array using a `for loop`.
 
 Link to a JS file in index-START.html:
 
@@ -213,7 +213,8 @@ Link to a JS file in index-START.html:
 
 In the console: 
 
-```
+```js
+
 navItemsArray
 
 typeof navItemsArray
@@ -227,12 +228,14 @@ Note that an Array is an object in JS just like our `const me` above.
 Add to the script block in the HTML:
 
 ```js
+
 console.log(navItemsArray[2])
 ```
 
 * DOM Method [getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
 
-```
+```js
+
 const nav = document.getElementById('main');
 console.log(nav);
 ```
@@ -241,14 +244,16 @@ console.log(nav);
 
 We could write: 
 
-```
+```js
+
 const navList = document.querySelectorAll('main li a');
 console.log(navList);
 ```
 
 It is often advantageous to use this pattern (`element.querySelector` as opposed to `document.querySelector`):
 
-```
+```js
+
 const nav = document.getElementById('main');
 const navList = nav.querySelectorAll('li a');
 console.log(navList);
@@ -260,7 +265,8 @@ A nodeList has a length property - `> navList.length` vs `> navItemsArray.length
 
 * for loop and innerHTML
 
-```
+```js
+
 for (let i=0; i < navList.length; i++ ){
   navList[i].innerHTML = navItemsArray[i];
 }
@@ -268,7 +274,7 @@ for (let i=0; i < navList.length; i++ ){
 console.log(i) // not defined
 ```
 
-## EXERCISE Step Two - Generated HTML
+## EXERCISE Step Two - Generated HTML from an Array
 
 Problem: we are using 6 existing `<li>` elements but there are 8 items in our `navItemsArray` array.
 
@@ -284,7 +290,7 @@ We could edit the HTML:
 
 or use JS to accomplish the same:
 
-```
+```js
 const nav = document.getElementById('main');
 nav.innerHTML = ''
 ```
@@ -317,7 +323,7 @@ for (let i =0; i < navItemsArray.length; i++ ){
 
 Compare 'oldschool' and 'sentence' below:
 
-```
+```html
 <script>
   const name = 'Yorik';
   const age = 2;
@@ -388,7 +394,7 @@ me.links.social.twitter
 const twitter = me.links.social.twitter
 ```
 
-Multiline template string
+Multi line template string:
 
 ```
 const content = `
@@ -406,8 +412,16 @@ document.body.innerHTML = content;
 
 ```
 
+NB: this is what it would look like without using template strings:
+
+```
+var content = "\n<div class=\"person\">\n  <h2>\n    " + me.first + " " + me.last + ":\n    <span class=\"job\">" + me.job + "</span>\n    <p class=\"twitter\">Twitter: " + tw + "</p>\n    <p class=\"blog\">Blog: " + me.links.web.blog + "</p>\n  </h2>\n</div>\n";
+
+```
+
 #### Aside: Destructuring
 
+Destructuring allows us to extract properties from objects and arrays.
 
 
 ```js
@@ -418,20 +432,26 @@ const { first, last } = me;
 first
 ```
 
+Instead of creating multiple variables (the commented out material above), we can use destructuring syntax (the curly braces) to extract information and create multiple variables. Comes in handy when the data is deeply nested.
+
 ```js
 const { twitter, facebook } = me.links.social;
 ```
 
-Change (here, shorten) the variable name:
+Rename (here, shorten) the variable:
 
 ```js
 const { twitter:tw, facebook:fb } = me.links.social;
 ```
 
+Useful when accessing third party data where you might have a variable name clash.
 
-## EXERCISE Step Three - Dynamic Generation with an Object
 
-Links for our page - an array that contains multiple objects:
+## EXERCISE Step Three - Dynamic Generation with Objects in an array
+
+An array of objects is a very common data structure.
+
+We have links for our page in `<script src="navitems.js"></script>`. It is an array containing multiple objects:
 
 ```js
 var navItems = [
@@ -469,17 +489,11 @@ var navItems = [
 }
 ];
 ```
-Located in
 
-```
-<script src="navitems.js"></script>
-```
-
-Refresh - duplicate const variable - remove array and refresh.
 
 Add the links:
 
-```
+```js
 for (let i =0; i < navItems.length; i++ ){
   const listItem = document.createElement('li');
   listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
@@ -491,7 +505,7 @@ for (let i =0; i < navItems.length; i++ ){
 
 Let's look at another method for developing our nav - using an Array method.
 
-##### Array.prototype.filter()
+##### Aside: Array.prototype.filter()
 
 ```js
 const inventors = [
@@ -528,22 +542,23 @@ const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.
 
 ##### Array.prototype.map() and join()
 
-Exercise: provide an array of the inventors first and last names
+Provide an array of the inventors first and last names:
 
-```
-var fullNames = inventors.map(function(inventor){
+```js
+var fullNames = inventors.map(
+  function(inventor){
   return `${inventor.first} ${inventor.last}`;
 })
 ```
 
-```
+```js
 const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
 console.log('Fullnames: ' + fullNames);
 ```
 
 An alternate method for creating the list items using [map()](https://forum.freecodecamp.com/t/javascript-array-prototype-map/14294) and template strings:
 
-```
+```js
 const markup = `
     <ul>
       ${navItems.map(
@@ -552,13 +567,15 @@ const markup = `
         )}
     </ul>
     `;
+
 console.log(markup)
+
 nav.innerHTML = markup;
 ```
 
 Join on the comma.
 
-```
+```js
 const markup = `
     <ul>
       ${navItems.map(
@@ -567,6 +584,7 @@ const markup = `
         ).join('')}
     </ul>
     `;
+
 nav.innerHTML = markup;
 ```
 
@@ -578,6 +596,7 @@ const markup = `
   ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
 </ul>
 `;
+
 nav.innerHTML = markup;
 ```
 
@@ -604,13 +623,13 @@ Try translating this in babeljs.
 
 ## EXERCISE Step Four - Sticky Menu
 
-offSetTop
+* DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about theposition of an element relative to the top of the browser's window.
 
 ```js
 let topOfNav = nav.offsetTop;
 ```
 
-* addEventListener('event', function)
+* DOM method - [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), see also [event types](https://developer.mozilla.org/en-US/docs/Web/Events)
 
 ```js
 window.addEventListener('scroll', fixNav);
@@ -680,6 +699,7 @@ When the nav gets position fixed it no longer takes up space in the window so th
 Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav.
 
 ```js
+
 function fixNav() {
   if(window.scrollY >= topOfNav) {
     document.body.style.paddingTop = nav.offsetHeight + 'px';
@@ -696,6 +716,7 @@ Note the use of camel case.
 ## EXERCISE Step Five - Adding the SVG Image
 
 ```js
+
 const logo = document.querySelector('#main ul li');
 logo.classList.add('logo');
 logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
@@ -710,6 +731,7 @@ http://www.svgeneration.com/recipes/Beam-Center/
 Format the logo and create the sliding logo behaviour. Note: CSS only, no JavaScript:
 
 ```css
+
 li.logo img {
   padding-top: 0.25rem;
   width: 2.5rem;
