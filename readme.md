@@ -201,7 +201,7 @@ DOM scripting is not really pure JavaScript. It uses JS (but only in the browser
 
 See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
 
-### EXERCISE - Step One
+## EXERCISE - Step One
 
 Replace the existing nav labels with items from an array.
 
@@ -230,14 +230,23 @@ Add to the script block in the HTML:
 console.log(navItemsArray[2])
 ```
 
-[getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
+* DOM Method [getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
 
 ```
 const nav = document.getElementById('main');
 console.log(nav);
 ```
 
-[querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll)
+* DOM Method [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll), (see also [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) )
+
+We could write: 
+
+```
+const navList = document.querySelectorAll('main li a');
+console.log(navList);
+```
+
+It is often advantageous to use this pattern (`element.querySelector` as opposed to `document.querySelector`):
 
 ```
 const nav = document.getElementById('main');
@@ -259,7 +268,7 @@ for (let i=0; i < navList.length; i++ ){
 console.log(i) // not defined
 ```
 
-## EXERCISE Step Two - Dynamic Generation
+## EXERCISE Step Two - Generated HTML
 
 Problem: we are using 6 existing `<li>` elements but there are 8 items in our `navItemsArray` array.
 
@@ -280,7 +289,11 @@ const nav = document.getElementById('main');
 nav.innerHTML = ''
 ```
 
-* Append a `<ul>` tag to nav ( [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/), [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) :
+Append a `<ul>` tag to nav using: 
+
+* [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/) and 
+
+* [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) :
 
 ```js
 const nav = document.getElementById('main');
@@ -300,7 +313,23 @@ for (let i =0; i < navItemsArray.length; i++ ){
 }
 ```
 
-Switch out the concatenation for a template string:
+#### Aside - Template Strings
+
+Compare 'oldschool' and 'sentence' below:
+
+```
+<script>
+  const name = 'Yorik';
+  const age = 2;
+  const oldschool = 'My dog ' + name + ' is ' + age * 7 + 'years old.'
+  const sentence = `My dog ${name} is ${age * 7} years old.`;
+  console.log(sentence);
+</script>
+```
+
+Note the use of tick marks instead of quotes and that we have the ability to convert dog years to human years inside the curly brackets in a template string.
+
+Switch out the concatenation for a *template string*:
 
 ```js
 listItem.innerHTML = `<a href="#">${linkText}</a>`
@@ -315,7 +344,6 @@ for (let i=0; i < navItemsArray.length; i++ ){
   navList.appendChild(listItem);
 }
 ```
-
 
 Note how the CSS for the navbar formats the links:
 
@@ -336,16 +364,15 @@ nav li {
 }
 ```
 
-Note: Template strings and Let and Const variables are ES6 (ecmascript version 6). While they work on new browsers they may not in older. 
+Note: Template Strings and Let and Const variables are ES6 (ecmascript version 6). While they work on newer browsers they may not in older ones. For this reason it is common practice to convert the code to ES5 before publishing.
 
 * Translate the code back to ES5 at https://babeljs.io
-
 
 #### Aside: Objects
 
 Examine a sample of an object.
 
-Open `_Objects > objects.html`
+Reference: `_Objects > objects.html`
 
 ```
 last
@@ -359,6 +386,24 @@ me.links.social.twitter
 
 ```js
 const twitter = me.links.social.twitter
+```
+
+Multiline template string
+
+```
+const content = `
+<div class="person">
+  <h2>
+    ${me.first} ${me.last}:
+    <span class="job">${me.job}</span>
+    <p class="twitter">Twitter: ${tw}</p>
+    <p class="blog">Blog: ${me.links.web.blog}</p>
+  </h2>
+</div>
+`
+
+document.body.innerHTML = content;
+
 ```
 
 #### Aside: Destructuring

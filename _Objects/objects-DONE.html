@@ -9,6 +9,7 @@
 const me = {
   first: 'Daniel',
   last: 'Deverell',
+  job: 'Web designer',
   links: {
     social: {
       twitter: '@dannyboynyc',
@@ -25,6 +26,19 @@ const { first, last } = me;
 const { twitter:tw, facebook:fb } = me.links.social;
 
 console.log(fb)
+
+const content = `
+<div class="person">
+  <h2>
+    ${me.first} ${me.last}:
+    <span class="job">${me.job}</span>
+    <p class="twitter">Twitter: ${tw}</p>
+    <p class="blog">Blog: ${me.links.web.blog}</p>
+  </h2>
+</div>
+`
+
+document.body.innerHTML = content;
 
 </script>
 </body>
