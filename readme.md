@@ -1,8 +1,8 @@
 # Session One
 
-Today we are looking at Arrays, Objects, Template Strings, Functions and Arrow Functions, DOM Scriptng, and Flexbox.
+Today we are introducing JavaScript Arrays, Objects, Template Strings, Functions and Arrow Functions and DOM Scriptng. The CSS Flexbox module is also introduced.
 
-At the end of today's class you should be able to manipulate the DOM and insert content from an Array.
+At the end of today's class you should be able to manipulate the DOM and insert content into the DOM from an Array.
 
 ## Homework
 
@@ -58,116 +58,189 @@ Restart Sublime for the theme to be fully applied.
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Emmet and hit enter
 
-#### Tutor
 
-[Sublime Tutor](https://sublimetutor.com)
+## EXERCISE JavaScript 101 - Variables
 
-* Select next word - `Cmd-D`
-* Multiple cursors - `Cmd key with left mouse button` or Cmd-Opt-click
-* Column selection using mouse - `Option + click and drag`
+Introducing the developer tools, data types, variable types `var`, `let`, and `const`, and scope.
 
+Try this in the console (one line at a time):
 
-## EXERCISE JavaScript - Variables
-
-basic-DOM > index.html
-
-```
+```js
 var width = 100;
-let height = 200;
+width
+typeof width
+
+let wide = true;
+wide
+typeof wide
+
 const testString = '123456';
+testString
+typeof testString
 ```
 
-* var - can be redeclared and reassigned
+* `var`- can be redeclared and reassigned
 
-* var - is function scoped:
+* `var` - is scoped to a function. If a variable is defined within a function it is only available inside that function's block:
 
 ```js
 function setWidth(){
-  var width = 500;
-  console.log('inner width ' + width);
+  var width = 500
+  console.log('inner width ' + width)
 }
-setWidth();
+
+typeof setWidth
+
+setWidth()
+
 console.log('outer width ' + width);
 ```
 
-<!-- Install Sublime [ConsoleWrap addon](https://packagecontrol.io/packages/Console%20Wrap%20for%20js) -->
+A function does have access to variables defined outside its block:
+
+```
+function setWidth(){
+  console.log('inner width ' + width)
+}
+
+var width = 500
+
+setWidth()
+```
+
+Passing a parameter as an input to a function:
+
+```
+function setWidth(num){
+  var width = num || 500
+  console.log('inner width ' + width)
+}
+
+setWidth(200)
+
+setWidth()
+
+```
 
 * var - can 'leak' when its not inside a function:
 
 ```js
+var width = 20
+
 if ( width > 12 ) {
-  var width = 4;
+  var width = 4
   console.log(width)
 }
-console.log(width);
+width;
 ```
 
-Here, the var result 'leaks' outside the block.
+Above, the var 'leaks' outside the block.
 
 * let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
 
 ```js
-if ( height > 12 ) {
-  let height = 4;
-  console.log(height)
+let width = 20
+
+if ( width > 12 ) {
+  let width = 4
+  console.log(width)
 }
-console.log(height);
+
+width
 ```
 
 * `let` variables can only be declared once
 
 ```js
-let height = 300; // error
+let width = 10
+
+let width = 11
 ```
 
 Although they can be reassigned:
 
 ```js
-height = 3
+width = 3
 ```
 
-* const variables cannot be declared more than once OR reassigned
+* const variables cannot be declared more than once *OR* reassigned
 
 ```
-testString = 'abcd1234' // error
+const testString = '1234abcd'
+
+testString
+
+const testString = 'abcd1234'
+
+testString = 'xyz'
 ```
 
-But they are not 'immutable', they just create an immutable binding.
+Note: consts are not 'immutable', they just create an immutable binding.
 
 ```js
 const me = {
   hair: true,
   age: 48
 }
-me.age = 49;
-console.log(me);
+
+me
+
+typeof me
+
+me.age = 49
+
+me
+
 ```
 
-me is an object - `typeof me`
+Note: `me` is an object
 
+## DOM Scripting
 
-## EXERCISE - Step One
+DOM scripting is not really pure JavaScript. It uses JS (but only in the browser) and extends vanilla JS functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JS to access and change all the elements of an HTML document.
+
+See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
+
+### EXERCISE - Step One
 
 Replace the existing nav labels with items from an array.
+
+Link to a JS file in index-START.html:
 
 ```html
 <script src="navitems.js"></script>
 ```
 
+In the console: 
+
+```
+navItemsArray
+
+typeof navItemsArray
+
+Array.isArray(navItemsArray)
+
+```
+
+Note that an Array is an object in JS just like our `const me` above.
+
+Add to the script block in the HTML:
+
 ```js
 console.log(navItemsArray[2])
 ```
 
-[getElementById()](https://plainjs.com/javascript/selecting/)
+[getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
 
 ```
 const nav = document.getElementById('main');
 console.log(nav);
 ```
 
-querySelectorAll()
+[querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll)
 
 ```
+const nav = document.getElementById('main');
 const navList = nav.querySelectorAll('li a');
 console.log(navList);
 ```
@@ -182,25 +255,36 @@ A nodeList has a length property - `> navList.length` vs `> navItemsArray.length
 for (let i=0; i < navList.length; i++ ){
   navList[i].innerHTML = navItemsArray[i];
 }
+
 console.log(i) // not defined
 ```
 
 ## EXERCISE Step Two - Dynamic Generation
 
-Problem: we are using existing `<li>` elements but have fewer of them than there are items in our array.
+Problem: we are using 6 existing `<li>` elements but there are 8 items in our `navItemsArray` array.
 
 Solution: dynamically generate the nav from items in the array.
 
-* depopulate the nav children:
+* depopulate the nav children
+
+We could edit the HTML:
 
 ```html
 <nav id="main"></nav>
 ```
 
+or use JS to accomplish the same:
+
+```
+const nav = document.getElementById('main');
+nav.innerHTML = ''
+```
+
 * Append a `<ul>` tag to nav ( [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/), [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) :
 
 ```js
-// const navList = nav.querySelectorAll('li a');
+const nav = document.getElementById('main');
+nav.innerHTML = ''
 const navList = document.createElement('ul');
 nav.appendChild(navList);
 ```
@@ -209,17 +293,17 @@ nav.appendChild(navList);
 
 ```js
 for (let i =0; i < navItemsArray.length; i++ ){
-  let listItem = document.createElement('li');
-  let linkText = navItemsArray[i];
-  listItem.innerHTML = '<a href="#">' + linkText + '</a>';
-  navList.appendChild(listItem);
+  let listItem = document.createElement('li')
+  let linkText = navItemsArray[i]
+  listItem.innerHTML = '<a href="#">' + linkText + '</a>'
+  navList.appendChild(listItem)
 }
 ```
 
 Switch out the concatenation for a template string:
 
 ```js
-listItem.innerHTML = `<a href="#">${linkText}</a>`;
+listItem.innerHTML = `<a href="#">${linkText}</a>`
 ```
 
 Refactor to use JS in the template string:
@@ -233,7 +317,7 @@ for (let i=0; i < navItemsArray.length; i++ ){
 ```
 
 
-Note how gracefully the CSS for the navbar accomodates the increased number of links.
+Note how the CSS for the navbar formats the links:
 
 ```css
 nav ul {
@@ -252,30 +336,48 @@ nav li {
 }
 ```
 
-Note: Template strings and Let and Const variables are ES6 (ecmascript version 6). While they work on new browsers they may not in older. Translate the code back to ES5 at https://babeljs.io
+Note: Template strings and Let and Const variables are ES6 (ecmascript version 6). While they work on new browsers they may not in older. 
+
+* Translate the code back to ES5 at https://babeljs.io
 
 
-#### Objects
+#### Aside: Objects
 
-Examine navitems.js as a sample of an object.
+Examine a sample of an object.
 
-objects - `objects.html`
+Open `_Objects > objects.html`
+
+```
+last
+
+me
+
+me.links
+
+me.links.social.twitter
+```
 
 ```js
 const twitter = me.links.social.twitter
 ```
 
-Destructuring
+#### Aside: Destructuring
+
+
 
 ```js
+// const first = me.first;
+// const last = me.last;
 const { first, last } = me;
+
+first
 ```
 
 ```js
 const { twitter, facebook } = me.links.social;
 ```
 
-Change the variable name:
+Change (here, shorten) the variable name:
 
 ```js
 const { twitter:tw, facebook:fb } = me.links.social;
@@ -342,11 +444,11 @@ for (let i =0; i < navItems.length; i++ ){
 
 #### Array Methods
 
-We will look at another method for developing our nav - using an Array method.
+Let's look at another method for developing our nav - using an Array method.
 
-1 Array.prototype.filter()
+##### Array.prototype.filter()
 
-```
+```js
 const inventors = [
 { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
 { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -361,7 +463,8 @@ const inventors = [
 Filter the list of inventors for those who were born in the 1500's
 
 ```js
-const fifteen = inventors.filter ( function(inventor){
+const fifteen = inventors.filter ( 
+function(inventor){
   if (inventor.year >= 1500 && inventor.year <= 1599 ) {
     return true; // keep it
   }
@@ -370,7 +473,7 @@ const fifteen = inventors.filter ( function(inventor){
 console.table(fifteen);
 ```
 
-Arrow functions.
+##### Arrow functions
 
 Refactor using arrow function and implicit return:
 
@@ -378,9 +481,9 @@ Refactor using arrow function and implicit return:
 const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
 ```
 
-2. Array.prototype.map() and join()
+##### Array.prototype.map() and join()
 
-Give an array of the inventors first and last names
+Exercise: provide an array of the inventors first and last names
 
 ```
 var fullNames = inventors.map(function(inventor){
@@ -435,7 +538,7 @@ nav.innerHTML = markup;
 
 Since we are including a `<ul>` in our markup constant we can remove it from our script.
 
-Final scrips:
+Final script:
 
 ```
 <script src="navitems.js"></script>
