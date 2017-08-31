@@ -648,7 +648,7 @@ function fixNav() {
 
 Note the use of camel case.
 
-##EXERCISE Step Five - Adding the SVG Image
+## EXERCISE Step Five - Adding the SVG Image
 
 ```js
 const logo = document.querySelector('#main ul li');
@@ -686,7 +686,7 @@ li.logo {
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
 
-##EXERCISE End (for today) - Faking It!
+## EXERCISE End (for today) - Faking It!
 
 Note the use of hashes in the nav links:
 
@@ -730,7 +730,7 @@ function prepContent(e){
 ```
 
 
-##HOMEWORK - CSS Flexible Box Layout Module
+## HOMEWORK - CSS Flexible Box Layout Module
 
 Flexbox can be quite difficult to master. You could do worse than checking out:
 
@@ -869,6 +869,6 @@ Comment out the contents of the ul:
 
 
 
-###Notes
+### Notes
 
 [vh and vw in the CSS](https://css-tricks.com/viewport-sized-typography/)
