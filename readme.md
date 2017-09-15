@@ -26,15 +26,17 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 [Syllabus](http://mean.deverell.com/syllabus/)
 
 
-## Text Editor - [Sublime Text](http://www.sublimetext.com)
+## Text Editor
 
-Packages - first install the Sublime Text [Package Manager](https://packagecontrol.io/installation)
+I'll be using [Sublime Text](http://www.sublimetext.com) in class. It may be useful to you to see the same syntax highlighting in order to quickly check your code.
+
+Packages - install the Sublime Text [Package Manager](https://packagecontrol.io/installation)
 
 #### Cobalt
 
-1. Open package control Tools → Command Palette and type Install Package
+1. Open Package Control (Tools → Command Palette) and type Install Package
 2. Search for Cobalt2 and hit enter
-3. Open Preferences → Settings - User. Add the following lines (only the first two are required):
+3. Open Preferences → Settings - User. Copy and paste the following lines (only the first two are required):
 
 ```json
 "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
@@ -51,19 +53,24 @@ Packages - first install the Sublime Text [Package Manager](https://packagecontr
 "caret_style": "phase",
 "bold_folder_labels": true,
 ```
+
 Restart Sublime for the theme to be fully applied.
 
-#### [Emmet](http://emmet.io)
+#### Emmet
+
+I may use a package called Emmet from time to time in class.
 
 1. Open package control Tools → Command Palette and type Install Package
 2. Search for Emmet and hit enter
 
+See [Emmet](http://emmet.io) for additional information.
+
 
 ## EXERCISE JavaScript 101 - Variables
 
-Introducing the developer tools, data types, variable types `var`, `let`, and `const`, and scope.
+Introducing the developer tools console, data types, variable types `var`, `let`, and `const`, and scope.
 
-Try this in the console (one line at a time):
+Try this in the console (copy paste one line at a time):
 
 ```js
 var width = 100;
@@ -203,9 +210,11 @@ See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/W
 
 ## EXERCISE - Step One - Generated content from an Array
 
-Replace the existing nav labels with items from an array using a `for loop`.
+Open index-START.html in Sublime text and examine the html. ????
 
-Link to a JS file in index-START.html:
+We will replace the existing nav labels with items from an array using a `for loop`.
+
+Examine and link to the provided JS file in index-START.html:
 
 ```html
 <script src="navitems.js"></script>
@@ -230,6 +239,8 @@ Add to the script block in the HTML:
 ```js
 
 console.log(navItemsArray[2])
+console.log(navItemsArray.length)
+
 ```
 
 * DOM Method [getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
@@ -242,15 +253,15 @@ console.log(nav);
 
 * DOM Method [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll), (see also [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) )
 
-We could write: 
+We could also write: 
 
 ```js
 
-const navList = document.querySelectorAll('main li a');
+const navList = document.querySelectorAll('#main li a');
 console.log(navList);
 ```
 
-It is often advantageous to use this pattern (`element.querySelector` as opposed to `document.querySelector`):
+Or (it is often advantageous to use `element.querySelector` as opposed to `document.querySelector`):
 
 ```js
 
@@ -262,6 +273,8 @@ console.log(navList);
 Compare navList and navItemsArray in the console. Note Array vs nodeList types and prototypes.
 
 A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`
+
+### Replace our placeholder nav items with content from an array 
 
 * for loop and innerHTML
 
@@ -276,7 +289,7 @@ console.log(i) // not defined
 
 ## EXERCISE Step Two - Generated HTML from an Array
 
-Problem: we are using 6 existing `<li>` elements but there are 8 items in our `navItemsArray` array.
+Problem: we are using the existing `<li>` elements but there are 8 items in our `navItemsArray` array.
 
 Solution: dynamically generate the nav from items in the array.
 
@@ -304,11 +317,12 @@ Append a `<ul>` tag to nav using:
 ```js
 const nav = document.getElementById('main');
 nav.innerHTML = ''
+
 const navList = document.createElement('ul');
 nav.appendChild(navList);
 ```
 
-* dynamically create the nav based on the number of items in the array:
+* dynamically create the nav based on the number of items in the array using a for loop:
 
 ```js
 for (let i =0; i < navItemsArray.length; i++ ){
@@ -318,6 +332,8 @@ for (let i =0; i < navItemsArray.length; i++ ){
   navList.appendChild(listItem)
 }
 ```
+
+Our Navbar now displays all the items in our array.
 
 #### Aside - Template Strings
 
@@ -333,7 +349,9 @@ Compare 'oldschool' and 'sentence' below:
 </script>
 ```
 
-Note the use of tick marks instead of quotes and that we have the ability to convert dog years to human years inside the curly brackets in a template string.
+Note the use of tick marks instead of quotes and that we have the ability to convert dog years to human years using JS inside the curly brackets in a template string.
+
+#### Using Template Strings
 
 Switch out the concatenation for a *template string*:
 
@@ -341,7 +359,7 @@ Switch out the concatenation for a *template string*:
 listItem.innerHTML = `<a href="#">${linkText}</a>`
 ```
 
-Refactor to use JS in the template string:
+Because template string can accept JS we can further refactor to use JS in the template string:
 
 ```js
 for (let i=0; i < navItemsArray.length; i++ ){
@@ -449,7 +467,7 @@ Useful when accessing third party data where you might have a variable name clas
 
 ## EXERCISE Step Three - Dynamic Generation with Objects in an array
 
-An array of objects is a very common data structure.
+In the previous portion of this exercise we worked with an array. An array can contain any type of data, not just strings. An array of objects is a very common data structure.
 
 We have links for our page in `<script src="navitems.js"></script>`. It is an array containing multiple objects:
 
@@ -491,7 +509,7 @@ var navItems = [
 ```
 
 
-Add the links:
+Add the links using navItems instead of navItemsArray:
 
 ```js
 for (let i =0; i < navItems.length; i++ ){
@@ -590,7 +608,8 @@ nav.innerHTML = markup;
 
 Refactored using an arrow function:
 
-```
+```js
+
 const markup = `
 <ul>
   ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
@@ -604,7 +623,8 @@ Since we are including a `<ul>` in our markup constant we can remove it from our
 
 Final script:
 
-```
+```html
+
 <script src="navitems.js"></script>
 
 <script>
@@ -626,18 +646,21 @@ Try translating this in babeljs.
 * DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about theposition of an element relative to the top of the browser's window.
 
 ```js
+
 let topOfNav = nav.offsetTop;
 ```
 
 * DOM method - [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), see also [event types](https://developer.mozilla.org/en-US/docs/Web/Events)
 
 ```js
+
 window.addEventListener('scroll', fixNav);
 ```
 
 scrollY
 
 ```js
+
 function fixNav() {
   console.log(topOfNav)
   console.log(window.scrollY)
@@ -654,7 +677,17 @@ function fixNav() {
 }
 ```
 
-Note that we add the class fixed-nav to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). We'll do this with the site-wrap.
+Add some css for the new class we added:
+
+```css
+body.fixed-nav nav {
+  position: fixed;
+  top: 0;
+  box-shadow:0 5px 3px rgba(0,0,0,0.1);
+}
+```
+
+Add an else to our if statement to remove the behaviour when the banner image is showing.
 
 ```js
 function fixNav() {
@@ -666,12 +699,7 @@ function fixNav() {
 }
 ```
 
-```css
-body.fixed-nav nav {
-  position: fixed;
-  box-shadow:0 5px 3px rgba(0,0,0,0.1);
-}
-```
+Note that we add the class fixed-nav to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). We'll do this with the site-wrap.
 
 ```css
 .site-wrap {
@@ -797,7 +825,12 @@ function prepContent(e){
 ```
 
 
-## HOMEWORK - CSS Flexible Box Layout Module
+
+### Notes
+
+[vh and vw in CSS](https://css-tricks.com/viewport-sized-typography/)
+
+##### OLD HW - CSS Flexible Box Layout Module
 
 Flexbox can be quite difficult to master. You could do worse than checking out:
 
@@ -934,8 +967,34 @@ Comment out the contents of the ul:
 </div>
 ```
 
+##### ALT loader
 
+```
+function loadDoc1() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById(“textbox”).innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open(“GET”, “texts/latestnews.html”, true);
+  xhttp.send();
+}
+```
 
-### Notes
+```
+<nav>
+        <ul class=“nav”>
+            <li class=“latestnews”><a href=“#” onclick=“loadDoc1()“>LATEST NEWS</a></li>
+            <li class=“eswnyc”><a href=“#” onclick=“loadDoc2()“>ESW-NYC</a></li>
+            <li class=“team”><a href=“#” onclick=“loadDoc3()“>TEAM</a></li>
+            <li class=“projects”><a href=“#” onclick=“loadDoc4()“>PROJECTS</a></li>
+            <li class=“contactus”><a href=“#” onclick=“loadDoc5()“>CONTACT US</a></li>
+            <li class=“participate”><a href=“#” onclick=“loadDoc6()“>PARTICIPATE</a></li>
+            <li class=“donate”><a href=“#” onclick=“loadDoc7();“>DONATE</a></li>            
+        </ul>            
+</nav>
 
-[vh and vw in the CSS](https://css-tricks.com/viewport-sized-typography/)
+```
+

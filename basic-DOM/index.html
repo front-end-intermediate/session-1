@@ -3,7 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <title>START Barclays Live</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- <link rel="stylesheet" href="css/styles.css"> -->
+  <style>
+  @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i';
+  * {
+    margin: 0;
+    padding:0;
+  }
+
+  html {
+    box-sizing: border-box;
+    background:#eeeeee;
+    font-family:'Source Sans Pro', Helvetica, Clean, sans-serif;;
+    font-size: 100%;
+    font-weight: 400;
+  }
+  body {
+    margin: 0;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  .site-wrap {
+    max-width: 780px;
+    margin: 40px auto;
+    background:white;
+    padding: 20px 40px;
+    text-align: justify;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  header {
+    text-align: center;
+    height:20vh;
+    background:url(img/img.jpg) center no-repeat;
+    background-size:cover;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+  }
+
+  h1 {
+    color:white;
+    font-size: 7vw;
+    font-weight: 300;
+    text-shadow: 3px 4px 0 rgba(0,0,0,0.2)
+  }
+
+  nav {
+    background:#007eb6;
+    /*top:0;*/
+    width: 100%;
+    /*transition:all 0.5s;*/
+    /*position: relative;*/
+    /*z-index: 1;*/
+  }
+
+  nav ul {
+
+    list-style: none;
+    display:flex;
+    min-height: 2.5rem;
+  }
+
+  nav li {
+    flex:1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav a {
+    text-decoration: none;
+    display: inline-block;
+    color:white;
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+
+  body.fixed-nav nav {
+  position: fixed;
+  top: 0;
+  box-shadow:0 5px 3px rgba(0,0,0,0.1);
+}
+
+</style>
 </head>
 <body>
 
@@ -25,9 +113,7 @@
   <div class="site-wrap">
 
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
-
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
-
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
 
     <img src="http://unsplash.it/400/400" class="align-left slide-in">
@@ -45,12 +131,57 @@
     <p id="workbook">Workbook Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita quia vero perferendis, deserunt et incidunt eveniet temporibus doloremque possimus facilis. Possimus labore, officia dolore! Eaque ratione saepe, alias harum laboriosam deserunt laudantium blanditiis eum explicabo placeat reiciendis labore iste sint. Consectetur expedita dignissimos, non quos distinctio, eos rerum facilis eligendi. Asperiores laudantium, rerum ratione consequatur, culpa consectetur possimus atque ab tempore illum non dolor nesciunt. Neque, rerum. A vel non incidunt, quod doloremque dignissimos necessitatibus aliquid laboriosam architecto at cupiditate commodi expedita in, quae blanditiis. Deserunt labore sequi, repellat laboriosam est, doloremque culpa reiciendis tempore excepturi. Enim nostrum fugit itaque vel corporis ullam sed tenetur ipsa qui rem quam error sint, libero. Laboriosam rem, ratione. Autem blanditiis laborum neque repudiandae quam, cumque, voluptate veritatis itaque, placeat veniam ad nisi. Expedita, laborum reprehenderit ratione soluta velit natus, odit mollitia. Corporis rerum minima fugiat in nostrum. Assumenda natus cupiditate hic quidem ex, quas, amet ipsum esse dolore facilis beatae maxime qui inventore, iste? Maiores dignissimos dolore culpa debitis voluptatem harum, excepturi enim reiciendis, tempora ab ipsam illum aspernatur quasi qui porro saepe iure sunt eligendi tenetur quaerat ducimus quas sequi omnis aperiam suscipit! Molestiae obcaecati officiis quo, ratione eveniet, provident pariatur. Veniam quasi expedita distinctio, itaque molestiae sequi, dolorum nisi repellendus quia facilis iusto dignissimos nam? Tenetur fugit quos autem nihil, perspiciatis expedita enim tempore, alias ab maiores quis necessitatibus distinctio molestias eum, quidem. Delectus impedit quidem laborum, fugit vel neque quo, ipsam, quasi aspernatur quas odio nihil? Veniam amet reiciendis blanditiis quis reprehenderit repudiandae neque, ab ducimus, odit excepturi voluptate saepe ipsam. Voluptatem eum error voluptas porro officiis, amet! Molestias, fugit, ut! Tempore non magnam, amet, facere ducimus accusantium eos veritatis neque.</p>
 
   </div>
-<script src="navitems.js"></script>
+  <script src="navitems.js"></script>
 
-<script>
+  <script>
+
+    const nav = document.getElementById('main');
+    nav.innerHTML = ''
 
 
-</script>
+    // const navList = document.createElement('ul');
+    // nav.appendChild(navList);
+
+    // for (let i =0; i < navItemsArray.length; i++ ){
+    //   let listItem = document.createElement('li')
+    //   listItem.innerHTML = `<a href="#">${navItemsArray[i]}</a>`;
+    //   navList.appendChild(listItem)
+    // }
+
+    // for (let i =0; i < navItems.length; i++ ){
+    //   const listItem = document.createElement('li');
+    //   listItem.innerHTML = `<a href="${navItems[i].link}">${navItems[i].label}</a>`;
+    //   navList.appendChild(listItem);
+    // }
+
+    const markup = `
+    <ul>
+      ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>`).join('')}
+    </ul>
+    `;
+nav.innerHTML = markup;
+
+
+let topOfNav = nav.offsetTop;
+window.addEventListener('scroll', fixNav);
+
+function fixNav() {
+  if(window.scrollY >= topOfNav) {
+    document.body.classList.add('fixed-nav');
+  } else {
+    document.body.classList.remove('fixed-nav');
+  }
+}
+
+  </script>
+
+<!-- <script>
+  const name = 'Yorik';
+  const age = 2;
+  const oldschool = 'My dog ' + name + ' is ' + age * 7 + 'years old.'
+  const sentence = `My dog ${name} is ${age * 7} years old.`;
+  console.log(sentence);
+</script> -->
 
 
 </body>
