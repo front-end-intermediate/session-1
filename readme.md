@@ -814,7 +814,7 @@ function prepContent(e){
 function prepContent(e){
   if (this.hash == "#workbook"){
     const header = fakeContent[0].header;
-    const content = fakeContent[0].content;
+    const content = fakeContent[0].content; 
     sitewrap.innerHTML = `
       <h2>${header}</h2>
       <p>${content}</p>
