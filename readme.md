@@ -13,7 +13,9 @@ At the end of today's class you should be able to manipulate the DOM and insert 
 1. Bring your laptop to the next class
 
 
-## Texts (for the first part of the semester)
+## Texts 
+
+For the first half of the semester:
 
 Mat Marquis - [JavaScript for Web Designers](https://abookapart.com/products/javascript-for-web-designers)
 
@@ -33,6 +35,8 @@ I'll be using [Sublime Text](http://www.sublimetext.com) in class. It may be use
 Packages - install the Sublime Text [Package Manager](https://packagecontrol.io/installation)
 
 #### Cobalt
+
+For consistent highlighting use the Cobalt package (also available for Atom and VS Code).
 
 1. Open Package Control (Tools → Command Palette) and type Install Package
 2. Search for Cobalt2 and hit enter
@@ -105,7 +109,7 @@ console.log('outer width ' + width);
 
 A function does have access to variables defined outside its block:
 
-```
+```js
 function setWidth(){
   console.log('inner width ' + width)
 }
@@ -117,7 +121,7 @@ setWidth()
 
 Passing a parameter as an input to a function:
 
-```
+```js
 function setWidth(num){
   var width = num || 500
   console.log('inner width ' + width)
@@ -172,7 +176,7 @@ width = 3
 
 * const variables cannot be declared more than once *OR* reassigned
 
-```
+```js
 const testString = '1234abcd'
 
 testString
@@ -208,7 +212,9 @@ DOM scripting is not really pure JavaScript. It uses JS (but only in the browser
 
 See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
 
-## EXERCISE - Step One - Generated content from an Array
+## EXERCISE - Step One
+
+Generated content from an Array.
 
 Open index-START.html in Sublime text and examine the html. ????
 
