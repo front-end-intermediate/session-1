@@ -171,9 +171,7 @@ DOM scripting is not really pure JavaScript. It uses JS (but only in the browser
 
 See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
 
-## EXERCISE - Step One
-
-Generated content from an Array.
+## EXERCISE - generated content from an array
 
 Open index.html in your editor and examine the html.
 
@@ -249,8 +247,6 @@ for (let i=0; i < navList.length; i++ ){
 }
 console.log(i) // not defined
 ```
-
-## EXERCISE Step Two - Generated HTML from an Array
 
 Problem: we are using the existing `<li>` elements but there are 8 items in our `navItemsArray` array.
 
@@ -450,11 +446,11 @@ const content = `
 `
 ```
 
-## EXERCISE Step Three - Dynamic Generation with Objects in an array
+## EXERCISE - dynamic generation with an array of objects
 
-In the previous portion of this exercise we worked with an array. An array of objects is a very common data structure.
+In the previous portion of this exercise we worked with an simple array. An array of objects is a very common data structure.
 
-We have links for our page in `<script src="navitems.js"></script>`. It is an array containing multiple objects:
+The links for our page are in `<script src="navitems.js"></script>` - an array containing multiple objects:
 
 ```js
 var navItems = [
@@ -567,7 +563,7 @@ const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`
 console.log('Full names: ' + fullNames);
 ```
 
-### EXERCISE (Back to our page)
+### EXERCISE - using .map to generate markup
 
 An alternate method for creating the list items using [map()](https://forum.freecodecamp.com/t/javascript-array-prototype-map/14294) and template strings:
 
