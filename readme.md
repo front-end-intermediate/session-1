@@ -632,26 +632,23 @@ nav.innerHTML = markup;
 Try translating this in babeljs.
 
 
-## EXERCISE Step Four - Sticky Menu
+## EXERCISE - Sticky Menu
 
-* DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about theposition of an element relative to the top of the browser's window.
+* DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window.
 
 ```js
-
 let topOfNav = nav.offsetTop;
 ```
 
 * DOM method - [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), see also [event types](https://developer.mozilla.org/en-US/docs/Web/Events)
 
 ```js
-
 window.addEventListener('scroll', fixNav);
 ```
 
 scrollY
 
 ```js
-
 function fixNav() {
   console.log(topOfNav)
   console.log(window.scrollY)
@@ -678,7 +675,7 @@ body.fixed-nav nav {
 }
 ```
 
-Add an else to our if statement to remove the behaviour when the banner image is showing.
+Add an else to our if statement to remove the sticky behavior when the banner image is showing.
 
 ```js
 function fixNav() {
@@ -690,7 +687,18 @@ function fixNav() {
 }
 ```
 
-Note that we add the class fixed-nav to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). We'll do this with the site-wrap.
+Note: the behavior we crafted above could also have been managed without JavaScript using the css position property:
+
+```css
+#main {
+  position: sticky;
+  top: 0px;
+}
+```
+
+I have elected not to do so because its good to know about positional features in JavaScript but also because it is common to make other changes to the DOM contingent on events.
+
+For example, we added the class `fixed-nav` to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). For a simple, trivial example let's do this with the site-wrap.
 
 ```css
 .site-wrap {
@@ -704,7 +712,6 @@ Note that we add the class fixed-nav to the body (as opposed to, say, the nav it
   transform: scale(0.98);
   transition: transform 0.5s;
 }
-
 ```
 
 ```css
@@ -715,7 +722,7 @@ body.fixed-nav .site-wrap {
 
 When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
 
-Take care of the jankey jump using offsetHeight to add padding equal to the height of the nav.
+Take care of this jankey jump using offsetHeight to add padding equal to the height of the nav.
 
 ```js
 
@@ -732,7 +739,7 @@ function fixNav() {
 
 Note the use of camel case.
 
-## EXERCISE Step Five - Adding the SVG Image
+## EXERCISE - Adding the SVG Image
 
 ```js
 
@@ -747,10 +754,9 @@ logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 http://responsivelogos.co.uk
 http://www.svgeneration.com/recipes/Beam-Center/
 
-Format the logo and create the sliding logo behaviour. Note: CSS only, no JavaScript:
+Format the logo and create the sliding logo behavior. Note: CSS only, no JavaScript:
 
 ```css
-
 li.logo img {
   padding-top: 0.25rem;
   width: 2.5rem;
@@ -772,9 +778,9 @@ li.logo {
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
 
-## EXERCISE End (for today) - Faking It!
+## EXERCISE - Faking It!
 
-Note the use of hashes in the nav links:
+We added hashes to the nav links:
 
 `<a href="#watchlist">Watchlist</a>`
 
@@ -960,7 +966,7 @@ Comment out the contents of the ul:
 
 ##### ALT loader
 
-```
+```js
 function loadDoc1() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -974,7 +980,7 @@ function loadDoc1() {
 }
 ```
 
-```
+```js
 <nav>
         <ul class=“nav”>
             <li class=“latestnews”><a href=“#” onclick=“loadDoc1()“>LATEST NEWS</a></li>
