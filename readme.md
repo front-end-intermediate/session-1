@@ -1,6 +1,6 @@
 # Session One
 
-Today we are introducing JavaScript Arrays, Objects, Template Strings, Functions and Arrow Functions and DOM Scriptng. The CSS Flexbox module is also introduced.
+Today we are introducing JavaScript arrays, objects, template strings, functions and DOM Scriptng. The CSS Flexbox module is also introduced.
 
 At the end of today's class you should be able to manipulate the DOM and insert content into the DOM from an Array.
 
@@ -8,7 +8,7 @@ At the end of today's class you should be able to manipulate the DOM and insert 
 
 1. Complete the navbar exercise as outlined in class (see the bottom of this readme and the `flex-nav` directory)
 1. Create a Github account
-1. Download Sublime text and install [Package Manager](https://packagecontrol.io/installation), our Cobalt 2 theme and Emmet
+1. Download Atom and install our Cobalt 2 theme and Emmet
 1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 1. Bring your laptop to the next class
 
