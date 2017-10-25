@@ -188,7 +188,6 @@ Examine and link to the provided JS file in index-START.html:
 In the console:
 
 ```js
-
 navItemsArray
 
 typeof navItemsArray
