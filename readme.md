@@ -8,12 +8,12 @@ At the end of today's class you should be able to manipulate the DOM and insert 
 
 1. Complete the navbar exercise as outlined in class (see the bottom of this readme and the `flex-nav` directory)
 1. Create a Github account
-1. Download Atom and install our Cobalt 2 theme and Emmet
-1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-1. Bring your laptop to the next class
+1. Download and install Atom  - the text editor I will be using in this class
+1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
 
 
-## Texts 
+
+## Texts
 
 For the first half of the semester:
 
@@ -27,47 +27,6 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
 [Syllabus](http://mean.deverell.com/syllabus/)
 
-
-## Text Editor
-
-I'll be using [Sublime Text](http://www.sublimetext.com) in class. It may be useful to you to see the same syntax highlighting in order to quickly check your code.
-
-Packages - install the Sublime Text [Package Manager](https://packagecontrol.io/installation)
-
-#### Cobalt
-
-For consistent highlighting use the Cobalt package (also available for Atom and VS Code).
-
-1. Open Package Control (Tools → Command Palette) and type Install Package
-2. Search for Cobalt2 and hit enter
-3. Open Preferences → Settings - User. Copy and paste the following lines (only the first two are required):
-
-```json
-"color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
-"theme": "Cobalt2.sublime-theme",   
-"highlight_line": true,
-"indent_guide_options": [ "draw_normal", "draw_active" ],
-"highlight_modified_tabs": true,
-"line_padding_bottom": 1,
-"line_padding_top": 1,
-"wide_caret": true,
-"caret_extra_bottom": 2,
-"caret_extra_top": 2,
-"caret_extra_width": 3,
-"caret_style": "phase",
-"bold_folder_labels": true,
-```
-
-Restart Sublime for the theme to be fully applied.
-
-#### Emmet
-
-I may use a package called Emmet from time to time in class.
-
-1. Open package control Tools → Command Palette and type Install Package
-2. Search for Emmet and hit enter
-
-See [Emmet](http://emmet.io) for additional information.
 
 
 ## EXERCISE JavaScript 101 - Variables
@@ -174,7 +133,7 @@ Although they can be reassigned:
 width = 3
 ```
 
-* const variables cannot be declared more than once *OR* reassigned
+* const variables cannot be declared more than once *or* reassigned
 
 ```js
 const testString = '1234abcd'
@@ -186,7 +145,7 @@ const testString = 'abcd1234'
 testString = 'xyz'
 ```
 
-Note: consts are not 'immutable', they just create an immutable binding.
+Note: constants are not 'immutable', they just create an immutable binding.
 
 ```js
 const me = {
@@ -216,7 +175,7 @@ See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/W
 
 Generated content from an Array.
 
-Open index-START.html in Sublime text and examine the html. ????
+Open index-START.html in your editor and examine the html.
 
 We will replace the existing nav labels with items from an array using a `for loop`.
 
@@ -226,7 +185,7 @@ Examine and link to the provided JS file in index-START.html:
 <script src="navitems.js"></script>
 ```
 
-In the console: 
+In the console:
 
 ```js
 
@@ -259,7 +218,7 @@ console.log(nav);
 
 * DOM Method [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll), (see also [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) )
 
-We could also write: 
+We could also write:
 
 ```js
 
@@ -280,7 +239,7 @@ Compare navList and navItemsArray in the console. Note Array vs nodeList types a
 
 A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`
 
-### Replace our placeholder nav items with content from an array 
+### Replace our placeholder nav items with content from an array
 
 * for loop and innerHTML
 
@@ -314,9 +273,9 @@ const nav = document.getElementById('main');
 nav.innerHTML = ''
 ```
 
-Append a `<ul>` tag to nav using: 
+Append a `<ul>` tag to nav using:
 
-* [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/) and 
+* [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/) and
 
 * [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) :
 
@@ -546,7 +505,7 @@ const inventors = [
 Filter the list of inventors for those who were born in the 1500's
 
 ```js
-const fifteen = inventors.filter ( 
+const fifteen = inventors.filter (
 function(inventor){
   if (inventor.year >= 1500 && inventor.year <= 1599 ) {
     return true; // keep it
@@ -820,7 +779,7 @@ function prepContent(e){
 function prepContent(e){
   if (this.hash == "#workbook"){
     const header = fakeContent[0].header;
-    const content = fakeContent[0].content; 
+    const content = fakeContent[0].content;
     sitewrap.innerHTML = `
       <h2>${header}</h2>
       <p>${content}</p>
@@ -1003,4 +962,3 @@ function loadDoc1() {
 </nav>
 
 ```
-
