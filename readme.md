@@ -175,7 +175,7 @@ See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/W
 
 Generated content from an Array.
 
-Open index-START.html in your editor and examine the html.
+Open index.html in your editor and examine the html.
 
 We will replace the existing nav labels with items from an array using a `for loop`.
 
@@ -189,38 +189,41 @@ In the console:
 
 ```js
 navItemsArray
-
 typeof navItemsArray
-
 Array.isArray(navItemsArray)
-
 ```
 
-Note that an Array is an object in JS just like our `const me` above.
+Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers and array of objects consisting of name / value pairs.
+
+Note that an Array is an object in JS just like our `const me` above. Because an array is an object at its core you can add properties to it
+
+```sh
+var box = []
+box['size'] = 9
+box['0'] = 'meow'
+box['size']  // because an array is an object at its core you can add properties to it
+box[0]
+box
+```
 
 Add to the script block in the HTML:
 
 ```js
-
 console.log(navItemsArray[2])
 console.log(navItemsArray.length)
-
 ```
 
 * DOM Method [getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
 
 ```js
-
 const nav = document.getElementById('main');
-console.log(nav);
 ```
 
-* DOM Method [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll), (see also [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) )
+* DOM Methods [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll), (see also [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) )
 
 We could also write:
 
 ```js
-
 const navList = document.querySelectorAll('#main li a');
 console.log(navList);
 ```
@@ -228,10 +231,8 @@ console.log(navList);
 Or (it is often advantageous to use `element.querySelector` as opposed to `document.querySelector`):
 
 ```js
-
 const nav = document.getElementById('main');
 const navList = nav.querySelectorAll('li a');
-console.log(navList);
 ```
 
 Compare navList and navItemsArray in the console. Note Array vs nodeList types and prototypes.
@@ -243,11 +244,9 @@ A nodeList has a length property - `> navList.length` vs `> navItemsArray.length
 * for loop and innerHTML
 
 ```js
-
 for (let i=0; i < navList.length; i++ ){
   navList[i].innerHTML = navItemsArray[i];
 }
-
 console.log(i) // not defined
 ```
 
@@ -275,7 +274,6 @@ nav.innerHTML = ''
 Append a `<ul>` tag to nav using:
 
 * [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/) and
-
 * [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) :
 
 ```js
@@ -297,7 +295,7 @@ for (let i =0; i < navItemsArray.length; i++ ){
 }
 ```
 
-Our Navbar now displays all the items in our array.
+Our nav bar now displays all the items in our array.
 
 #### Aside - Template Strings
 
@@ -323,7 +321,7 @@ Switch out the concatenation for a *template string*:
 listItem.innerHTML = `<a href="#">${linkText}</a>`
 ```
 
-Because template string can accept JS we can further refactor to use JS in the template string:
+Because template string can accept JS inside the curly braces we can further refactor to use JS in the template string:
 
 ```js
 for (let i=0; i < navItemsArray.length; i++ ){
@@ -333,7 +331,7 @@ for (let i=0; i < navItemsArray.length; i++ ){
 }
 ```
 
-Note how the CSS for the navbar formats the links:
+Note how the CSS for the nav bar formats the links:
 
 ```css
 nav ul {
@@ -362,13 +360,10 @@ Examine a sample of an object.
 
 Reference: `_Objects > objects.html`
 
-```
+```sh
 last
-
 me
-
 me.links
-
 me.links.social.twitter
 ```
 
@@ -378,13 +373,13 @@ const twitter = me.links.social.twitter
 
 Multi line template string:
 
-```
+```js
 const content = `
 <div class="person">
   <h2>
     ${me.first} ${me.last}:
     <span class="job">${me.job}</span>
-    <p class="twitter">Twitter: ${tw}</p>
+    <p class="twitter">Twitter: ${me.links.social.twitter}</p>
     <p class="blog">Blog: ${me.links.web.blog}</p>
   </h2>
 </div>
@@ -394,7 +389,7 @@ document.body.innerHTML = content;
 
 ```
 
-NB: this is what it would look like without using template strings:
+NB: this is what the above would look like without template strings:
 
 ```
 var content = "\n<div class=\"person\">\n  <h2>\n    " + me.first + " " + me.last + ":\n    <span class=\"job\">" + me.job + "</span>\n    <p class=\"twitter\">Twitter: " + tw + "</p>\n    <p class=\"blog\">Blog: " + me.links.web.blog + "</p>\n  </h2>\n</div>\n";
@@ -403,24 +398,30 @@ var content = "\n<div class=\"person\">\n  <h2>\n    " + me.first + " " + me.las
 
 #### Aside: Destructuring
 
-Destructuring allows us to extract properties from objects and arrays.
+Destructuring allows us to extract properties from objects and arrays. The curly brackets to the left of the equals sign below *do not* create an object. The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects.
 
+Add the below to objects.html:
 
 ```js
 // const first = me.first;
 // const last = me.last;
 const { first, last } = me;
-
-first
 ```
 
-Instead of creating multiple variables (the commented out material above), we can use destructuring syntax (the curly braces) to extract information and create multiple variables. Comes in handy when the data is deeply nested.
+Access these two variables in the console:
+
+```sh
+first
+last
+```
+
+Instead of creating multiple variables (the commented out material above), we can use destructuring syntax (the curly braces) to extract information and create multiple variables. This comes in handy when data is deeply nested.
 
 ```js
 const { twitter, facebook } = me.links.social;
 ```
 
-Rename (here, shorten) the variable:
+You can also rename (here, shorten) the variable names:
 
 ```js
 const { twitter:tw, facebook:fb } = me.links.social;
@@ -428,10 +429,30 @@ const { twitter:tw, facebook:fb } = me.links.social;
 
 Useful when accessing third party data where you might have a variable name clash.
 
+Say, for example, you already have a constant variable in use called blog but you want to access content from a database that also uses that name. To avoid issues you could destructure it:
+
+```js
+const { blog:bg } = me.links.web;
+```
+
+Our `content` variable could then be written as:
+
+```js
+const content = `
+<div class="person">
+  <h2>
+    ${me.first} ${me.last}:
+    <span class="job">${me.job}</span>
+    <p class="twitter">Twitter: ${tw}</p>
+    <p class="blog">Blog: ${bg}</p>
+  </h2>
+</div>
+`
+```
 
 ## EXERCISE Step Three - Dynamic Generation with Objects in an array
 
-In the previous portion of this exercise we worked with an array. An array can contain any type of data, not just strings. An array of objects is a very common data structure.
+In the previous portion of this exercise we worked with an array. An array of objects is a very common data structure.
 
 We have links for our page in `<script src="navitems.js"></script>`. It is an array containing multiple objects:
 
@@ -473,7 +494,7 @@ var navItems = [
 ```
 
 
-Add the links using navItems instead of navItemsArray:
+Add the links using `navItems` instead of `navItemsArray`:
 
 ```js
 for (let i =0; i < navItems.length; i++ ){
@@ -482,6 +503,10 @@ for (let i =0; i < navItems.length; i++ ){
   navList.appendChild(listItem);
 }
 ```
+
+Inspect the code to note that, thanks to the multiple name / value pairs in navItems we now have page fragment links in our html and are able to navigate (somewhat) in our page.
+
+Note the hash in the url location string.
 
 #### Array Methods
 
@@ -516,7 +541,9 @@ console.table(fifteen);
 
 ##### Arrow functions
 
-Refactor using arrow function and implicit return:
+Arrow functions are commonly used to shorten the syntax for anonymous functions. Much of the documentation you will read uses them so let start exposing ourselves to them.
+
+Refactor using an arrow function with implicit return:
 
 ```js
 const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
@@ -533,10 +560,14 @@ var fullNames = inventors.map(
 })
 ```
 
+Refactored to use an arrow function and to join the results with a comma:
+
 ```js
 const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
-console.log('Fullnames: ' + fullNames);
+console.log('Full names: ' + fullNames);
 ```
+
+### EXERCISE (Back to our page)
 
 An alternate method for creating the list items using [map()](https://forum.freecodecamp.com/t/javascript-array-prototype-map/14294) and template strings:
 
