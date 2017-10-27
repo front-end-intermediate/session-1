@@ -737,7 +737,7 @@ function fixNav() {
 }
 ```
 
-Note the use of camel case.
+Note paddingTop (camel case) - I used Javascript for this because offSetHeight could vary. Otherwise I would have used CSS. Always try to use CSS instead of Javascript wherever possible.
 
 ## EXERCISE - Adding the SVG Image
 
@@ -780,16 +780,17 @@ li.logo {
 
 ## EXERCISE - Faking It!
 
-We added hashes to the nav links:
+Note the use of hashes in the navigation:
 
 `<a href="#watchlist">Watchlist</a>`
 
-These allow us to navigate to sections of the document marked up with the matching id:
+These allow us to navigate (`index.html#research`) to sections of the document marked up with the corresponding id:
 
 `<p id="watchlist">`
 
-We'll set up one of them, the Workbook link, to behave differently. This emulates a single page application (SPA).
+Note that clicking on an hashed link doesn't refresh the page. This makes hashes an important feature for creating SPAs - they are used to load different content via AJAX from a server with no page refresh.
 
+We'll set up our page emulate a single page application.
 ```js
 const sitewrap = document.querySelector('.site-wrap');
 const navTest = document.querySelectorAll('#main ul li a');
