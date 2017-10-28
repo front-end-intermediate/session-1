@@ -1,6 +1,6 @@
 # Session One
 
-Today we are introducing JavaScript arrays, objects, template strings, functions and DOM Scriptng. The CSS flexbox module is also introduced.
+Today we are introducing JavaScript arrays, objects, template strings, functions and DOM scriptng. The CSS flexbox module is also introduced.
 
 At the end of today's class you should be able to manipulate the DOM and insert content into the DOM from an Array.
 
@@ -58,23 +58,18 @@ function setWidth(){
   var width = 500
   console.log('inner width ' + width)
 }
-
 typeof setWidth
-
 setWidth()
-
 console.log('outer width ' + width);
 ```
 
-A function does have access to variables defined outside its block:
+A function *does* have access to variables defined outside its block:
 
 ```js
 function setWidth(){
   console.log('inner width ' + width)
 }
-
 var width = 500
-
 setWidth()
 ```
 
@@ -85,11 +80,8 @@ function setWidth(num){
   var width = num || 500
   console.log('inner width ' + width)
 }
-
 setWidth(200)
-
 setWidth()
-
 ```
 
 * var - can 'leak' when its not inside a function:
@@ -104,7 +96,7 @@ if ( width > 12 ) {
 width;
 ```
 
-Above, the var 'leaks' outside the block.
+Above, the var 'leaks' outside the {} block.
 
 * let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
 
@@ -123,7 +115,6 @@ width
 
 ```js
 let width = 10
-
 let width = 11
 ```
 
@@ -132,6 +123,8 @@ Although they can be reassigned:
 ```js
 width = 3
 ```
+
+So in addition to scope, `let` variables protect the name of the variable. let allows you to declare block-level variables. The declared variable is available from the block it is enclosed in.
 
 * const variables cannot be declared more than once *or* reassigned
 
@@ -160,7 +153,6 @@ typeof me
 me.age = 49
 
 me
-
 ```
 
 Note: `me` is an object
@@ -173,11 +165,30 @@ See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/W
 
 ## EXERCISE - generated content from an array
 
-Open index.html in your editor and examine the html.
+Open index.html in your editor and examine the html and css in the inspector.
+
+Note how the CSS for the hero graphic and nav bar formats the links:
+
+```css
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  min-height: 2.5rem;
+}
+nav li {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
 
 We will replace the existing nav labels with items from an array using a `for loop`.
 
-Examine and link to the provided JS file in index-START.html:
+Examine and link to the provided JS file in index.html:
 
 ```html
 <script src="navitems.js"></script>
@@ -189,11 +200,12 @@ In the console:
 navItemsArray
 typeof navItemsArray
 Array.isArray(navItemsArray)
+navItems
 ```
 
 Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers and array of objects consisting of name / value pairs.
 
-Note that an Array is an object in JS just like our `const me` above. Because an array is an object at its core you can add properties to it
+Note that an Array is an object in JS just like our `const me` above. Because an array is an object at its core you can add properties to it:
 
 ```sh
 var box = []
@@ -219,7 +231,7 @@ const nav = document.getElementById('main');
 
 * DOM Methods [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll), (see also [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) )
 
-We could also write:
+We could also have written:
 
 ```js
 const navList = document.querySelectorAll('#main li a');
@@ -260,7 +272,7 @@ We could edit the HTML:
 <nav id="main"></nav>
 ```
 
-or use JS to accomplish the same:
+Let's use JS to accomplish the same:
 
 ```js
 const nav = document.getElementById('main');
@@ -295,7 +307,7 @@ Our nav bar now displays all the items in our array.
 
 #### Aside - Template Strings
 
-Compare 'oldschool' and 'sentence' below:
+Compare old school concatenation and the variable 'sentence' below:
 
 ```html
 <script>
@@ -307,7 +319,7 @@ Compare 'oldschool' and 'sentence' below:
 </script>
 ```
 
-Note the use of tick marks instead of quotes and that we have the ability to convert dog years to human years using JS inside the curly brackets in a template string.
+Note the use of tick marks instead of quotes and that we have the ability to access variables and convert dog years to human years using JS inside the curly brackets in a template string.
 
 #### Using Template Strings
 
@@ -317,7 +329,7 @@ Switch out the concatenation for a *template string*:
 listItem.innerHTML = `<a href="#">${linkText}</a>`
 ```
 
-Because template string can accept JS inside the curly braces we can further refactor to use JS in the template string:
+Template strings can accept JS inside the curly braces so we can further refactor to use JS in the template string:
 
 ```js
 for (let i=0; i < navItemsArray.length; i++ ){
@@ -327,34 +339,15 @@ for (let i=0; i < navItemsArray.length; i++ ){
 }
 ```
 
-Note how the CSS for the nav bar formats the links:
-
-```css
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  min-height: 2.5rem;
-}
-nav li {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-```
-
-Note: Template Strings and Let and Const variables are ES6 (ecmascript version 6). While they work on newer browsers they may not in older ones. For this reason it is common practice to convert the code to ES5 before publishing.
+Note: Template Strings and Let and Const variables are ES6 (Ecmascript version 6). While they work on newer browsers they may not in older ones. For this reason it is common practice to convert the code to ES5 before publishing.
 
 * Translate the code back to ES5 at https://babeljs.io
 
 #### Aside: Objects
 
-Examine a sample of an object.
+Open for reference: `_Objects > objects.html`
 
-Reference: `_Objects > objects.html`
+Examine a sample of an object.
 
 ```sh
 last
@@ -363,11 +356,13 @@ me.links
 me.links.social.twitter
 ```
 
+Add to script block:
+
 ```js
 const twitter = me.links.social.twitter
 ```
 
-Multi line template string:
+Create a multi-line template string:
 
 ```js
 const content = `
@@ -382,14 +377,12 @@ const content = `
 `
 
 document.body.innerHTML = content;
-
 ```
 
-NB: this is what the above would look like without template strings:
+This is what the above would look like without using template strings:
 
 ```
-var content = "\n<div class=\"person\">\n  <h2>\n    " + me.first + " " + me.last + ":\n    <span class=\"job\">" + me.job + "</span>\n    <p class=\"twitter\">Twitter: " + tw + "</p>\n    <p class=\"blog\">Blog: " + me.links.web.blog + "</p>\n  </h2>\n</div>\n";
-
+var content = "\n<div class=\"person\">\n  <h2>\n    " + me.first + " " + me.last + ":\n    <span class=\"job\">" + me.job + "</span>\n    <p class=\"twitter\">Twitter: " + me.links.social.twitter + "</p>\n    <p class=\"blog\">Blog: " + me.links.web.blog + "</p>\n  </h2>\n</div>\n";
 ```
 
 #### Aside: Destructuring
@@ -411,7 +404,7 @@ first
 last
 ```
 
-Instead of creating multiple variables (the commented out material above), we can use destructuring syntax (the curly braces) to extract information and create multiple variables. This comes in handy when data is deeply nested.
+Instead of creating multiple variables (the commented out material above), we can use destructuring syntax (the curly braces) to extract information and create multiple variables. This comes in handy when the data you need to access is deeply nested in an object.
 
 ```js
 const { twitter, facebook } = me.links.social;
@@ -500,7 +493,7 @@ for (let i =0; i < navItems.length; i++ ){
 }
 ```
 
-Inspect the code to note that, thanks to the multiple name / value pairs in navItems we now have page fragment links in our html and are able to navigate (somewhat) in our page.
+Inspect the code and note that, thanks to the multiple name / value pairs in navItems we now have page fragment links in our html and are able to navigate within our page.
 
 Note the hash in the url location string.
 
@@ -508,7 +501,7 @@ Note the hash in the url location string.
 
 Let's look at another method for developing our nav - using an Array method.
 
-##### Aside: Array.prototype.filter()
+##### Array Methods: Array.prototype.filter()
 
 ```js
 const inventors = [
@@ -545,7 +538,7 @@ Refactor using an arrow function with implicit return:
 const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
 ```
 
-##### Array.prototype.map() and join()
+##### Array Methods: Array.prototype.map() and join()
 
 Provide an array of the inventors first and last names:
 
@@ -615,7 +608,6 @@ Since we are including a `<ul>` in our markup constant we can remove it from our
 Final script:
 
 ```html
-
 <script src="navitems.js"></script>
 
 <script>
@@ -629,12 +621,11 @@ nav.innerHTML = markup;
 </script>
 ```
 
-Try translating this in babeljs.
-
+Try translating this into ECMAScript 2015 (ECMAScript 6 / ES6) at `babeljs.io`.
 
 ## EXERCISE - Sticky Menu
 
-* DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window.
+* DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window. (See also [getBoundingClientRect] (https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) which returns much more information and is incredibly useful for all manner of positioning).
 
 ```js
 let topOfNav = nav.offsetTop;
@@ -696,7 +687,7 @@ Note: the behavior we crafted above could also have been managed without JavaScr
 }
 ```
 
-I have elected not to do so because its good to know about positional features in JavaScript but also because it is common to make other changes to the DOM contingent on events.
+I have elected not to do so because not only is it useful to understand position in JavaScript, but also because it is common to make other changes to the DOM contingent on events.
 
 For example, we added the class `fixed-nav` to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). For a simple, trivial example let's do this with the site-wrap.
 
@@ -722,10 +713,9 @@ body.fixed-nav .site-wrap {
 
 When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
 
-Take care of this jankey jump using offsetHeight to add padding equal to the height of the nav.
+Take care of this 'jankey' jump using `offsetHeight` to add an amount of padding equal to the height of the nav to the body element.
 
 ```js
-
 function fixNav() {
   if(window.scrollY >= topOfNav) {
     document.body.style.paddingTop = nav.offsetHeight + 'px';
@@ -827,6 +817,7 @@ function prepContent(e){
 ### Notes
 
 [vh and vw in CSS](https://css-tricks.com/viewport-sized-typography/)
+
 
 ##### OLD HW - CSS Flexible Box Layout Module
 
@@ -983,15 +974,15 @@ function loadDoc1() {
 
 ```js
 <nav>
-        <ul class=“nav”>
-            <li class=“latestnews”><a href=“#” onclick=“loadDoc1()“>LATEST NEWS</a></li>
-            <li class=“eswnyc”><a href=“#” onclick=“loadDoc2()“>ESW-NYC</a></li>
-            <li class=“team”><a href=“#” onclick=“loadDoc3()“>TEAM</a></li>
-            <li class=“projects”><a href=“#” onclick=“loadDoc4()“>PROJECTS</a></li>
-            <li class=“contactus”><a href=“#” onclick=“loadDoc5()“>CONTACT US</a></li>
-            <li class=“participate”><a href=“#” onclick=“loadDoc6()“>PARTICIPATE</a></li>
-            <li class=“donate”><a href=“#” onclick=“loadDoc7();“>DONATE</a></li>            
-        </ul>            
+  <ul class=“nav”>
+    <li class=“latestnews”><a href=“#” onclick=“loadDoc1()“>LATEST NEWS</a></li>
+    <li class=“eswnyc”><a href=“#” onclick=“loadDoc2()“>ESW-NYC</a></li>
+    <li class=“team”><a href=“#” onclick=“loadDoc3()“>TEAM</a></li>
+    <li class=“projects”><a href=“#” onclick=“loadDoc4()“>PROJECTS</a></li>
+    <li class=“contactus”><a href=“#” onclick=“loadDoc5()“>CONTACT US</a></li>
+    <li class=“participate”><a href=“#” onclick=“loadDoc6()“>PARTICIPATE</a></li>
+    <li class=“donate”><a href=“#” onclick=“loadDoc7();“>DONATE</a></li>            
+  </ul>            
 </nav>
 
 ```

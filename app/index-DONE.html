@@ -83,6 +83,13 @@
   // sticky nav
   let topOfNav = nav.offsetTop;
 
+  // demo getBoundingClientRect
+  // window.addEventListener('scroll', demo);
+  function demo(){
+    let navCoords = nav.getBoundingClientRect();
+    console.log(navCoords)
+  }
+
   function fixNav() {
     if(window.scrollY >= topOfNav) {
       document.body.style.paddingTop = nav.offsetHeight + 'px';
