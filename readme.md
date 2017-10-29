@@ -445,7 +445,7 @@ const content = `
 
 In the previous portion of this exercise we worked with an simple array. An array of objects is a very common data structure.
 
-The links for our page are in `<script src="navitems.js"></script>` - an array containing multiple objects:
+The links for our page are in `<script src="navitems.js"></script>` - in the navItems array containing multiple objects:
 
 ```js
 var navItems = [
@@ -484,7 +484,6 @@ var navItems = [
 ];
 ```
 
-
 Add the links using `navItems` instead of `navItemsArray`:
 
 ```js
@@ -503,7 +502,7 @@ Note the hash in the url location string.
 
 Let's look at another method for developing our nav - using an Array method.
 
-##### Array Methods: Array.prototype.filter()
+##### Array Methods: [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
 ```js
 const inventors = [
