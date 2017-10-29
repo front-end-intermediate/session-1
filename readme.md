@@ -626,13 +626,28 @@ Try translating this into ECMAScript 2015 (ECMAScript 6 / ES6) at [babeljs](babe
 
 ## EXERCISE - Sticky Menu
 
-* DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window. (See also [getBoundingClientRect] (https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) which returns much more information and is incredibly useful for all manner of positioning).
+Problem: the menu scrolls off the screen and we want to to be available at all times.
+
+Solution: we will anchor the menu to the top of the screen once the user has scrolled to the point where the menu would normally be out of sight.
+
+Note: this behavior can be managed without JavaScript using the css position property:
+
+```css
+#main {
+  position: sticky;
+  top: 0px;
+}
+```
+
+I have elected not to do so because not only is it useful to understand position in JavaScript, but also because it is common to make other changes to the DOM contingent on events.
+
+The DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window. (See also [getBoundingClientRect] (https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) which returns much more information and is incredibly useful for all manner of positioning).
 
 ```js
 let topOfNav = nav.offsetTop;
 ```
 
-* DOM method - [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), see also [event types](https://developer.mozilla.org/en-US/docs/Web/Events)
+The DOM method - [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), see also [event types](https://developer.mozilla.org/en-US/docs/Web/Events) allows us to listen for an event in the browser and run a function when it occurs.
 
 ```js
 window.addEventListener('scroll', fixNav);
@@ -648,15 +663,6 @@ function fixNav() {
 ```
 
 When `topOfNav` is equal to `window.scrollY` we want to use CSS to make the menu stay at the top of the screen.
-
-Note: this behavior can be managed without JavaScript using the css position property:
-
-```css
-#main {
-  position: sticky;
-  top: 0px;
-}
-```
 
 To do so we'll employ [classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/):
 
@@ -690,9 +696,7 @@ function fixNav() {
 }
 ```
 
-I have elected not to do so because not only is it useful to understand position in JavaScript, but also because it is common to make other changes to the DOM contingent on events.
-
-For example, we added the class `fixed-nav` to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). For a simple, trivial example let's do this with the site-wrap.
+We added the class `fixed-nav` to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). Let's do this with the site-wrap.
 
 ```css
 .site-wrap {
@@ -716,7 +720,7 @@ body.fixed-nav .site-wrap {
 
 When the nav gets position fixed it no longer takes up space in the window so the content beneath it jumps upward (reflows).
 
-Take care of this 'jankey' jump using `offsetHeight` to add an amount of padding equal to the height of the nav to the body element.
+Take care of this jump using `offsetHeight` to add an amount of padding equal to the height of the nav to the body element.
 
 ```js
 function fixNav() {
