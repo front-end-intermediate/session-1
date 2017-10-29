@@ -284,7 +284,7 @@ nav.innerHTML = ''
 Append a `<ul>` tag to nav using:
 
 * [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/) and
-* [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/) ) :
+* [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/)
 
 ```js
 const nav = document.getElementById('main');
@@ -349,7 +349,7 @@ Note: Template Strings and Let and Const variables are ES6 (Ecmascript version 6
 
 Open for reference: `_Objects > objects.html`
 
-Examine a sample of an object.
+Examine the sample object in that file in the browser console:
 
 ```sh
 last
@@ -364,7 +364,7 @@ Add to script block:
 const twitter = me.links.social.twitter
 ```
 
-Create a multi-line template string:
+Create a multi-line template string and display it on the page:
 
 ```js
 const content = `
@@ -406,7 +406,7 @@ first
 last
 ```
 
-Instead of creating multiple variables (the commented out material above), we can use destructuring syntax (the curly braces) to extract information and create multiple variables. This comes in handy when the data you need to access is deeply nested in an object.
+Instead of creating multiple variables (the commented out material above), we use destructuring syntax (the curly braces) to extract information and create multiple variables. This comes in handy when the data you need to access is deeply nested in an object.
 
 ```js
 const { twitter, facebook } = me.links.social;
