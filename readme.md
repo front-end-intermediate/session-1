@@ -622,7 +622,7 @@ nav.innerHTML = markup;
 </script>
 ```
 
-Try translating this into ECMAScript 2015 (ECMAScript 6 / ES6) at `babeljs.io`.
+Try translating this into ECMAScript 2015 (ECMAScript 6 / ES6) at [babeljs](babeljs.io).
 
 ## EXERCISE - Sticky Menu
 
