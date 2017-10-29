@@ -529,7 +529,7 @@ function(inventor){
 console.table(fifteen);
 ```
 
-##### Arrow functions
+##### [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 Arrow functions are commonly used to shorten the syntax for anonymous functions. Much of the documentation you will read uses them so let start exposing ourselves to them.
 
@@ -539,7 +539,7 @@ Refactor using an arrow function with implicit return:
 const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
 ```
 
-##### Array Methods: Array.prototype.map() and join()
+##### Array Methods: [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
 Provide an array of the inventors first and last names:
 
@@ -557,9 +557,9 @@ const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`
 console.log('Full names: ' + fullNames);
 ```
 
-### EXERCISE - using .map to generate markup
+### EXERCISE - using [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to generate markup
 
-An alternate method for creating the list items using [map()](https://forum.freecodecamp.com/t/javascript-array-prototype-map/14294) and template strings:
+An alternate method for creating the list items using map() and template strings:
 
 ```js
 const markup = `
@@ -576,7 +576,7 @@ console.log(markup)
 nav.innerHTML = markup;
 ```
 
-Join on the comma.
+Join the array to avoid the comma:
 
 ```js
 const markup = `
@@ -591,7 +591,7 @@ const markup = `
 nav.innerHTML = markup;
 ```
 
-Refactored using an arrow function:
+Refactor using an arrow function:
 
 ```js
 
@@ -638,7 +638,7 @@ let topOfNav = nav.offsetTop;
 window.addEventListener('scroll', fixNav);
 ```
 
-scrollY
+Use [window.scrollY](https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY) to get the number of pixels that the document is currently scrolled vertically:
 
 ```js
 function fixNav() {
@@ -647,7 +647,18 @@ function fixNav() {
 }
 ```
 
-[classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/)
+When `topOfNav` is equal to `window.scrollY` we want to use CSS to make the menu stay at the top of the screen.
+
+Note: this behavior can be managed without JavaScript using the css position property:
+
+```css
+#main {
+  position: sticky;
+  top: 0px;
+}
+```
+
+To do so we'll employ [classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/):
 
 ```js
 function fixNav() {
@@ -657,7 +668,7 @@ function fixNav() {
 }
 ```
 
-Add some css for the new class we added:
+And add some css for the `fixed-nav` class:
 
 ```css
 body.fixed-nav nav {
@@ -667,7 +678,7 @@ body.fixed-nav nav {
 }
 ```
 
-Add an else to our if statement to remove the sticky behavior when the banner image is showing.
+Add an `else` to our `if` statement to remove the sticky behavior when the banner image is showing.
 
 ```js
 function fixNav() {
@@ -676,15 +687,6 @@ function fixNav() {
   } else {
     document.body.classList.remove('fixed-nav');
   }
-}
-```
-
-Note: the behavior we crafted above could also have been managed without JavaScript using the css position property:
-
-```css
-#main {
-  position: sticky;
-  top: 0px;
 }
 ```
 
