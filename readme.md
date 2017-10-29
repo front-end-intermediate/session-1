@@ -8,7 +8,6 @@ At the end of today's class you should be able to manipulate the DOM and insert 
 
 1. Complete the navbar exercise as outlined in class (see the bottom of this readme and the `flex-nav` directory)
 1. Create a Github account
-1. Download and install Atom  - the text editor I will be using in this class
 1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
 
 
@@ -33,7 +32,7 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
 Introducing the developer tools console, data types, variable types `var`, `let`, and `const`, and scope.
 
-Try this in the console (copy paste one line at a time):
+Try this in the browser's console (copy and paste one line at a time):
 
 ```js
 var width = 100;
@@ -41,13 +40,13 @@ width
 typeof width
 
 let wide = true;
-wide
 typeof wide
 
 const testString = '123456';
-testString
 typeof testString
 ```
+
+#### var
 
 * `var`- can be redeclared and reassigned
 
@@ -96,6 +95,8 @@ if ( width > 12 ) {
 width;
 ```
 
+#### let
+
 Above, the var 'leaks' outside the {} block.
 
 * let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
@@ -125,6 +126,8 @@ width = 3
 ```
 
 So in addition to scope, `let` variables protect the name of the variable. let allows you to declare block-level variables. The declared variable is available from the block it is enclosed in.
+
+#### const
 
 * const variables cannot be declared more than once *or* reassigned
 
