@@ -28,7 +28,7 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
 
 
-## EXERCISE JavaScript 101 - Variables
+## EXERCISE JavaScript Variables
 
 Introducing the developer tools console, data types, variable types `var`, `let`, and `const`, and scope.
 
@@ -49,7 +49,6 @@ typeof testString
 #### var
 
 * `var`- can be redeclared and reassigned
-
 * `var` - is scoped to a function. If a variable is defined within a function it is only available inside that function's block:
 
 ```js
@@ -158,11 +157,11 @@ me.age = 49
 me
 ```
 
-Note: `me` is an object
+
 
 ## DOM Scripting
 
-DOM scripting is not really pure JavaScript. It uses JS (but only in the browser) and extends vanilla JS functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JS to access and change all the elements of an HTML document.
+DOM scripting is not really pure JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
 
 See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
 
