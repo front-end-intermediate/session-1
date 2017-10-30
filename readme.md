@@ -732,6 +732,31 @@ body.fixed-nav nav {
 }
 ```
 
+Note the existing css for nav:
+
+```css
+nav {
+  background:#007eb6;
+  top:0;
+  width: 100%;
+  transition:all 0.5s;
+  position: relative;
+  z-index: 1;
+}
+```
+
+Refactor 
+
+```css
+body.fixed-nav nav {
+  position: fixed;
+  box-shadow:0 5px 3px rgba(0,0,0,0.1);
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+```
+
 Add an `else` to our `if` statement to remove the sticky behavior when the banner image is showing.
 
 ```js

@@ -27,7 +27,6 @@ html {
 }
 
 header {
-  text-align: center;
   height:40vh;
   background:url(../img/img.jpg) center no-repeat;
   background-size:cover;
