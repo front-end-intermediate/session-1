@@ -6,10 +6,9 @@ At the end of today's class you should be able to manipulate the DOM and insert 
 
 ## Homework
 
-1. Complete the navbar exercise as outlined in class (see the bottom of this readme and the `flex-nav` directory)
-1. Create a Github account
+1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a repo called 'work')
 1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
-
+1. Create a Github account
 
 
 ## Texts
@@ -26,13 +25,71 @@ David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
 [Syllabus](http://mean.deverell.com/syllabus/)
 
+## Terminal Basics
 
+* Note: Windows users might wish to use Powershell
+
+```
+$ cd <PATH> // Mac: copy and paste the folder you want to go to
+$ ls 
+$ ls -al  // flags expand the command
+$ pwd
+```
+
+Note: tab completion, `..` and copy paste.
+
+## Node Package Manager NPM
+
+[Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. 
+
+[Node](https://nodejs.org/en/) includes NPM as part of its install
+
+Demo with [Browser Sync](https://www.browsersync.io) 
+
+```
+$ npm init
+$ npm install browser-sync --save
+```
+
+Notes
+* package.json 
+* dependencies
+* node_modules folder
+* discuss the need for `.gitignore`.
+
+Browser Sync [CLI documentation](https://www.browsersync.io/docs/command-line)
+
+```
+  "scripts": {
+    "start": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
+  },
+```
+
+
+#### From the slack chat -  for Windows users
+
+For my fellow Window users! This script style worked for me when trying to "start" browser sync:
+"start": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\"" 
+
+Essentially, it requires '.exe' for chrome and uses delineated double quotes - \"
+
+====
+
+Review Browser Sync's interface at port 3001.
+
+[Github Repo](https://github.com/BrowserSync/browser-sync)
+
+```
+$ npm run start
+```
+
+This will open index.html in your editor - examine the html and css in the inspector.
 
 ## EXERCISE JavaScript Variables
 
 Introducing the developer tools console, data types, variable types `var`, `let`, and `const`, and scope.
 
-Try this in the browser's console (copy and paste one line at a time):
+In the browser's console:
 
 ```js
 var width = 100;
@@ -111,36 +168,28 @@ if ( width > 12 ) {
 width
 ```
 
-* `let` variables can only be declared once
+* `let` variables can only be declared once but they can be reassigned:
 
 ```js
 let width = 10
-let width = 11
+width = 11
 ```
 
-Although they can be reassigned:
-
-```js
-width = 3
-```
-
-So in addition to scope, `let` variables protect the name of the variable. let allows you to declare block-level variables. The declared variable is available from the block it is enclosed in.
+`let` allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope. 
 
 #### const
 
-* const variables cannot be declared more than once *or* reassigned
+* The value of a constant cannot change through re-assignment, and it can't be redeclared.
 
 ```js
 const testString = '1234abcd'
-
-testString
 
 const testString = 'abcd1234'
 
 testString = 'xyz'
 ```
 
-Note: constants are not 'immutable', they just create an immutable binding.
+Note: constants are not 'immutable', they just create an immutable binding. For instance, in the case where the content is an object, this means the object's contents (e.g., its parameters) can be altered.
 
 ```js
 const me = {
@@ -158,7 +207,6 @@ me
 ```
 
 
-
 ## DOM Scripting
 
 DOM scripting is not really pure JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
@@ -166,8 +214,6 @@ DOM scripting is not really pure JavaScript. It uses JavaScript - but only in th
 See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
 
 ## EXERCISE - generated content from an array
-
-Open index.html in your editor and examine the html and css in the inspector.
 
 Note how the CSS for the hero graphic and nav bar formats the links:
 
@@ -181,7 +227,7 @@ nav ul {
 }
 nav li {
   flex: 1;
-  text-align: center;
+  /*text-align: center;*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,7 +239,7 @@ We will replace the existing nav labels with items from an array using a `for lo
 Examine and link to the provided JS file in index.html:
 
 ```html
-<script src="navitems.js"></script>
+<script src="js/navitems.js"></script>
 ```
 
 In the console:
@@ -212,9 +258,8 @@ Note that an Array is an object in JS just like our `const me` above. Because an
 ```sh
 var box = []
 box['size'] = 9
-box['0'] = 'meow'
 box['size']  // because an array is an object at its core you can add properties to it
-box[0]
+box[0] // undefined
 box
 ```
 
@@ -249,7 +294,7 @@ const navList = nav.querySelectorAll('li a');
 
 Compare navList and navItemsArray in the console. Note Array vs nodeList types and prototypes.
 
-A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`
+A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`. Note that we have 8 items in the `navItemsArray` but only 6 in our `navList`.
 
 ### Replace our placeholder nav items with content from an array
 
@@ -277,7 +322,6 @@ We could edit the HTML:
 Let's use JS to accomplish the same:
 
 ```js
-const nav = document.getElementById('main');
 nav.innerHTML = ''
 ```
 
@@ -297,7 +341,7 @@ nav.appendChild(navList);
 * dynamically create the nav based on the number of items in the array using a for loop:
 
 ```js
-for (let i =0; i < navItemsArray.length; i++ ){
+for (let i=0; i < navItemsArray.length; i++ ){
   let listItem = document.createElement('li')
   let linkText = navItemsArray[i]
   listItem.innerHTML = '<a href="#">' + linkText + '</a>'
@@ -307,7 +351,7 @@ for (let i =0; i < navItemsArray.length; i++ ){
 
 Our nav bar now displays all the items in our array.
 
-#### Aside - Template Strings
+#### Aside - Template Strings (aka Template literals)
 
 Compare old school concatenation and the variable 'sentence' below:
 
@@ -323,7 +367,7 @@ Compare old school concatenation and the variable 'sentence' below:
 
 Note the use of tick marks instead of quotes and that we have the ability to access variables and convert dog years to human years using JS inside the curly brackets in a template string.
 
-#### Using Template Strings
+#### Using [Template Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
 Switch out the concatenation for a *template string*:
 
@@ -372,9 +416,9 @@ const content = `
   <h2>
     ${me.first} ${me.last}:
     <span class="job">${me.job}</span>
+  </h2>
     <p class="twitter">Twitter: ${me.links.social.twitter}</p>
     <p class="blog">Blog: ${me.links.web.blog}</p>
-  </h2>
 </div>
 `
 
@@ -432,7 +476,7 @@ Our `content` variable could then be written as:
 const content = `
 <div class="person">
   <h2>
-    ${me.first} ${me.last}:
+    ${first} ${last}:
     <span class="job">${me.job}</span>
     <p class="twitter">Twitter: ${tw}</p>
     <p class="blog">Blog: ${bg}</p>
@@ -445,7 +489,7 @@ const content = `
 
 In the previous portion of this exercise we worked with an simple array. An array of objects is a very common data structure.
 
-The links for our page are in `<script src="navitems.js"></script>` - in the navItems array containing multiple objects:
+The links for our page are in `navitems.js` - in the navItems array containing multiple objects:
 
 ```js
 var navItems = [
@@ -503,6 +547,8 @@ Note the hash in the url location string.
 Let's look at another method for developing our nav - using an Array method.
 
 ##### Array Methods: [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+
+Refer to `_Array-methods/array-methods.html`
 
 ```js
 const inventors = [
@@ -788,6 +834,7 @@ These allow us to navigate (`index.html#research`) to sections of the document m
 Note that clicking on an hashed link doesn't refresh the page. This makes hashes an important feature for creating SPAs - they are used to load different content via AJAX from a server with no page refresh.
 
 We'll set up our page emulate a single page application.
+
 ```js
 const sitewrap = document.querySelector('.site-wrap');
 const navTest = document.querySelectorAll('#main ul li a');
@@ -993,3 +1040,5 @@ function loadDoc1() {
 </nav>
 
 ```
+
+// tanya.blinder@yahoo.com, xinyuehe811@gmail.com, natalieivy@gmail.com, akarasoff@earthlink.net, ll3094@nyu.edu, mkl387@nyu.edu, krm373@nyu.edu, stephanie.obed@gmail.com, jameswperakis@gmail.com, bonnie_sterling@hotmail.com, mikethompson100@hotmail.com, gu3@nyu.edu
