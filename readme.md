@@ -75,6 +75,8 @@ Essentially, it requires '.exe' for chrome and uses delineated double quotes - \
 
 ====
 
+Also https://github.com/Microsoft/nodejs-guidelines
+
 Review Browser Sync's interface at port 3001.
 
 [Github Repo](https://github.com/BrowserSync/browser-sync)
