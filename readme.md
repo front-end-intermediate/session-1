@@ -69,7 +69,10 @@ Browser Sync [CLI documentation](https://www.browsersync.io/docs/command-line)
 #### From the slack chat -  for Windows users
 
 For my fellow Window users! This script style worked for me when trying to "start" browser sync:
+
+```sh
 "start": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\"" 
+```
 
 Essentially, it requires '.exe' for chrome and uses delineated double quotes - \"
 
@@ -862,16 +865,41 @@ Note that clicking on an hashed link doesn't refresh the page. This makes hashes
 
 We'll set up our page emulate a single page application.
 
+Run `window.location` in the console.
+
 ```js
-const sitewrap = document.querySelector('.site-wrap');
-const navTest = document.querySelectorAll('#main ul li a');
-for (let i=0; i<navTest.length; i++){
-  // console.log('hash ', navTest[i].hash);
-  navTest[i].addEventListener('click', prepContent)
+window.onload = function(){
+  // window.location.hash = '#watchlist'
+  // setTimeout( () => window.location.hash = '#watchlist' , 500)
 }
 ```
 
+Sample of a page fragment redirect using `setTimeout()`:
+
 ```js
+window.onload = function(){
+  window.location.hash = '#'
+  setTimeout( () => window.location.hash = '#watchlist' , 500)
+}
+```
+
+Delete the code above.
+
+```js
+const navTest = document.querySelectorAll('#main ul li a');
+for (let i=0; i<navTest.length; i++){
+  console.log('hash ', navTest[i].hash);
+}
+```
+
+Add an event listener to the links in the nav:
+
+```js
+const navTest = document.querySelectorAll('#main ul li a');
+for (let i=0; i<navTest.length; i++){
+  navTest[i].addEventListener('click', prepContent)
+}
+
 function prepContent(e){
   if (this.hash == "#workbook"){
     e.preventDefault();
@@ -879,7 +907,17 @@ function prepContent(e){
 }
 ```
 
+We have hijacked the normal functioning on the workbook link.
+
+Let's use the fakeContent provided in our sample data file for the content of a new variable `siteWrap`:
+
 ```js
+const sitewrap = document.querySelector('.site-wrap');
+const navTest = document.querySelectorAll('#main ul li a');
+for (let i=0; i<navTest.length; i++){
+  navTest[i].addEventListener('click', prepContent)
+}
+
 function prepContent(e){
   if (this.hash == "#workbook"){
     const header = fakeContent[0].header;
