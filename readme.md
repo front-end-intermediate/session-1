@@ -918,6 +918,8 @@ for (let i=0; i<navTest.length; i++){
   navTest[i].addEventListener('click', prepContent)
 }
 
+const foo = [...navTest]
+
 function prepContent(e){
   if (this.hash == "#workbook"){
     const header = fakeContent[0].header;
