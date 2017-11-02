@@ -616,8 +616,8 @@ An alternate method for creating the list items using map() and template strings
 const markup = `
     <ul>
       ${navItems.map(
-        function(listItem) {
-          return `<li><a href="${listItem.link}">${listItem.label}</a></li>` }
+        function(navItem) {
+          return `<li><a href="${navItem.link}">${navItem.label}</a></li>` }
         )}
     </ul>
     `;
@@ -633,8 +633,8 @@ Join the array to avoid the comma:
 const markup = `
     <ul>
       ${navItems.map(
-        function(listItem) {
-          return `<li><a href="${listItem.link}">${listItem.label}</a></li>` }
+        function(navItem) {
+          return `<li><a href="${navItem.link}">${navItem.label}</a></li>` }
         ).join('')}
     </ul>
     `;
@@ -648,7 +648,7 @@ Refactor using an arrow function:
 
 const markup = `
 <ul>
-  ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>` ).join('')}
+  ${navItems.map( navItem => `<li><a href="${navItem.link}">${navItem.label}</a></li>` ).join('')}
 </ul>
 `;
 
@@ -666,7 +666,7 @@ Final script:
 const nav = document.getElementById('main');
 const markup = `
     <ul>
-      ${navItems.map( listItem => `<li><a href="${listItem.link}">${listItem.label}</a></li>`).join('')}
+      ${navItems.map( navItem => `<li><a href="${navItem.link}">${navItem.label}</a></li>`).join('')}
     </ul>
     `;
 nav.innerHTML = markup;
