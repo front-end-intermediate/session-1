@@ -4,8 +4,6 @@ Today we introduce much of the basic JavaScript you will need for this semester 
 
 We also begin to cover NodeJS - focusing on Node Package Manager.
 
-At the end of today's class you should be able to manipulate the DOM and insert content into the DOM from an Array.
-
 ## Homework
 
 1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a repo called 'work')
@@ -165,6 +163,7 @@ function setWidth(){
   var width = 500
   console.log('inner width ' + width)
 }
+
 typeof setWidth
 setWidth()
 console.log('outer width ' + width);
@@ -205,7 +204,7 @@ width;
 
 ### let
 
-Above, the var 'leaks' outside the {} block.
+Above, the var 'leaks' outside the `{ }` block.
 
 * let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
 
