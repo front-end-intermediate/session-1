@@ -2,6 +2,8 @@
 
 Today we introduce much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting. 
 
+We also begin to cover NodeJS - focusing on Node Package Manager.
+
 At the end of today's class you should be able to manipulate the DOM and insert content into the DOM from an Array.
 
 ## Homework
