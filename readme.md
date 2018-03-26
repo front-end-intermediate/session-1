@@ -1,6 +1,6 @@
 # Session One
 
-Today we are introducing JavaScript arrays, objects, template strings, functions and DOM scripting. The CSS flexbox module is also introduced.
+Today we introduce much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting. 
 
 At the end of today's class you should be able to manipulate the DOM and insert content into the DOM from an Array.
 
@@ -17,58 +17,104 @@ For the first half of the semester:
 
 Mat Marquis - [JavaScript for Web Designers](https://abookapart.com/products/javascript-for-web-designers)
 
-Ethan Marcotte - [Responsive Web Design](https://abookapart.com/products/responsive-web-design)
-
-Dan Cederholm - [SASS for Web Designers](https://abookapart.com/products/sass-for-web-designers)
-
 David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
 
 [Syllabus](http://mean.deverell.com/syllabus/)
 
-## Terminal Basics
+## The Command Line
 
-* Note: Windows users might wish to use Powershell
+* Note: Windows users might wish to check out [CMDER](http://cmder.net). Most of the commands below are different on Windows or have alternatives so let's use the Git Bash terminal (installed along with Git).
 
-```
-$ cd <PATH> // Mac: copy and paste the folder you want to go to
-$ ls 
+```sh
+$ cd ~ // go to your home directory
+$ cd <PATH> // copy and paste the folder you want to go to
+$ cd Desk // tab completion
+$ cd .. // go up one level
+$ ls
 $ ls -al  // flags expand the command
 $ pwd
 ```
 
 Note: tab completion, `..` and copy paste.
 
-## Node Package Manager NPM
+## Node Package Manager
 
-[Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. 
+[Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
 
-[Node](https://nodejs.org/en/) includes NPM as part of its install
+Demo with [Browser Sync](https://www.browsersync.io).
 
-Demo with [Browser Sync](https://www.browsersync.io) 
+`npm init` and npm install:
 
-```
+```sh
 $ npm init
-$ npm install browser-sync --save
+$ npm install browser-sync --save-dev
 ```
 
-Notes
-* package.json 
+`npm init` creates `package.json` and `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder.
+
+Note:
+
+* package.json
 * dependencies
 * node_modules folder
 * discuss the need for `.gitignore`.
 
-Browser Sync [CLI documentation](https://www.browsersync.io/docs/command-line)
+### Editing package.json
 
-```
+We will be again using [Browser Sync](https://www.browsersync.io) as our sample application.
+
+* Browser Sync [Command Line (CLI) documentation](https://www.browsersync.io/docs/command-line)
+* [Github Repo](https://github.com/BrowserSync/browser-sync)
+
+Create the NPM script using the Browser Sync command line documentation:
+
+```js
   "scripts": {
-    "start": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
+    "start": "browser-sync start --server 'app' --files 'app'"
   },
 ```
 
+Or, on a windows PC:
 
-#### From the slack chat -  for Windows users
+```js
+"start": "browser-sync start --server \"app\" --files \"app\""
+```
 
-For my fellow Window users! This script style worked for me when trying to "start" browser sync:
+And run the process:
+
+```sh
+$ npm run start
+```
+
+Quit the process with Control-c. Try adding a `--directory` option:
+
+```js
+  "scripts": {
+    "startmac": "browser-sync start --directory --server 'app' --files 'app'",
+    "startpc": "browser-sync start --directory --server \"app\" --files \"app\""
+  },
+```
+
+And `--browser` options (note the PC browser):
+
+```js
+"startmac": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
+"startpc": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\""
+```
+
+Run the script:
+
+```sh
+$ npm run start
+```
+
+This will open index.html in your editor - examine the html and css in the inspector.
+
+Review Browser Sync's interface at port 3001.
+
+### For Windows users
+
+This script style worked for me when trying to "start" browser sync:
 
 ```sh
 "start": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\"" 
@@ -76,19 +122,7 @@ For my fellow Window users! This script style worked for me when trying to "star
 
 Essentially, it requires '.exe' for chrome and uses delineated double quotes - \"
 
-====
-
-Also https://github.com/Microsoft/nodejs-guidelines
-
-Review Browser Sync's interface at port 3001.
-
-[Github Repo](https://github.com/BrowserSync/browser-sync)
-
-```
-$ npm run start
-```
-
-This will open index.html in your editor - examine the html and css in the inspector.
+Also see: https://github.com/Microsoft/nodejs-guidelines
 
 ## EXERCISE JavaScript Variables
 
@@ -108,7 +142,7 @@ const testString = '123456';
 typeof testString
 ```
 
-#### var
+### var
 
 * `var`- can be redeclared and reassigned
 * `var` - is scoped to a function. If a variable is defined within a function it is only available inside that function's block:
@@ -156,7 +190,7 @@ if ( width > 12 ) {
 width;
 ```
 
-#### let
+### let
 
 Above, the var 'leaks' outside the {} block.
 
@@ -182,7 +216,7 @@ width = 11
 
 `let` allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope. 
 
-#### const
+### const
 
 * The value of a constant cannot change through re-assignment, and it can't be redeclared.
 
@@ -210,7 +244,6 @@ me.age = 49
 
 me
 ```
-
 
 ## DOM Scripting
 
