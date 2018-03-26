@@ -1,6 +1,6 @@
 # Session One 
 
-Today we are introducing JavaScript arrays, objects, template strings, functions and DOM scriptng. The CSS flexbox module is also introduced.
+Today we are introducing JavaScript arrays, objects, template strings, functions and DOM scripting. The CSS flexbox module is also introduced.
 
 At the end of today's class you should be able to manipulate the DOM and insert content into the DOM from an Array.
 
