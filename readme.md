@@ -1,4 +1,4 @@
-# Session One
+# Session One 
 
 Today we are introducing JavaScript arrays, objects, template strings, functions and DOM scriptng. The CSS flexbox module is also introduced.
 
