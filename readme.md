@@ -37,6 +37,17 @@ $ pwd
 
 Note: tab completion, `..` and copy paste.
 
+## Node Package Manager - Demo
+
+NPM case study - A static site generator. [What is a static site generator?](https://davidwalsh.name/introduction-static-site-generators)
+
+* [Wintersmith](https://github.com/jnordberg/wintersmith)
+* [Markdown](https://en.wikipedia.org/wiki/Markdown)
+* [Pug](https://www.npmjs.com/package/pug) is a kind of [template processor](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
+* [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
+* [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
+* [CoffeeScript](http://coffeescript.org)
+
 ## Node Package Manager
 
 [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
