@@ -9,13 +9,13 @@ We also begin to cover NodeJS - focusing on Node Package Manager.
 Software setup
 
 1. Install [node.js](https://nodejs.org/en/) on your laptop
-1. Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
 1. Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop
+1. Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
 1. Create a Github account
 
 Review
 
-1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a separate repo branch)
+1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a separate branch)
 1. Watch [this video](https://youtu.be/U8XF6AFGqlc) on YouTube
 
 
@@ -25,15 +25,15 @@ Review
 
 ## The Command Line
 
-* Note: Windows users normally use Powershell but might wish to check out [CMDER](http://cmder.net) or the Git Bash terminal that is installed along with Git. that . Most of the commands below are different on Windows or have alternatives so use 
+* Note: Windows users normally use Powershell but might wish to check out the Git Bash terminal that is installed along with Git. (Some of the commands below are different on Windows or have alternatives) 
 
 ```sh
 $ cd ~ // go to your home directory
-$ cd <PATH> // copy and paste the folder you want to go to
+$ cd <PATH> // Mac: copy and paste the folder you want to go to
 $ cd Desk // tab completion
 $ cd .. // go up one level
-$ ls
-$ ls -al  // flags expand the command
+$ ls  // list files
+$ ls -al  // list file with flags that expand the command
 $ pwd
 ```
 
@@ -41,7 +41,7 @@ Note: tab completion, `..` and copy paste.
 
 ## Node Package Manager - Demo
 
-NPM case study - A static site generator. [What is a static site generator?](https://davidwalsh.name/introduction-static-site-generators)
+NPM case study - A static site generator. (What is a [static site generator?](https://davidwalsh.name/introduction-static-site-generators)). 
 
 * [Wintersmith](https://github.com/jnordberg/wintersmith)
 * [Markdown](https://en.wikipedia.org/wiki/Markdown)
