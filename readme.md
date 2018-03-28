@@ -25,19 +25,30 @@ Review
 
 ## The Command Line
 
-* Note: Windows users normally use Powershell but might wish to check out the Git Bash terminal that is installed along with Git. (Some of the commands below are different on Windows or have alternatives) 
+* Note: Windows users normally use Powershell but might wish to check out the Git Bash terminal that is installed along with Git. Some of the commands below may be different on Windows or have alternatives.
 
 ```sh
-$ cd ~ // go to your home directory
-$ cd <PATH> // Mac: copy and paste the folder you want to go to
-$ cd Desk // tab completion
-$ cd .. // go up one level
-$ ls  // list files
-$ ls -al  // list file with flags that expand the command
+$cd
+// change directory
+$ cd ~
+// go to your home directory
+$ cd <PATH>
+// Mac: copy and paste the folder you want to go to
+$ cd Desk
+// tab completion
+$ cd ..
+// go up one level
+$ ls
+// list files
+ls -al
+// list file with flags that expand the command
 $ pwd
+// print working directory
 ```
 
-Note: tab completion, `..` and copy paste.
+## Node Package Manager
+
+[Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
 
 ## Node Package Manager - Demo
 
@@ -45,27 +56,27 @@ NPM case study - A static site generator. (What is a [static site generator?](ht
 
 * [Wintersmith](https://github.com/jnordberg/wintersmith)
 * [Markdown](https://en.wikipedia.org/wiki/Markdown)
-* [Pug](https://www.npmjs.com/package/pug) is a kind of [template processor](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
+* [Pug](https://www.npmjs.com/package/pug) is a [template processing language](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
 * [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
 * [CoffeeScript](http://coffeescript.org)
 
-## Node Package Manager
+## NPM Manifests
 
-[Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
-
-Demo with [Browser Sync](https://www.browsersync.io).
+We will be again using [Browser Sync](https://www.browsersync.io) as our sample application.
 
 `npm init` and npm install:
 
 ```sh
-$ npm init
-$ npm install browser-sync --save-dev
+npm init
+npm install browser-sync --save-dev
 ```
 
-`npm init` creates `package.json` and `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder.
+* `npm init` creates `package.json` 
+* `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder
+* `--save-dev` adds the software to a list of development dependancies in the manifest
 
-Note:
+Notes:
 
 * package.json
 * dependencies
@@ -73,8 +84,6 @@ Note:
 * discuss the need for `.gitignore`.
 
 ### Editing package.json
-
-We will be again using [Browser Sync](https://www.browsersync.io) as our sample application.
 
 * Browser Sync [Command Line (CLI) documentation](https://www.browsersync.io/docs/command-line)
 * [Github Repo](https://github.com/BrowserSync/browser-sync)
@@ -87,7 +96,7 @@ Create the NPM script using the Browser Sync command line documentation:
   },
 ```
 
-Or, on a windows PC:
+Or, on a Windows PC:
 
 ```js
 "start": "browser-sync start --server \"app\" --files \"app\""
@@ -96,7 +105,7 @@ Or, on a windows PC:
 And run the process:
 
 ```sh
-$ npm run start
+npm run start
 ```
 
 Quit the process with Control-c. Try adding a `--directory` option:
@@ -108,34 +117,24 @@ Quit the process with Control-c. Try adding a `--directory` option:
   },
 ```
 
-And `--browser` options (note the PC browser):
+Quit the process with Control-c. Try adding a `--browser` option (note the PC browser name):
 
 ```js
 "startmac": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
 "startpc": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\""
 ```
 
+Windows users should check out Microsoft's [Nodejs Guidelines](https://github.com/Microsoft/nodejs-guidelines).
+
 Run the script:
 
 ```sh
-$ npm run start
+npm run start
 ```
 
 This will open index.html in your editor - examine the html and css in the inspector.
 
-Review Browser Sync's interface at port 3001.
-
-### For Windows users
-
-This script style worked for me when trying to "start" browser sync:
-
-```sh
-"start": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\"" 
-```
-
-Essentially, it requires '.exe' for chrome and uses delineated double quotes - \"
-
-Also see: https://github.com/Microsoft/nodejs-guidelines
+Note: Browser Sync has an interface running at port 3001.
 
 ## EXERCISE JavaScript Variables
 
@@ -157,18 +156,20 @@ typeof testString
 
 ### var
 
-* `var`- can be redeclared and reassigned
-* `var` - is scoped to a function. If a variable is defined within a function it is only available inside that function's block:
+* `var`can be redeclared and reassigned
+* `var`is scoped to a function. If a variable is defined within a function it is only available inside that function's block:
 
 ```js
 function setWidth(){
   var width = 500
   console.log('inner width ' + width)
 }
+```
 
-typeof setWidth
-setWidth()
-console.log('outer width ' + width);
+```sh
+> typeof setWidth
+> setWidth()
+> console.log('outer width ' + width);
 ```
 
 A function *does* have access to variables defined outside its block:
@@ -201,7 +202,10 @@ if ( width > 12 ) {
   var width = 4
   console.log(width)
 }
-width;
+```
+
+```sh
+> width
 ```
 
 ### let
@@ -242,7 +246,7 @@ const testString = 'abcd1234'
 testString = 'xyz'
 ```
 
-Note: constants are not 'immutable', they just create an immutable binding. For instance, in the case where the content is an object, this means the object's contents (e.g., its parameters) can be altered.
+Note: constants are not 'immutable', they just create an immutable binding. For instance, in the case where the content is an object, the object's contents (e.g., its parameters) can be altered.
 
 ```js
 const me = {
@@ -261,7 +265,7 @@ me
 
 ## DOM Scripting
 
-DOM scripting is not really pure JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
+DOM scripting is not really 'pure' JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
 
 See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
 
@@ -1140,7 +1144,7 @@ function loadDoc1() {
 }
 ```
 
-```js
+```html
 <nav>
   <ul class=“nav”>
     <li class=“latestnews”><a href=“#” onclick=“loadDoc1()“>LATEST NEWS</a></li>
@@ -1149,8 +1153,8 @@ function loadDoc1() {
     <li class=“projects”><a href=“#” onclick=“loadDoc4()“>PROJECTS</a></li>
     <li class=“contactus”><a href=“#” onclick=“loadDoc5()“>CONTACT US</a></li>
     <li class=“participate”><a href=“#” onclick=“loadDoc6()“>PARTICIPATE</a></li>
-    <li class=“donate”><a href=“#” onclick=“loadDoc7();“>DONATE</a></li>            
-  </ul>            
+    <li class=“donate”><a href=“#” onclick=“loadDoc7();“>DONATE</a></li>
+  </ul>
 </nav>
 
 ```
