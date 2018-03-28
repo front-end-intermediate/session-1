@@ -1,29 +1,31 @@
 # Session One
 
-Today we introduce much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting. 
+Today we begin introducing much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting. 
 
 We also begin to cover NodeJS - focusing on Node Package Manager.
 
 ## Homework
 
-1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a repo called 'work')
-1. Install [node.js](https://nodejs.org/en/) and [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
+Software setup
+
+1. Install [node.js](https://nodejs.org/en/) on your laptop
+1. Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
+1. Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop
 1. Create a Github account
 
+Review
 
-## Texts
+1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a separate repo branch)
+1. Watch [this video](https://youtu.be/U8XF6AFGqlc) on YouTube
 
-For the first half of the semester:
 
-Mat Marquis - [JavaScript for Web Designers](https://abookapart.com/products/javascript-for-web-designers)
-
-David Demaree - [GIT For Humans](https://abookapart.com/products/git-for-humans)
+## Syllabus
 
 [Syllabus](http://mean.deverell.com/syllabus/)
 
 ## The Command Line
 
-* Note: Windows users might wish to check out [CMDER](http://cmder.net). Most of the commands below are different on Windows or have alternatives so let's use the Git Bash terminal (installed along with Git).
+* Note: Windows users normally use Powershell but might wish to check out [CMDER](http://cmder.net) or the Git Bash terminal that is installed along with Git. that . Most of the commands below are different on Windows or have alternatives so use 
 
 ```sh
 $ cd ~ // go to your home directory
