@@ -27,7 +27,7 @@ html {
 }
 
 header {
-  height:40vh;
+  height:20vh;
   background:url(../img/img.jpg) center no-repeat;
   background-size:cover;
   display:flex;
@@ -58,15 +58,14 @@ nav {
 nav ul {
   list-style: none;
   display:flex;
-  min-height: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
 }
 
 nav li {
-  flex:1;
+  flex: 1;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 nav a {

@@ -275,15 +275,13 @@ Note how the CSS for the hero graphic and nav bar formats the links:
 
 ```css
 nav ul {
-  margin: 0;
-  padding: 0;
   list-style: none;
   display: flex;
   min-height: 2.5rem;
 }
+
 nav li {
   flex: 1;
-  /*text-align: center;*/
   display: flex;
   justify-content: center;
   align-items: center;
