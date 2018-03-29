@@ -58,7 +58,7 @@ NPM case study - A static site generator. (What is a [static site generator?](ht
 * [Pug](https://www.npmjs.com/package/pug) is a [template processing language](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
 * [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
-* [CoffeeScript](http://coffeescript.org)
+* [CoffeeScript (huh?)](http://coffeescript.org)
 
 ## NPM Manifests
 
@@ -793,40 +793,19 @@ function fixNav() {
 }
 ```
 
-And add some css for the `fixed-nav` class:
+And add the css for the `fixed-nav` class:
 
 ```css
 body.fixed-nav nav {
   position: fixed;
   top: 0;
   box-shadow:0 5px 3px rgba(0,0,0,0.1);
-}
-```
-
-Note the existing css for nav:
-
-```css
-nav {
-  background:#007eb6;
-  top:0;
-  width: 100%;
-  transition:all 0.5s;
-  position: relative;
-  z-index: 1;
-}
-```
-
-Refactor:
-
-```css
-body.fixed-nav nav {
-  position: fixed;
-  box-shadow:0 5px 3px rgba(0,0,0,0.1);
-  top: 0;
   width: 100%;
   z-index: 1;
 }
 ```
+
+And test in the browser.
 
 Add an `else` to our `if` statement to remove the sticky behavior when the banner image is showing.
 
@@ -840,7 +819,7 @@ function fixNav() {
 }
 ```
 
-We added the class `fixed-nav` to the body (as opposed to, say, the nav itself) so that we can use it to target other elements on the page (which may not be children of the nav). Let's do this with the site-wrap.
+We added the class `fixed-nav` to the html body tag (as opposed to, say, the nav itself) so that we can use it to target other elements on the page which may not be children of the nav. Let's do this with the site-wrap.
 
 ```css
 .site-wrap {
@@ -878,7 +857,7 @@ function fixNav() {
 }
 ```
 
-Note paddingTop (camel case) - I used Javascript for this because offSetHeight could vary. Otherwise I would have used CSS. Always try to use CSS instead of Javascript wherever possible.
+Note `paddingTop` (camel case) - I used Javascript for this because the height of the nav bar (`offSetHeight`) could vary. Otherwise I would have used the CSS file. Always try to use CSS instead of Javascript wherever possible.
 
 ## EXERCISE - Adding the SVG Image
 
@@ -977,7 +956,11 @@ function prepContent(e){
 
 We have hijacked the normal functioning on the workbook link.
 
-Let's use the fakeContent provided in our sample data file for the content of a new variable `siteWrap`:
+Let's use the fakeContent provided in our sample data file for the content of a new variable `siteWrap`. Update the script above to:
+
+1. create a reference to `site-wrap`
+1. access fake header and content from the `navitems.js` array
+1. use `innerHTML` to apply that content to the document
 
 ```js
 const sitewrap = document.querySelector('.site-wrap');
@@ -986,7 +969,7 @@ for (let i=0; i<navTest.length; i++){
   navTest[i].addEventListener('click', prepContent)
 }
 
-const foo = [...navTest]
+// const foo = [...navTest]
 
 function prepContent(e){
   if (this.hash == "#workbook"){

@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,600i,700';
+
 * {
     margin: 0;
     padding: 0;
@@ -23,6 +24,8 @@ html {
     background: white;
     padding: 20px 20px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+    transform: scale(0.98);
+    transition: transform 0.5s;
 }
 
 header {
@@ -47,11 +50,8 @@ h1 {
 
 nav {
     background: #007eb6;
-    top: 0;
     width: 100%;
     transition: all 0.5s;
-    position: relative;
-    z-index: 1;
 }
 
 nav ul {
@@ -83,4 +83,26 @@ body.fixed-nav nav {
   top: 0;
   width: 100%;
   z-index: 1;
+  }
+
+  body.fixed-nav .site-wrap {
+    transform: scale(1);
+  }
+
+  li.logo img {
+    padding-top: 0.25rem;
+    width: 2.5rem;
+  }
+  
+  li.logo {
+    max-width:0;
+    overflow: hidden;
+    background: white;
+    transition: all 0.5s;
+    font-weight: 600;
+    font-size: 30px;
+  }
+  
+  .fixed-nav li.logo {
+    max-width:500px;
   }
