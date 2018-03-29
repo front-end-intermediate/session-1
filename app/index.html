@@ -5,15 +5,7 @@
   <meta charset="UTF-8">
   <title>START</title>
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-  body.fixed-nav nav {
-  position: fixed;
-  box-shadow:0 5px 3px rgba(0,0,0,0.1);
-  top: 0;
-  width: 100%;
-  z-index: 1;
-  }
-  </style>
+
 </head>
 
 <body>
@@ -72,28 +64,7 @@
   <script src="js/navitems.js"></script>
 
   <script>
-    const nav = document.querySelector('#main');
-    nav.innerHTML = ''
-    const markup = `
-    <ul>
-      ${navItems.map( navItem => `<li><a href="${navItem.link}">${navItem.label}</a></li>` ).join('')}
-    </ul>
-    `;
 
-    nav.innerHTML = markup;
-
-    let topOfNav = nav.offsetTop;
-    window.addEventListener('scroll', fixNav);
-
-function fixNav() {
-  if(window.scrollY >= topOfNav) {
-    document.body.style.paddingTop = nav.offsetHeight + 'px';
-    document.body.classList.add('fixed-nav');
-  } else {
-    document.body.classList.remove('fixed-nav');
-    document.body.style.paddingTop = 0;
-  }
-}
   </script>
 
 </body>

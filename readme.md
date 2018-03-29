@@ -1,4 +1,4 @@
-# Session One
+# I - JavaScript, DOM Manipulation
 
 Today we begin introducing much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting. 
 
@@ -50,7 +50,7 @@ $ pwd
 
 [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
 
-## Node Package Manager - Demo
+## Node Package Manager (NPM) - Demo
 
 NPM case study - A static site generator. (What is a [static site generator?](https://davidwalsh.name/introduction-static-site-generators)). 
 
@@ -496,10 +496,10 @@ const content =
 document.body.innerHTML = content;
 ```
 
-This is what the above would look like without using template strings:
+Note: this is what the above would look like without using template strings (courtesy of [Babel](https://babeljs.io)):
 
 ```js
-var content = "\n<div class=\"person\">\n  <h2>\n    " + me.first + " " + me.last + ":\n    <span class=\"job\">" + me.job + "</span>\n    <p class=\"twitter\">Twitter: " + me.links.social.twitter + "</p>\n    <p class=\"blog\">Blog: " + me.links.web.blog + "</p>\n  </h2>\n</div>\n";
+var content = "\n<div>\n  <h2>\n    " + me.first + " " + me.last + "\n  </h2>\n    <span>" + me.job + "</span>\n    <p>Twitter: " + tw + "</p>\n    <p>Blog: " + me.links.web.blog + "</p>\n</div>\n";
 ```
 
 #### Aside: Destructuring
@@ -517,11 +517,14 @@ const { first, last } = me;
 Access these two variables in the console:
 
 ```sh
-first
-last
+> first
+> last
 ```
 
-Instead of creating multiple variables (the commented out material above), we use destructuring syntax (the curly braces) to extract information and create multiple variables. This comes in handy when the data you need to access is deeply nested in an object.
+Instead of creating multiple variables (the commented out material above), we use destructuring syntax (the curly braces) to extract information and create multiple variables. This comes in handy:
+
+* when the data you need to access is deeply nested in an object
+* when accessing third party data where you might have a variable name clash
 
 ```js
 const { twitter, facebook } = me.links.social;
@@ -533,15 +536,13 @@ You can also rename (here, shorten) the variable names:
 const { twitter:tw, facebook:fb } = me.links.social;
 ```
 
-This is useful when accessing third party data where you might have a variable name clash.
-
-E.g., you already have a constant variable in use called blog but you want to access content from a database that also uses that name. To avoid issues you could destructure and rename it:
+When accessing third party data where you have a variable name clash (e.g., you already have a constant variable in use called blog but you want to access content from a database that also uses that name) you can avoid issues by destructuring and renaming:
 
 ```js
 const { blog:bg } = me.links.web;
 ```
 
-Our `content` variable could then be written as:
+Our `content` variable would then be written as:
 
 ```js
 const content = `
@@ -558,9 +559,11 @@ const content = `
 
 ## EXERCISE - dynamic generation with an array of objects
 
-In the previous portion of this exercise we worked with an simple array. An array of objects is a very common data structure.
+In the previous portion of this exercise we worked with an simple array. 
 
-The links for our page are in `navitems.js` - in the navItems array containing multiple objects:
+An array of objects is a very common data structure.
+
+The links for our page are in `navitems.js` - in the navItems array:
 
 ```js
 var navItems = [
@@ -637,10 +640,10 @@ Filter the list of inventors for those who were born in the 1500's
 
 ```js
 const fifteen = inventors.filter (
-function(inventor){
-  if (inventor.year >= 1500 && inventor.year <= 1599 ) {
-    return true; // keep it
-  }
+  function(inventor){
+    if (inventor.year >= 1500 && inventor.year <= 1599 ) {
+      return true; // keep it
+    }
 });
 
 console.table(fifteen);
