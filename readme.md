@@ -16,6 +16,7 @@ Software setup
 Review
 
 1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a separate branch)
+1. attempt the homework assignment in the `other` folder (see start.html)
 1. Watch [this video](https://youtu.be/U8XF6AFGqlc) on YouTube
 
 ## Syllabus
