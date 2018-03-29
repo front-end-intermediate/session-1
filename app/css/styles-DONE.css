@@ -76,3 +76,11 @@ nav a {
 img {
     width: 100%;
 }
+
+body.fixed-nav nav {
+  position: fixed;
+  box-shadow:0 5px 3px rgba(0,0,0,0.1);
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  }
