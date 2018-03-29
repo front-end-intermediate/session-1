@@ -1,6 +1,6 @@
 # I - JavaScript, DOM Manipulation
 
-Today we begin introducing much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting. 
+Today we begin introducing much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting.
 
 We also begin to cover NodeJS - focusing on Node Package Manager.
 
@@ -17,7 +17,6 @@ Review
 
 1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a separate branch)
 1. Watch [this video](https://youtu.be/U8XF6AFGqlc) on YouTube
-
 
 ## Syllabus
 
@@ -52,7 +51,7 @@ $ pwd
 
 ## Node Package Manager (NPM) - Demo
 
-NPM case study - A static site generator. (What is a [static site generator?](https://davidwalsh.name/introduction-static-site-generators)). 
+NPM case study - A static site generator. (What is a [static site generator?](https://davidwalsh.name/introduction-static-site-generators)).
 
 * [Wintersmith](https://github.com/jnordberg/wintersmith)
 * [Markdown](https://en.wikipedia.org/wiki/Markdown)
@@ -72,7 +71,7 @@ npm init
 npm install browser-sync --save-dev
 ```
 
-* `npm init` creates `package.json` 
+* `npm init` creates `package.json`
 * `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder
 * `--save-dev` adds the software to a list of development dependancies in the manifest
 
@@ -230,7 +229,7 @@ let width = 10
 width = 11
 ```
 
-`let` allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope. 
+`let` allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
 
 ### const
 
@@ -457,7 +456,7 @@ for (let i = 0; i < navItemsArray.length; i++) {
 
 Note: template strings and `let` and `const` variables are ES6 (Ecmascript version 6). While they work on most newer browsers, they may not in older ones. For this reason it is common practice to convert the code to ES5 before publishing.
 
-* Translate the code back to ES5 at https://babeljs.io
+* Translate the code back to ES5 at [Babeljs.io](https://babeljs.io).
 
 #### Aside: Objects
 
@@ -481,7 +480,7 @@ const twitter = me.links.social.twitter
 Create a multi-line template string and display it on the page:
 
 ```js
-const content = 
+const content =
 `
 <div>
   <h2>
@@ -559,7 +558,7 @@ const content = `
 
 ## EXERCISE - dynamic generation with an array of objects
 
-In the previous portion of this exercise we worked with an simple array. 
+In the previous portion of this exercise we worked with an simple array.
 
 An array of objects is a very common data structure.
 
@@ -616,11 +615,11 @@ Inspect the code and note that, thanks to the multiple name / value pairs in nav
 
 Note the hash in the url location string.
 
-#### Array Methods
+### Array Methods
 
 Let's look at another method for developing our nav - using an Array method.
 
-##### Array Methods: [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+#### Array Methods: [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
 Refer to `_Array-methods/array-methods.html`
 
@@ -761,7 +760,7 @@ Note: this behavior can be managed without JavaScript using the css position pro
 
 I have elected not to do so because not only is it useful to understand position in JavaScript, but also because it is common to make other changes to the DOM contingent on events.
 
-The DOM method - [offSetTop](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window. (See also [getBoundingClientRect] (https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) which returns much more information and is incredibly useful for all manner of positioning).
+The DOM method - [`offSetTop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window. (See also [getBoundingClientRect] (https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) which returns much more information and is incredibly useful for all manner of positioning).
 
 ```js
 let topOfNav = nav.offsetTop;
@@ -817,7 +816,7 @@ nav {
 }
 ```
 
-Refactor 
+Refactor:
 
 ```css
 body.fixed-nav nav {
@@ -893,8 +892,8 @@ logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 * Examine the SVG file
 * some interesting applications of SVG:
 
-http://responsivelogos.co.uk
-http://www.svgeneration.com/recipes/Beam-Center/
+[Responive logos](http://responsivelogos.co.uk)
+[Background generator](http://www.svgeneration.com/recipes/Beam-Center/)
 
 Format the logo and create the sliding logo behavior. Note: CSS only, no JavaScript:
 
@@ -920,7 +919,7 @@ li.logo {
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
 
-## EXERCISE - Faking It!
+## EXERCISE - Faking It
 
 Note the use of hashes in the navigation:
 
@@ -1002,14 +1001,11 @@ function prepContent(e){
 }
 ```
 
-
-
 ### Notes
 
 [vh and vw in CSS](https://css-tricks.com/viewport-sized-typography/)
 
-
-##### OLD HW - CSS Flexible Box Layout Module
+#### OLD HW - CSS Flexible Box Layout Module
 
 Flexbox can be quite difficult to master. You could do worse than checking out:
 
@@ -1017,7 +1013,7 @@ Flexbox can be quite difficult to master. You could do worse than checking out:
 
 * A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-<img src="other/hero-1.png">
+`<img src="other/hero-1.png">`
 
 [Use a system font instead of a custom font?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/) [In SVG?](https://css-tricks.com/system-fonts-svg/)
 
