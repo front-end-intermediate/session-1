@@ -148,10 +148,8 @@ width
 typeof width
 
 let wide = true;
-typeof wide
 
 const testString = '123456';
-typeof testString
 ```
 
 ### var
