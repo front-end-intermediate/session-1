@@ -212,7 +212,14 @@ if ( width > 12 ) {
 
 ### let
 
-Above, the var 'leaks' outside the `{ }` block.
+* `let` variables can only be declared once but they can be reassigned:
+
+```js
+let width = 20
+width = 11
+```
+
+`var` 'leaks' outside the `{ }` block.
 
 * let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
 
@@ -225,13 +232,6 @@ if ( width > 12 ) {
 }
 
 width
-```
-
-* `let` variables can only be declared once but they can be reassigned:
-
-```js
-let width = 10
-width = 11
 ```
 
 `let` allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
