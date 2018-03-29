@@ -275,7 +275,7 @@ See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/W
 
 ## EXERCISE - generated content from an array
 
-Note how the CSS for the hero graphic and nav bar formats the links:
+Note the CSS for the links:
 
 ```css
 nav ul {
