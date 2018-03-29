@@ -101,13 +101,17 @@ Or, on a Windows PC:
 "start": "browser-sync start --server \"app\" --files \"app\""
 ```
 
+Note: Windows users should check out Microsoft's [Nodejs Guidelines](https://github.com/Microsoft/nodejs-guidelines).
+
 And run the process:
 
 ```sh
 npm run start
 ```
 
-Quit the process with Control-c. Try adding a `--directory` option:
+Quit the process with Control-c. 
+
+Try adding a `--directory` option:
 
 ```js
   "scripts": {
@@ -116,14 +120,14 @@ Quit the process with Control-c. Try adding a `--directory` option:
   },
 ```
 
-Quit the process with Control-c. Try adding a `--browser` option (note the PC browser name):
+Quit the process with Control-c. 
+
+Try adding a `--browser` option (note the PC browser name):
 
 ```js
 "startmac": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
 "startpc": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\""
 ```
-
-Windows users should check out Microsoft's [Nodejs Guidelines](https://github.com/Microsoft/nodejs-guidelines).
 
 Run the script:
 
