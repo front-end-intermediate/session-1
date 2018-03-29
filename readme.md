@@ -142,8 +142,6 @@ Note: Browser Sync has an interface running at port 3001.
 
 ## EXERCISE JavaScript Variables
 
-![Image of layout](images/layout.png)
-
 Introducing the developer tools console, data types, variable types `var`, `let`, and `const`, and scope.
 
 In the browser's console:
@@ -268,6 +266,8 @@ me
 ```
 
 ## DOM Scripting
+
+![Image of layout](images/layout.png)
 
 DOM scripting is not really 'pure' JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
 
