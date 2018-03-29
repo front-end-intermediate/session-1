@@ -110,7 +110,7 @@ And run the process:
 npm run start
 ```
 
-Quit the process with Control-c. 
+Quit the process with Control-c.
 
 Try adding a `--directory` option:
 
@@ -121,7 +121,7 @@ Try adding a `--directory` option:
   },
 ```
 
-Quit the process with Control-c. 
+Quit the process with Control-c.
 
 Try adding a `--browser` option (note the PC browser name):
 
@@ -141,6 +141,8 @@ This will open index.html in your editor - examine the html and css in the inspe
 Note: Browser Sync has an interface running at port 3001.
 
 ## EXERCISE JavaScript Variables
+
+![Image of layout](images/layout.png)
 
 Introducing the developer tools console, data types, variable types `var`, `let`, and `const`, and scope.
 
@@ -763,9 +765,11 @@ Note: this behavior can be managed without JavaScript using the css position pro
 }
 ```
 
-I have elected not to do so because not only is it useful to understand position in JavaScript, but also because it is common to make other changes to the DOM contingent on events.
+I have elected not to do so because not only is it useful to understand position in JavaScript, but also because it is common to make other changes to the DOM contingent on other changes.
 
-The DOM method - [`offSetTop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window. (See also [getBoundingClientRect] (https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) which returns much more information and is incredibly useful for all manner of positioning).
+The DOM method [`offSetTop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) allows us to get information about the position of an element relative to the top of the browser's window.
+
+(See also [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) which returns much more information and is incredibly useful for all manner of positioning).
 
 ```js
 let topOfNav = nav.offsetTop;
