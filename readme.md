@@ -275,16 +275,16 @@ Note how the CSS for the hero graphic and nav bar formats the links:
 
 ```css
 nav ul {
-  list-style: none;
-  display: flex;
-  min-height: 2.5rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
 }
 
 nav li {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    flex: 1;
+    text-align: center;
 }
 ```
 
@@ -299,15 +299,21 @@ Examine and link to the provided JS file in index.html:
 In the console:
 
 ```js
-navItemsArray
-typeof navItemsArray
-Array.isArray(navItemsArray)
-navItems
+> navItemsArray
+> typeof navItemsArray
+> Array.isArray(navItemsArray)
+> navItems
 ```
 
 Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers and array of objects consisting of name / value pairs.
 
-Note that an Array is an object in JS just like our `const me` above. Because an array is an object at its core you can add properties to it:
+JavaScript objects are containers for named values.
+
+```js
+var car = {type:"Fiat", model:"500", color:"white"}
+```
+
+Note that an Array is an object in JavaScript. Because an array is an object at its core you can add properties to it:
 
 ```sh
 var box = []
@@ -315,6 +321,15 @@ box['size'] = 9
 box['size']  // because an array is an object at its core you can add properties to it
 box[0] // undefined
 box
+```
+
+Size is a property of box.
+
+Compare this to:
+
+```js
+var cars = ["Saab", "Volvo", "BMW"]
+cars[0]
 ```
 
 Add to the script block in the HTML:
@@ -330,23 +345,28 @@ console.log(navItemsArray.length)
 const nav = document.getElementById('main');
 ```
 
-* DOM Methods [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll), (see also [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) )
+* DOM Method [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
 
-We could also have written:
+```js
+const navList = document.querySelector('#main');
+```
+
+Returns only the first link.
+
+* DOM Method [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll)
 
 ```js
 const navList = document.querySelectorAll('#main li a');
-console.log(navList);
 ```
 
-Or (it is often advantageous to use `element.querySelector` as opposed to `document.querySelector`):
+It is common to use `element.querySelector` as opposed to `document.querySelector`:
 
 ```js
-const nav = document.getElementById('main');
+const nav = document.querySelector('#main');
 const navList = nav.querySelectorAll('li a');
 ```
 
-Compare navList and navItemsArray in the console. Note Array vs nodeList types and prototypes.
+Compare navList and navItemsArray in the console - Array vs nodeList types and prototypes.
 
 A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`. Note that we have 8 items in the `navItemsArray` but only 6 in our `navList`.
 
@@ -356,9 +376,9 @@ A nodeList has a length property - `> navList.length` vs `> navItemsArray.length
 
 ```js
 for (let i=0; i < navList.length; i++ ){
+  console.log(i)
   navList[i].innerHTML = navItemsArray[i];
 }
-console.log(i) // not defined
 ```
 
 Problem: we are using the existing `<li>` elements but there are 8 items in our `navItemsArray` array.
@@ -409,17 +429,15 @@ Our nav bar now displays all the items in our array.
 
 Compare old school concatenation and the variable 'sentence' below:
 
-```html
-<script>
+```js
   const name = 'Yorik';
   const age = 2;
   const oldschool = 'My dog ' + name + ' is ' + age * 7 + 'years old.'
   const sentence = `My dog ${name} is ${age * 7} years old.`;
   console.log(sentence);
-</script>
 ```
 
-Note the use of tick marks instead of quotes and that we have the ability to access variables and convert dog years to human years using JS inside the curly brackets in a template string.
+Note the use of tick marks instead of quotes and that we have the ability to access variables and convert dog years to human years using JS inside the curly brackets.
 
 #### Using [Template Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
@@ -429,17 +447,17 @@ Switch out the concatenation for a *template string*:
 listItem.innerHTML = `<a href="#">${linkText}</a>`
 ```
 
-Template strings can accept JS inside the curly braces so we can further refactor to use JS in the template string:
+Since template strings accept JavaScript inside the curly braces we can further refactor to expand the use of JS:
 
 ```js
-for (let i=0; i < navItemsArray.length; i++ ){
-  const listItem = document.createElement('li');
+for (let i = 0; i < navItemsArray.length; i++) {
+  let listItem = document.createElement('li')
   listItem.innerHTML = `<a href="#">${navItemsArray[i]}</a>`;
-  navList.appendChild(listItem);
+  navList.appendChild(listItem)
 }
 ```
 
-Note: Template Strings and Let and Const variables are ES6 (Ecmascript version 6). While they work on newer browsers they may not in older ones. For this reason it is common practice to convert the code to ES5 before publishing.
+Note: template strings and `let` and `const` variables are ES6 (Ecmascript version 6). While they work on most newer browsers, they may not in older ones. For this reason it is common practice to convert the code to ES5 before publishing.
 
 * Translate the code back to ES5 at https://babeljs.io
 
@@ -449,7 +467,7 @@ Open for reference: `_Objects > objects.html`
 
 Examine the sample object in that file in the browser console:
 
-```sh
+```js
 last
 me
 me.links
@@ -465,14 +483,15 @@ const twitter = me.links.social.twitter
 Create a multi-line template string and display it on the page:
 
 ```js
-const content = `
-<div class="person">
+const content = 
+`
+<div>
   <h2>
-    ${me.first} ${me.last}:
-    <span class="job">${me.job}</span>
+    ${me.first} ${me.last}
   </h2>
-    <p class="twitter">Twitter: ${me.links.social.twitter}</p>
-    <p class="blog">Blog: ${me.links.web.blog}</p>
+    <span>${me.job}</span>
+    <p>Twitter: ${tw}</p>
+    <p>Blog: ${me.links.web.blog}</p>
 </div>
 `
 
@@ -481,7 +500,7 @@ document.body.innerHTML = content;
 
 This is what the above would look like without using template strings:
 
-```
+```js
 var content = "\n<div class=\"person\">\n  <h2>\n    " + me.first + " " + me.last + ":\n    <span class=\"job\">" + me.job + "</span>\n    <p class=\"twitter\">Twitter: " + me.links.social.twitter + "</p>\n    <p class=\"blog\">Blog: " + me.links.web.blog + "</p>\n  </h2>\n</div>\n";
 ```
 
@@ -516,9 +535,9 @@ You can also rename (here, shorten) the variable names:
 const { twitter:tw, facebook:fb } = me.links.social;
 ```
 
-Useful when accessing third party data where you might have a variable name clash.
+This is useful when accessing third party data where you might have a variable name clash.
 
-Say, for example, you already have a constant variable in use called blog but you want to access content from a database that also uses that name. To avoid issues you could destructure it:
+E.g., you already have a constant variable in use called blog but you want to access content from a database that also uses that name. To avoid issues you could destructure and rename it:
 
 ```js
 const { blog:bg } = me.links.web;
@@ -530,11 +549,11 @@ Our `content` variable could then be written as:
 const content = `
 <div class="person">
   <h2>
-    ${first} ${last}:
-    <span class="job">${me.job}</span>
-    <p class="twitter">Twitter: ${tw}</p>
-    <p class="blog">Blog: ${bg}</p>
+    ${first} ${last}
   </h2>
+  <span>${me.job}</span>
+  <p>Twitter: ${tw}</p>
+  <p>Blog: ${bg}</p>
 </div>
 `
 ```
