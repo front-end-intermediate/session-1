@@ -725,7 +725,7 @@ nav.innerHTML = markup;
 
 Since we are including a `<ul>` in our markup constant we can remove it from our script.
 
-Final script:
+Final scripts:
 
 ```html
 <script src="navitems.js"></script>
