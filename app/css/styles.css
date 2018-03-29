@@ -1,75 +1,79 @@
-@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i';
-
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,600i,700';
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  box-sizing: border-box;
-  background:#eee;
-  font-family:'Source Sans Pro', Helvetica, Clean, sans-serif;;
-  font-size: 100%;
-  font-weight: 400;
+    box-sizing: border-box;
+    background: #eee;
+    font-family: 'Source Sans Pro', Helvetica, Clean, sans-serif;
+    font-size: 100%;
+    font-weight: 400;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 .site-wrap {
-  max-width: 780px;
-  margin: 40px auto;
-  background:white;
-  padding: 20px 40px;
-  text-align: justify;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+    max-width: 90vw;
+    margin: 40px auto;
+    background: white;
+    padding: 20px 20px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
 }
 
 header {
-  height:20vh;
-  background:url(../img/img.jpg) center no-repeat;
-  background-size:cover;
-  display:flex;
-  align-items:center;
-  justify-content: center;
+    height: 24vh;
+    background: url(../img/img.jpg) center no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 p {
-margin: 1rem 0;
+    margin: 1rem 0;
 }
 
 h1 {
-  color:white;
-  font-size: 7vw;
-  font-weight: 300;
-  text-shadow: 3px 4px 0 rgba(0,0,0,0.2)
+    color: white;
+    font-size: 7vw;
+    font-weight: 300;
+    text-shadow: 3px 4px 0 rgba(0, 0, 0, 0.2)
 }
 
 nav {
-  background:#007eb6;
-  top:0;
-  width: 100%;
-  transition:all 0.5s;
-  position: relative;
-  z-index: 1;
+    background: #007eb6;
+    top: 0;
+    width: 100%;
+    transition: all 0.5s;
+    position: relative;
+    z-index: 1;
 }
 
 nav ul {
-  list-style: none;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  height: 2.5rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
 }
 
 nav li {
-  flex: 1;
-  text-align: center;
+    flex: 1;
+    text-align: center;
 }
 
 nav a {
-  text-decoration: none;
-  display: inline-block;
-  color:white;
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+}
+
+img {
+    width: 100%;
 }
