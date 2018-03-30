@@ -75,3 +75,26 @@ nav a {
 img {
     width: 100%;
 }
+
+#main {
+    position: sticky;
+    top: 0px;
+  }
+
+  li.logo img {
+    padding-top: 0.25rem;
+    width: 2.5rem;
+  }
+  
+  li.logo {
+    max-width:0;
+    overflow: hidden;
+    background: white;
+    transition: all 0.5s;
+    font-weight: 600;
+    font-size: 30px;
+  }
+  
+  .fixed-nav li.logo {
+    max-width:500px;
+  }

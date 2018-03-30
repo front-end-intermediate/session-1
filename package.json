@@ -1,0 +1,22 @@
+{
+  "name": "session-1",
+  "version": "1.0.0",
+  "description": "Today we begin introducing much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting.",
+  "main": "index.js",
+  "devDependencies": {
+    "browser-sync": "^2.23.6"
+  },
+  "scripts": {
+    "start": "browser-sync start --directory --server 'app' --files 'app'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/front-end-intermediate/session-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/front-end-intermediate/session-1/issues"
+  },
+  "homepage": "https://github.com/front-end-intermediate/session-1#readme"
+}
