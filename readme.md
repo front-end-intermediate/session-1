@@ -21,7 +21,7 @@ Review
 
 ## Syllabus
 
-[Syllabus](http://mean.deverell.com/syllabus/)
+[Syllabus](http://daniel.deverell.com/syllabii/_intermediate-syllabus.pdf)
 
 ## The Command Line
 
@@ -40,7 +40,7 @@ $ cd ..
 // go up one level
 $ ls
 // list files
-ls -al
+$ ls -al
 // list file with flags that expand the command
 $ pwd
 // print working directory
