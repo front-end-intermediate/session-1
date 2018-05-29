@@ -622,7 +622,9 @@ Let's look at another method for developing our nav - using an Array method.
 
 #### Array Methods: [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
-Refer to `_Array-methods/array-methods.html`
+<!-- Refer to `_Array-methods/array-methods.html` -->
+
+Uncomment the inventors sample data in `navitems.js`.
 
 ```js
 const inventors = [
@@ -667,8 +669,12 @@ Provide an array of the inventors first and last names:
 var fullNames = inventors.map(
   function(inventor){
   return `${inventor.first} ${inventor.last}`;
-})
+});
+
+console.log('Full names: ' + fullNames);
 ```
+
+Notice the commas separating the names.
 
 Refactored to use an arrow function and to join the results with a comma:
 
@@ -676,6 +682,8 @@ Refactored to use an arrow function and to join the results with a comma:
 const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
 console.log('Full names: ' + fullNames);
 ```
+
+Note the use of `join()` to add a space after the comma.
 
 ### EXERCISE - using [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to generate markup
 
@@ -874,7 +882,7 @@ logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 * Examine the SVG file
 * some interesting applications of SVG:
 
-[Responive logos](http://responsivelogos.co.uk)
+[Responsive logos](http://responsivelogos.co.uk)
 [Background generator](http://www.svgeneration.com/recipes/Beam-Center/)
 
 Format the logo and create the sliding logo behavior. Note: CSS only, no JavaScript:
