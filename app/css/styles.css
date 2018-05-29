@@ -27,12 +27,18 @@ html {
 }
 
 header {
-    height: 24vh;
+    height: 20vh;
     background: url(../img/img.jpg) center no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 420px){
+    header {
+        height: 12vh;
+    }
 }
 
 p {
