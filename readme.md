@@ -54,7 +54,7 @@ $ pwd
 
 NPM case study - A static site generator. (What is a [static site generator?](https://davidwalsh.name/introduction-static-site-generators)).
 
-* [Wintersmith](https://github.com/jnordberg/wintersmith)
+* [Wintersmith](https://github.com/jnordberg/wintersmith) - `git clone`, `npm install -g`
 * [Markdown](https://en.wikipedia.org/wiki/Markdown)
 * [Pug](https://www.npmjs.com/package/pug) is a [template processing language](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
 * [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
@@ -63,7 +63,7 @@ NPM case study - A static site generator. (What is a [static site generator?](ht
 
 ## NPM Manifests
 
-We will be again using [Browser Sync](https://www.browsersync.io) as our sample application.
+We will install and use [Browser Sync](https://www.browsersync.io) for our for foray into NPM.
 
 `npm init` and npm install:
 
@@ -81,7 +81,7 @@ Notes:
 * package.json
 * dependencies
 * node_modules folder
-* discuss the need for `.gitignore`.
+* the need for `.gitignore`.
 
 ### Editing package.json
 
@@ -110,9 +110,11 @@ And run the process:
 npm run start
 ```
 
-Quit the process with Control-c.
+This will open index.html in your editor - examine the html and css in the inspector.
 
-Try adding a `--directory` option:
+Note: Browser Sync has an interface running at port 3001.
+
+Demo - adding a `--directory` option:
 
 ```js
   "scripts": {
@@ -121,24 +123,12 @@ Try adding a `--directory` option:
   },
 ```
 
-Quit the process with Control-c.
-
-Try adding a `--browser` option (note the PC browser name):
+Demo - adding a `--browser` option (note the PC browser name):
 
 ```js
 "startmac": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
 "startpc": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\""
 ```
-
-Run the script:
-
-```sh
-npm run start
-```
-
-This will open index.html in your editor - examine the html and css in the inspector.
-
-Note: Browser Sync has an interface running at port 3001.
 
 ## EXERCISE JavaScript Variables
 
@@ -148,18 +138,14 @@ In the browser's console:
 
 ```js
 var width = 100;
-width
-typeof width
-
 let wide = true;
-
 const testString = '123456';
 ```
 
 ### var
 
 * `var`can be redeclared and reassigned
-* `var`is scoped to a function. If a variable is defined within a function it is only available inside that function's block:
+* `var`is 'scoped' to a function. If a variable is defined within a function it is only available inside that function's block:
 
 ```js
 function setWidth(){
@@ -212,7 +198,7 @@ if ( width > 12 ) {
 
 ### let
 
-* `let` variables can only be declared once but they can be reassigned:
+* `let` variables can only be declared once but they can be reassigned, so this is possible:
 
 ```js
 let width = 20
@@ -234,7 +220,9 @@ if ( width > 12 ) {
 width
 ```
 
-`let` allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
+`let` allows you to declare variables that are limited in scope to the block, statement, or expression in which it is used. 
+
+This is unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
 
 ### const
 
@@ -242,7 +230,11 @@ width
 
 ```js
 const testString = '1234abcd'
+```
 
+So these are not possible:
+
+```js
 const testString = 'abcd1234'
 
 testString = 'xyz'
@@ -323,18 +315,20 @@ Note that an Array is an object in JavaScript. Because an array is an object at 
 var box = []
 box['size'] = 9
 box['size']  // because an array is an object at its core you can add properties to it
+box.size // alternate form of the sytax above
 box[0] // undefined
+box.push('test')
 box
 ```
 
 Size is a property of box.
 
-Compare this to:
+<!-- Compare this to:
 
 ```js
 var cars = ["Saab", "Volvo", "BMW"]
 cars[0]
-```
+``` -->
 
 Add to the script block in the HTML:
 
@@ -355,8 +349,6 @@ const nav = document.getElementById('main');
 const navList = document.querySelector('#main');
 ```
 
-Returns only the first link.
-
 * DOM Method [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll)
 
 ```js
@@ -372,7 +364,9 @@ const navList = nav.querySelectorAll('li a');
 
 Compare navList and navItemsArray in the console - Array vs nodeList types and prototypes.
 
-A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`. Note that we have 8 items in the `navItemsArray` but only 6 in our `navList`.
+A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`. 
+
+Note that we have 8 items in the `navItemsArray` but only 6 in our `navList`.
 
 ### Replace our placeholder nav items with content from an array
 
@@ -461,7 +455,7 @@ for (let i = 0; i < navItemsArray.length; i++) {
 }
 ```
 
-Note: template strings and `let` and `const` variables are ES6 (Ecmascript version 6). While they work on most newer browsers, they may not in older ones. For this reason it is common practice to convert the code to ES5 before publishing.
+Note: template strings and `let` and `const` variables are ES6 (Ecmascript version 6). While they work on most newer browsers, they may not in older ones. For this reason it is common practice to convert the code to something more universally supported such as ES5 before publishing.
 
 * Translate the code back to ES5 at [Babeljs.io](https://babeljs.io).
 
@@ -1165,4 +1159,5 @@ function loadDoc1() {
 
 ```
 
-// tanya.blinder@yahoo.com, xinyuehe811@gmail.com, natalieivy@gmail.com, akarasoff@earthlink.net, ll3094@nyu.edu, mkl387@nyu.edu, krm373@nyu.edu, stephanie.obed@gmail.com, jameswperakis@gmail.com, bonnie_sterling@hotmail.com, mikethompson100@hotmail.com, gu3@nyu.edu
+
+petitagneaunoir@gmail.com, yumi.ishizuka@gmail.com, paul@instoresnowhere.com, clj260@nyu.edu, am4970@nyu.edu, pavitranew@gmail.com, brs358@nyu.edu
