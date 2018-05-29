@@ -16,8 +16,8 @@ Software setup
 Review
 
 1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a separate branch)
-1. attempt the homework assignment in the `other` folder (see start.html)
-1. Watch [this video](https://youtu.be/U8XF6AFGqlc) on YouTube
+1. Attempt the homework assignment in the `other` folder (see start.html)
+1. Watch a [Node.js Tutorial for Absolute Beginners](https://youtu.be/U8XF6AFGqlc) on YouTube
 
 ## Syllabus
 
@@ -25,7 +25,9 @@ Review
 
 ## The Command Line
 
-* Note: Windows users normally use Powershell but might wish to check out the Git Bash terminal that is installed along with Git. Some of the commands below may be different on Windows or have alternatives.
+In order to create websites you need to have a minimal set of terminal commands at your disposal.
+
+* Note: Windows users normally use Powershell (as Administrator) but can try the Git Bash terminal that is installed along with Git when things go wrong. Some of the commands below may be different on Windows or have alternatives.
 
 ```sh
 $cd
@@ -39,7 +41,7 @@ $ cd Desk
 $ cd ..
 // go up one level
 $ ls
-// list files
+// list files, dir on a PC
 $ ls -al
 // list file with flags that expand the command
 $ pwd
@@ -59,24 +61,28 @@ NPM case study - A static site generator. (What is a [static site generator?](ht
 * [Pug](https://www.npmjs.com/package/pug) is a [template processing language](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
 * [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
-* [CoffeeScript (huh?)](http://coffeescript.org)
+* [CoffeeScript](http://coffeescript.org)
 
 ## NPM Manifests
 
 We will install and use [Browser Sync](https://www.browsersync.io) for our for foray into NPM.
 
-`npm init` and npm install:
+`npm init` and `npm install`:
 
 ```sh
-npm init
-npm install browser-sync --save-dev
+npm init // examine the new package.json
 ```
 
 * `npm init` creates `package.json`
+
+```sh
+npm install browser-sync --save-dev // examine changes to the directory and package
+```
+
 * `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder
 * `--save-dev` adds the software to a list of development dependancies in the manifest
 
-Notes:
+Summary:
 
 * package.json
 * dependencies
@@ -155,9 +161,8 @@ function setWidth(){
 ```
 
 ```sh
-> typeof setWidth
 > setWidth()
-> console.log('outer width ' + width);
+> width
 ```
 
 A function *does* have access to variables defined outside its block:
@@ -209,7 +214,7 @@ width = 11
 
 * let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
 
-```js
+```sh
 let width = 20
 
 if ( width > 12 ) {
@@ -220,9 +225,20 @@ if ( width > 12 ) {
 width
 ```
 
-`let` allows you to declare variables that are limited in scope to the block, statement, or expression in which it is used. 
+versus:
 
-This is unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
+```sh
+var width = 20
+
+if ( width > 12 ) {
+  var width = 4
+  console.log(width)
+}
+
+width
+```
+
+`let` allows you to declare variables that are limited in scope to the block, statement, or expression in which it is used unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
 
 ### const
 
@@ -242,6 +258,8 @@ testString = 'xyz'
 
 Note: constants are not 'immutable', they just create an immutable binding. For instance, in the case where the content is an object, the object's contents (e.g., its parameters) can be altered.
 
+So you can still do this:
+
 ```js
 const me = {
   hair: true,
@@ -249,8 +267,6 @@ const me = {
 }
 
 me
-
-typeof me
 
 me.age = 49
 
@@ -296,9 +312,9 @@ In the console:
 
 ```js
 > navItemsArray
+> navItems
 > typeof navItemsArray
 > Array.isArray(navItemsArray)
-> navItems
 ```
 
 Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers and array of objects consisting of name / value pairs.
@@ -315,20 +331,11 @@ Note that an Array is an object in JavaScript. Because an array is an object at 
 var box = []
 box['size'] = 9
 box['size']  // because an array is an object at its core you can add properties to it
-box.size // alternate form of the sytax above
+box.size // alternate form of the syntax above
 box[0] // undefined
 box.push('test')
 box
 ```
-
-Size is a property of box.
-
-<!-- Compare this to:
-
-```js
-var cars = ["Saab", "Volvo", "BMW"]
-cars[0]
-``` -->
 
 Add to the script block in the HTML:
 
@@ -343,11 +350,17 @@ console.log(navItemsArray.length)
 const nav = document.getElementById('main');
 ```
 
+Alternatively we could use `querySelector()`.
+
 * DOM Method [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
 
 ```js
-const navList = document.querySelector('#main');
+const nav = document.querySelector('#main');
 ```
+
+But since an ID occurs only once in an HTML document it might be more efficient to let the browser know we are looking for an ID.
+
+When you want to select multiple items use `querySelectorAll()`.
 
 * DOM Method [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll)
 
@@ -358,13 +371,15 @@ const navList = document.querySelectorAll('#main li a');
 It is common to use `element.querySelector` as opposed to `document.querySelector`:
 
 ```js
-const nav = document.querySelector('#main');
+const nav = document.getElementById('main');
 const navList = nav.querySelectorAll('li a');
 ```
 
+Leave these two lines as the only items in your script block.
+
 Compare navList and navItemsArray in the console - Array vs nodeList types and prototypes.
 
-A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`. 
+A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`.
 
 Note that we have 8 items in the `navItemsArray` but only 6 in our `navList`.
 
@@ -465,11 +480,11 @@ Open for reference: `_Objects > objects.html`
 
 Examine the sample object in that file in the browser console:
 
-```js
-last
-me
-me.links
-me.links.social.twitter
+```sh
+> last
+> me
+> me.links
+> me.links.social.twitter
 ```
 
 Add to script block:
@@ -488,7 +503,7 @@ const content =
     ${me.first} ${me.last}
   </h2>
     <span>${me.job}</span>
-    <p>Twitter: ${tw}</p>
+    <p>Twitter: ${twitter}</p>
     <p>Blog: ${me.links.web.blog}</p>
 </div>
 `
@@ -530,13 +545,11 @@ Instead of creating multiple variables (the commented out material above), we us
 const { twitter, facebook } = me.links.social;
 ```
 
-You can also rename (here, shorten) the variable names:
+When accessing third party data where you have a variable name clash (e.g., you already have a constant variable in use called blog but you want to access content from a database that also uses that name) you can avoid issues by destructuring and renaming:
 
 ```js
 const { twitter:tw, facebook:fb } = me.links.social;
 ```
-
-When accessing third party data where you have a variable name clash (e.g., you already have a constant variable in use called blog but you want to access content from a database that also uses that name) you can avoid issues by destructuring and renaming:
 
 ```js
 const { blog:bg } = me.links.web;
@@ -624,7 +637,7 @@ Let's look at another method for developing our nav - using an Array method.
 
 <!-- Refer to `_Array-methods/array-methods.html` -->
 
-Uncomment the inventors sample data in `navitems.js`.
+Uncomment the inventors sample data in `navitems.js`:
 
 ```js
 const inventors = [
@@ -734,10 +747,10 @@ nav.innerHTML = markup;
 
 Since we are including a `<ul>` in our markup constant we can remove it from our script.
 
-Final scripts:
+Final script:
 
 ```html
-<script src="navitems.js"></script>
+<script src="js/navitems.js"></script>
 
 <script>
 const nav = document.getElementById('main');
@@ -925,19 +938,12 @@ We'll set up our page emulate a single page application.
 
 Run `window.location` in the console.
 
-```js
-window.onload = function(){
-  // window.location.hash = '#watchlist'
-  // setTimeout( () => window.location.hash = '#watchlist' , 500)
-}
-```
-
 Sample of a page fragment redirect using `setTimeout()`:
 
 ```js
 window.onload = function(){
   window.location.hash = '#'
-  setTimeout( () => window.location.hash = '#watchlist' , 500)
+  setTimeout( () => window.location.hash = '#watchlist' , 1500)
 }
 ```
 
@@ -979,8 +985,6 @@ const navTest = document.querySelectorAll('#main ul li a');
 for (let i=0; i<navTest.length; i++){
   navTest[i].addEventListener('click', prepContent)
 }
-
-// const foo = [...navTest]
 
 function prepContent(e){
   if (this.hash == "#workbook"){
