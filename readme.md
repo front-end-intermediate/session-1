@@ -896,6 +896,7 @@ logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 * some interesting applications of SVG:
 
 [Responsive logos](http://responsivelogos.co.uk)
+
 [Background generator](http://www.svgeneration.com/recipes/Beam-Center/)
 
 Format the logo and create the sliding logo behavior. Note: CSS only, no JavaScript:
