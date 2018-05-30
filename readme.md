@@ -6,7 +6,9 @@ We also begin to cover NodeJS - focusing on Node Package Manager.
 
 ## Homework
 
-Download and unzip the files as completed by me at the end of the class [here](http://daniel.deverell.com/intermediate/session-1.zip). 'cd' into the directory and run `npm install` and then `npm run start`. (Windows users will need to edit the script in package.json to read `"start": "browser-sync start --server \"app\" --files \"app\""` as noted below.) Follow the instructions that begin [here](https://github.com/front-end-intermediate/session-1#exercise---faking-it), to hijack one of the hashes and emulate a single page application for the Workbook link.
+Review the notes below. Download and unzip the files as completed by me at the end of the class [here](http://daniel.deverell.com/intermediate/session-1.zip). 'cd' into the directory and run `npm install` and then `npm run start`. (Windows users may need to edit the script in `package.json` to read `"start": "browser-sync start --server \"app\" --files \"app\""` as noted below.) Follow the instructions that begin [here](https://github.com/front-end-intermediate/session-1#exercise---faking-it), to hijack one of the hashes and emulate a single page application for the Workbook link.
+
+Watch a [Node.js Tutorial for Absolute Beginners](https://youtu.be/U8XF6AFGqlc) on YouTube
 
 Software setup
 
@@ -14,12 +16,6 @@ Software setup
 1. Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop
 1. Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
 1. Create a Github account
-
-Review
-
-1. Review the notes below and recreate the steps performed up to the end of class (this will be available on Github in a separate branch)
-1. Attempt the homework assignment in the `other` folder (see start.html)
-1. Watch a [Node.js Tutorial for Absolute Beginners](https://youtu.be/U8XF6AFGqlc) on YouTube
 
 ## Syllabus
 
