@@ -4,6 +4,7 @@
   <title>Objects</title>
 </head>
 <body>
+  
 <script>
 
 const me = {
@@ -21,10 +22,27 @@ const me = {
   }
 }
 
-  const first = me.first;
-  const last = me.last;
+  // const first = me.first;
+  // const last = me.last;
+  const twitter = me.links.social.twitter
+  
+  const { first, last } = me;
 
-  console.log(first)
+  const { twitter:tw, facebook:fb } = me.links.social;
+
+  const content =
+`
+<div>
+  <h2>
+    ${me.first} ${me.last}
+  </h2>
+    <span>${me.job}</span>
+    <p>Twitter: ${twitter}</p>
+    <p>Blog: ${me.links.web.blog}</p>
+</div>
+`
+
+document.body.innerHTML = content;
 
 </script>
 </body>

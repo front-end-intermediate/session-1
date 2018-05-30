@@ -5,7 +5,41 @@
   <meta charset="UTF-8">
   <title>START</title>
   <link rel="stylesheet" href="css/styles.css">
+<style>
+  body.fixed-nav nav {
+  position: fixed;
+  top: 0;
+  box-shadow:0 5px 3px rgba(0,0,0,0.1);
+  width: 100%;
+  z-index: 1;
+}
+.site-wrap {
+  transform: scale(0.98);
+  transition: transform 0.5s;
+}
 
+body.fixed-nav .site-wrap {
+  transform: scale(1);
+}
+
+li.logo img {
+  padding-top: 0.25rem;
+  width: 2.5rem;
+}
+
+li.logo {
+  max-width:0;
+  overflow: hidden;
+  background: white;
+  transition: all 0.5s;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.fixed-nav li.logo {
+  max-width:500px;
+}
+</style>
 </head>
 
 <body>
@@ -20,7 +54,7 @@
         <a href="#">LOGO</a>
       </li>
       <li>
-        <a href="#">Link</a>
+        <a href="#watchlist">Link</a>
       </li>
       <li>
         <a href="#">Link</a>
