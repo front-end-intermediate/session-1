@@ -28,7 +28,7 @@ In order to create websites you need to have a minimal set of terminal commands 
 * Note: Windows users normally use Powershell (as Administrator) but can try the Git Bash terminal that is installed along with Git when things go wrong. Some of the commands below may be different on Windows or have alternatives.
 
 ```sh
-$ cd
+$cd
 // change directory
 $ cd ~
 // go to your home directory
@@ -68,7 +68,7 @@ We will install and use [Browser Sync](https://www.browsersync.io) for our for f
 `npm init` and `npm install`:
 
 ```sh
-$ npm init // examine the new package.json
+npm init // examine the new package.json
 ```
 
 * `npm init` creates `package.json`
@@ -111,7 +111,7 @@ Note: Windows users should check out Microsoft's [Nodejs Guidelines](https://git
 And run the process:
 
 ```sh
-$ npm run start
+npm run start
 ```
 
 This will open index.html in your editor - examine the html and css in the inspector.
@@ -441,11 +441,11 @@ Our nav bar now displays all the items in our array.
 Compare old school concatenation and the variable 'sentence' below:
 
 ```js
-  const name = 'Yorik';
-  const age = 2;
-  const oldschool = 'My dog ' + name + ' is ' + age * 7 + 'years old.'
-  const sentence = `My dog ${name} is ${age * 7} years old.`;
-  console.log(sentence);
+const name = 'Yorik';
+const age = 2;
+const oldschool = 'My dog ' + name + ' is ' + age * 7 + 'years old.'
+const sentence = `My dog ${name} is ${age * 7} years old.`;
+console.log(sentence);
 ```
 
 Note the use of tick marks instead of quotes and that we have the ability to access variables and convert dog years to human years using JS inside the curly brackets.
@@ -894,7 +894,6 @@ logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 * some interesting applications of SVG:
 
 [Responsive logos](http://responsivelogos.co.uk)
-
 [Background generator](http://www.svgeneration.com/recipes/Beam-Center/)
 
 Format the logo and create the sliding logo behavior. Note: CSS only, no JavaScript:
