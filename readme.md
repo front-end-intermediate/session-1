@@ -1,6 +1,7 @@
 # I - JavaScript, DOM Manipulation
 
-Today we begin introducing much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting.
+Today we begin introducing much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting. We start with the DOM - an acronym for Document Object Model. 
+
 
 We also begin to cover NodeJS - focusing on Node Package Manager.
 
@@ -49,6 +50,8 @@ $ pwd
 ## Node Package Manager
 
 [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
+
+Install [node.js](https://nodejs.org/en/) on your laptop.
 
 ## Node Package Manager (NPM) - Demo
 
@@ -134,7 +137,7 @@ Demo - adding a `--browser` option (note the PC browser name):
 "startpc": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\""
 ```
 
-## EXERCISE JavaScript Variables
+<!-- ## EXERCISE JavaScript Variables
 
 Introducing the developer tools console, data types, variable types `var`, `let`, and `const`, and scope.
 
@@ -269,7 +272,15 @@ me
 me.age = 49
 
 me
-```
+``` -->
+
+<!-- ## DOM Scripting
+
+![Image of layout](images/layout.png)
+
+DOM scripting is not really 'pure' JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
+
+See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting. -->
 
 ## DOM Scripting
 
@@ -278,6 +289,110 @@ me
 DOM scripting is not really 'pure' JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
 
 See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
+
+### Getting elements in the DOM
+
+Use document`.querySelectorAll()` to find all matching elements on a page. You can use any valid CSS selector.
+
+```js
+// Get all links in the nav
+var elems = document.querySelectorAll('#main a');
+
+// Get all paragraphs
+var elemsPara = document.querySelectorAll('p');
+```
+
+Use `document.querySelector()` to find the first matching element on a page.
+
+```js
+// The first div
+var elem = document.querySelector('div');
+
+// The first link
+var elemLink = document.querySelectorAll('#main a');
+
+// The first div with a data attribute of main
+var elem = document.querySelector('[data-headline="main"]');
+
+// An element that doesn't exist
+var elemNone = document.querySelector('.foo');
+```
+
+If an element isn’t found, querySelector() returns null. If you try to do something with the nonexistant element, an error will get thrown. You should check that a matching element was found before using it.
+
+```js
+// Verify element exists before doing anything with it
+if (elemNone) {
+    // Do something...
+}
+```
+
+### Looping through items
+
+In JavaScript, you use `for` to loop through array and node list items.
+
+```js
+var elems = document.querySelectorAll('#main a');
+
+for (var i = 0; i < elems.length; i++) {
+    console.log(i) // index
+    console.log(elems[i]) // value
+}
+```
+
+A `for...in` loop is a modified version of a `for` loop that you can use to loop through objects.
+
+The first part, `key`, is a variable that gets assigned to the object key on each loop. The second part is the object to loop over.
+
+We also want to check that the property belongs to this object, and isn’t inherited from further up the object chain (for nested or deep objects). `if (obj.hasOwnProperty(key))` handles that for us.
+
+```js
+var lunch = {
+    sandwich: 'ham',
+    snack: 'chips',
+    drink: 'soda',
+    desert: 'cookie',
+    guests: 3,
+    alcohol: false,
+};
+
+for (var key in lunch) {
+    if (lunch.hasOwnProperty(key)) {
+        console.log(key); // key
+        console.log(lunch[key]); // value
+    }
+}
+```
+
+ES6 introduced a new `forEach()` method for looping over arrays.
+
+You pass a callback function into `forEach()`. The first argument is the current item in the loop. The second is the current index in the array. You can name these two variables anything you want.
+
+Unlike with a for loop, you can’t terminate the `forEach()` function before it’s completed. You can return to end the current loop, but you can’t call break.
+
+```js
+var sandwiches = [
+    'tuna',
+    'ham',
+    'turkey',
+    'pb&j'
+];
+
+sandwiches.forEach(function (sandwich, index) {
+    console.log(index) // index
+    console.log(sandwich) // value
+});
+```
+
+The `Array.forEach()` method only works with arrays, not NodeLists (like those returned from `querySelectorAll())`. While there is a `NodeList.forEach()` method, it has poor browser support at this time.
+
+You can convert NodeLists into Arrays with the `Array.from()` method and use `Array.forEach()` on that.
+
+```js
+Array.from(document.querySelectorAll('.some-selector')).forEach(function (item, index) {
+    // Do something...
+});
+```
 
 ## EXERCISE - generated content from an array
 
