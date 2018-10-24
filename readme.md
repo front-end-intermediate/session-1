@@ -1,50 +1,36 @@
 # I - JavaScript, DOM Manipulation
 
-Today we begin introducing much of the basic JavaScript you will need for this semester - arrays, objects, template strings, functions and DOM scripting. We start with the DOM - an acronym for Document Object Model. 
-
-
-We also begin to cover NodeJS - focusing on Node Package Manager.
-
-## Homework
-
-Review the notes below. Download and unzip the files as completed by me at the end of the class [here](http://daniel.deverell.com/intermediate/session-1.zip). 'cd' into the directory and run `npm install` and then `npm run start`. (Windows users may need to edit the script in `package.json` to read `"start": "browser-sync start --server \"app\" --files \"app\""` as noted below.) Follow the instructions that begin [here](https://github.com/front-end-intermediate/session-1#exercise---faking-it), to hijack one of the hashes and emulate a single page application for the Workbook link.
-
-If you want more information on NPM you should watch a [Node.js Tutorial for Absolute Beginners](https://youtu.be/U8XF6AFGqlc) on YouTube.
-
-Software setup
-
-1. Install [node.js](https://nodejs.org/en/) on your laptop
-1. Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop
-1. Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
-1. Create a Github account
+Today we begin introducing much of the JavaScript you will need for this semester - arrays, objects, template strings, and functions. We will be doing this in the context of DOM scripting. DOM is an acronym for Document Object Model.
 
 ## Syllabus
 
 [Syllabus](http://daniel.deverell.com/syllabii/_intermediate-syllabus.pdf)
 
+## Homework
+
+<!-- Review the notes below. Download and unzip the files as completed by me at the end of the class [here](http://daniel.deverell.com/intermediate/session-1.zip). 'cd' into the directory and run `npm install` and then `npm run start`. (Windows users may need to edit the script in `package.json` to read `"start": "browser-sync start --server \"app\" --files \"app\""` as noted below.) Follow the instructions that begin [here](https://github.com/front-end-intermediate/session-1#exercise---faking-it), to hijack one of the hashes and emulate a single page application for the Workbook link. -->
+
+* Watch this video on Node and NPM: [Node.js Tutorial for Absolute Beginners](https://youtu.be/U8XF6AFGqlc) on YouTube
+* Install [node.js](https://nodejs.org/en/) on your laptop
+* Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop
+* Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
+* Create a Github account
+
 ## The Command Line
 
 In order to create websites you need to have a minimal set of terminal commands at your disposal.
 
-* Note: Windows users normally use Powershell (as Administrator) but can try the Git Bash terminal that is installed along with Git when things go wrong. Some of the commands below may be different on Windows or have alternatives.
+Note: Windows users normally use Powershell (run as Administrator) but can try the Git Bash terminal that is installed along with Git when things go wrong. Some of the commands below may be different on Windows or have alternatives.
 
 ```sh
-$cd
-// change directory
-$ cd ~
-// go to your home directory
-$ cd <PATH>
-// Mac: copy and paste the folder you want to go to
-$ cd Desk
-// tab completion
-$ cd ..
-// go up one level
-$ ls
-// list files, dir on a PC
-$ ls -al
-// list file with flags that expand the command
-$ pwd
-// print working directory
+$ cd  // change directory
+$ cd ~  // go to your home directory
+$ cd <PATH>  // Mac: copy and paste the folder you want to go to
+$ cd Desk  // tab completion
+$ cd ..  // go up one level
+$ ls  // list files, dir on a PC
+$ ls -al  // list file with flags that expand the command
+$ pwd  // print working directory
 ```
 
 ## Node Package Manager
@@ -66,22 +52,21 @@ NPM case study - A static site generator. (What is a [static site generator?](ht
 
 ## NPM Manifests
 
-We will install and use [Browser Sync](https://www.browsersync.io) for our for foray into NPM.
+`cd` into todays repo using the terminal.
 
-`npm init` and `npm install`:
+For our fist foray into NPM we will install and use [Browser Sync](https://www.browsersync.io).
 
 ```sh
-npm init // examine the new package.json
+$ npm init // examine the new package.json
 ```
 
 * `npm init` creates `package.json`
 
 ```sh
-npm install browser-sync --save-dev // examine changes to the directory and package
+$ npm install browser-sync --save-dev // examine changes to the directory and package
 ```
 
-* `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder
-* `--save-dev` adds the software to a list of development dependancies in the manifest
+* `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder. `--save-dev` adds the software to a list of development dependancies in the manifest
 
 Summary:
 
