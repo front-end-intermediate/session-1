@@ -45,6 +45,12 @@ $ ls -al  // list file with flags that expand the command
 $ pwd  // print working directory
 ```
 
+`cd` into today's working directory and type:
+
+```sh
+$ code .
+```
+
 ## Node Package Manager
 
 [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
@@ -64,15 +70,21 @@ NPM case study - A static site generator. (What is a [static site generator?](ht
 
 ## NPM Manifests
 
-`cd` into today's repo using the terminal.
+`cd` into today's working directory and type:
 
-For our fist foray into NPM we will install and use [Browser Sync](https://www.browsersync.io).
+```sh
+$ code .
+```
+
+Open the integrated terminal in VSCode (`View > Terminal`) with `ctrl + ~`
+
+For our first foray into NPM we will install and use [Browser Sync](https://www.browsersync.io).
 
 ```sh
 $ npm init -y
 ```
 
-* `npm init` creates `package.json`
+* `npm init -y` creates `package.json`
 
 ```sh
 $ npm install browser-sync --save-dev
@@ -84,7 +96,7 @@ $ npm install browser-sync --save-dev
 touch .gitignore
 ```
 
-Create a `.gitignore` file so Git does not track the `node_modules` folder.
+`touch .gitignore` creates a `.gitignore` file. Edit it to include `node_modules` so Git does not track the `node_modules` folder.
 
 ### Editing package.json
 
@@ -105,15 +117,13 @@ Or, on a Windows PC:
 "start": "browser-sync start --server \"app\" --files \"app\""
 ```
 
-Note: Windows users should check out Microsoft's [Nodejs Guidelines](https://github.com/Microsoft/nodejs-guidelines).
-
 And run the process:
 
 ```sh
-npm run start
+$ npm run start
 ```
 
-This will open index.html in your editor - examine the html and css in the inspector.
+This will open `index.html` in your browser - examine the html and css in the inspector.
 
 Note: Browser Sync has an interface running at port 3001.
 
@@ -269,14 +279,6 @@ me.age = 49
 
 me
 ``` -->
-
-<!-- ## DOM Scripting
-
-![Image of layout](images/layout.png)
-
-DOM scripting is not really 'pure' JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
-
-See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting. -->
 
 ## DOM Scripting
 
