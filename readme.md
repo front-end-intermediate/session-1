@@ -316,7 +316,7 @@ var elem = document.querySelector('[data-headline="main"]');
 var elemNone = document.querySelector('.foo');
 ```
 
-If an element isn’t found, querySelector() returns null. If you try to do something with the nonexistant element, an error will get thrown. You should check that a matching element was found before using it.
+If an element isn’t found, `querySelector()` returns null. If you try to do something with the nonexistant element, an error will get thrown. You should check that a matching element was found before using it.
 
 ```js
 // Verify element exists before doing anything with it
@@ -338,27 +338,28 @@ for (var i = 0; i < elems.length; i++) {
 }
 ```
 
-A `for...in` loop is a modified version of a `for` loop that you can use to loop through objects.
+A `for...in` loop is a modified version of a `for` loop that you can use to loop through _objects_.
 
 The first part, `key`, is a variable that gets assigned to the object key on each loop. The second part is the object to loop over.
 
 We also want to check that the property belongs to this object, and isn’t inherited from further up the object chain (for nested or deep objects). `if (obj.hasOwnProperty(key))` handles that for us.
 
 ```js
-var lunch = {
-    sandwich: 'ham',
-    snack: 'chips',
-    drink: 'soda',
-    desert: 'cookie',
-    guests: 3,
-    alcohol: false,
+var dinner = {
+  // key: value
+  main: 'pasta',
+  appetizer: 'corn',
+  drink: 'martini',
+  desert: 'parfait',
+  guests: 4,
+  alcohol: true,
 };
 
-for (var key in lunch) {
-    if (lunch.hasOwnProperty(key)) {
-        console.log(key); // key
-        console.log(lunch[key]); // value
-    }
+for (var key in dinner) {
+  if (dinner.hasOwnProperty(key)) {
+    console.log(key); // key
+    console.log(dinner[key]); // value
+  }
 }
 ```
 
@@ -369,16 +370,16 @@ You pass a callback function into `forEach()`. The first argument is the current
 Unlike with a for loop, you can’t terminate the `forEach()` function before it’s completed. You can return to end the current loop, but you can’t call break.
 
 ```js
-var sandwiches = [
-    'tuna',
+var pizzas = [
+    'cheese',
     'ham',
-    'turkey',
-    'pb&j'
+    'chicken',
+    'veg'
 ];
 
-sandwiches.forEach(function (sandwich, index) {
+pizzas.forEach(function (pizza, index) {
     console.log(index) // index
-    console.log(sandwich) // value
+    console.log(pizza) // value
 });
 ```
 
@@ -387,8 +388,10 @@ The `Array.forEach()` method only works with arrays, not NodeLists (like those r
 You can convert NodeLists into Arrays with the `Array.from()` method and use `Array.forEach()` on that.
 
 ```js
-Array.from(document.querySelectorAll('.some-selector')).forEach(function (item, index) {
+Array.from(document.querySelectorAll('#main a')).forEach(function (item, index) {
     // Do something...
+    console.log(item);
+    console.log(index)
 });
 ```
 
@@ -413,7 +416,7 @@ nav li {
 
 We will replace the existing nav labels with items from an array using a `for loop`.
 
-Examine and link to the provided JS file in index.html:
+Examine the provided JS files. Note that they are added in index.html:
 
 ```html
 <script src="js/navitems.js"></script>
@@ -428,7 +431,7 @@ In the console:
 > Array.isArray(navItemsArray)
 ```
 
-Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers and array of objects consisting of name / value pairs.
+Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers an array of objects consisting of key/value pairs.
 
 JavaScript objects are containers for named values.
 
@@ -441,14 +444,17 @@ Note that an Array is an object in JavaScript. Because an array is an object at 
 ```sh
 var box = []
 box['size'] = 9
-box['size']  // because an array is an object at its core you can add properties to it
-box.size // alternate form of the syntax above
-box[0] // undefined
-box.push('test')
+box['size']  // returns 9
+box.size // alternate syntax for box['size']
+typeof box // because an array is an object at its core you can add properties to it
+box[0] // undefined because there is no first item yet
+box.push('test') // add an item
+box[0] // returns test
 box
+Array.isArray(box) // to test if the object is an array
 ```
 
-Add to the script block in the HTML:
+Add to `myScripts.js`:
 
 ```js
 console.log(navItemsArray[2])
