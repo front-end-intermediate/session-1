@@ -1,6 +1,10 @@
-# I - JavaScript, DOM Manipulation
+# I - JavaScript and DOM Manipulation
 
 Today we begin introducing much of the JavaScript you will need for this semester - arrays, objects, template strings, and functions. We will be doing this in the context of DOM scripting. DOM is an acronym for Document Object Model.
+
+Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop now.
+
+Install [Node.js](https://nodejs.org/en/) on your laptop now.
 
 ## Syllabus
 
@@ -11,10 +15,18 @@ Today we begin introducing much of the JavaScript you will need for this semeste
 <!-- Review the notes below. Download and unzip the files as completed by me at the end of the class [here](http://daniel.deverell.com/intermediate/session-1.zip). 'cd' into the directory and run `npm install` and then `npm run start`. (Windows users may need to edit the script in `package.json` to read `"start": "browser-sync start --server \"app\" --files \"app\""` as noted below.) Follow the instructions that begin [here](https://github.com/front-end-intermediate/session-1#exercise---faking-it), to hijack one of the hashes and emulate a single page application for the Workbook link. -->
 
 * Watch this video on Node and NPM: [Node.js Tutorial for Absolute Beginners](https://youtu.be/U8XF6AFGqlc) on YouTube
-* Install [node.js](https://nodejs.org/en/) on your laptop
-* Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop
 * Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
 * Create a Github account
+
+## VSCode
+
+Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop now.
+
+In this class we will be using [Visual Studio Code](https://code.visualstudio.com/) as our editor. We will discuss its features as needed. For today we will take care of some basic configuration details.
+
+In VSCode press `cmd + shift + p` and type in the word `shell`. Select `Install code command in PATH`
+
+![Image of layout](images/vscode.png)
 
 ## The Command Line
 
@@ -37,9 +49,9 @@ $ pwd  // print working directory
 
 [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
 
-Install [node.js](https://nodejs.org/en/) on your laptop.
+Install [node.js](https://nodejs.org/en/) on your laptop now.
 
-## Node Package Manager (NPM) - Demo
+<!-- ## Node Package Manager (NPM) - Demo
 
 NPM case study - A static site generator. (What is a [static site generator?](https://davidwalsh.name/introduction-static-site-generators)).
 
@@ -48,32 +60,31 @@ NPM case study - A static site generator. (What is a [static site generator?](ht
 * [Pug](https://www.npmjs.com/package/pug) is a [template processing language](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
 * [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
-* [CoffeeScript](http://coffeescript.org)
+* [CoffeeScript](http://coffeescript.org) -->
 
 ## NPM Manifests
 
-`cd` into todays repo using the terminal.
+`cd` into today's repo using the terminal.
 
 For our fist foray into NPM we will install and use [Browser Sync](https://www.browsersync.io).
 
 ```sh
-$ npm init // examine the new package.json
+$ npm init -y
 ```
 
 * `npm init` creates `package.json`
 
 ```sh
-$ npm install browser-sync --save-dev // examine changes to the directory and package
+$ npm install browser-sync --save-dev
 ```
 
-* `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder. `--save-dev` adds the software to a list of development dependancies in the manifest
+* `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder. `--save-dev` adds the software to a list of development dependencies in `package.json`
 
-Summary:
+```sh
+touch .gitignore
+```
 
-* package.json
-* dependencies
-* node_modules folder
-* the need for `.gitignore`.
+Create a `.gitignore` file so Git does not track the `node_modules` folder.
 
 ### Editing package.json
 
