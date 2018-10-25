@@ -942,6 +942,90 @@ li.logo {
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
 
+<!-- TESTING  -->
+```js
+var elem = document.querySelector('.site-wrap');
+var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  console.log(content.results)
+}
+
+function requestStories(url) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    // Only run if the request is complete
+    if (request.readyState !== 4) return;
+    
+    // Process our return data
+    if (request.status === 200) {
+      // Success!
+      renderStories(request);
+    } else {
+      // Request failed
+      console.log('boo hoo')
+    }
+  };
+  request.open('GET', 'https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=' + nytapi)
+  request.send();
+}
+
+requestStories()
+```
+
+```js
+var elem = document.querySelector('.site-wrap');
+var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  console.log(content.results)
+  var stories = content.results;
+  stories.forEach(function (story) {
+    var storyEl = document.createElement('div');
+    storyEl.className = 'feed-item';
+    storyEl.innerHTML = `
+    <div class="entry">
+      <h4>${story.section}</h4>
+      <div>
+      <img src="${story.multimedia[0].url}" /> 
+      <h3><a target="_blank" href="${story.short_url}">${story.title}</a></h3>
+      </div>
+      <p>${story.abstract}</p>
+    </div>
+    `;
+    elem.prepend(storyEl);
+  })
+}
+
+function requestStories(url) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    // Only run if the request is complete
+    if (request.readyState !== 4) return;
+    
+    // Process our return data
+    if (request.status === 200) {
+      // Success!
+      renderStories(request);
+    } else {
+      // Request failed
+      console.log('boo hoo')
+    }
+  };
+  request.open('GET', 'https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=' + nytapi)
+  request.send();
+}
+
+requestStories()
+
+```
+
+
+<!-- END TESTING -->
+
+
 ## EXERCISE - Faking It
 
 Note the use of hashes in the navigation:
@@ -1188,6 +1272,3 @@ function loadDoc1() {
 </nav>
 
 ```
-
-
-petitagneaunoir@gmail.com, yumi.ishizuka@gmail.com, paul@instoresnowhere.com, clj260@nyu.edu, am4970@nyu.edu, pavitranew@gmail.com, brs358@nyu.edu
