@@ -123,143 +123,6 @@ This will open `index.html` in your browser - examine the html and css in the in
 
 Note: Browser Sync has an interface running at port 3001: [http://localhost:3001](http://localhost:3001)
 
-<!-- ## EXERCISE JavaScript Variables
-
-Introducing the developer tools console, data types, variable types `var`, `let`, and `const`, and scope.
-
-In the browser's console:
-
-```js
-var width = 100;
-let wide = true;
-const testString = '123456';
-```
-
-### var
-
-* `var`can be redeclared and reassigned
-* `var`is 'scoped' to a function. If a variable is defined within a function it is only available inside that function's block:
-
-```js
-function setWidth(){
-  var width = 500
-  console.log('inner width ' + width)
-}
-```
-
-```sh
-> setWidth()
-> width
-```
-
-A function *does* have access to variables defined outside its block:
-
-```js
-function setWidth(){
-  console.log('inner width ' + width)
-}
-var width = 500
-setWidth()
-```
-
-Passing a parameter as an input to a function:
-
-```js
-function setWidth(num){
-  var width = num || 500
-  console.log('inner width ' + width)
-}
-setWidth(200)
-setWidth()
-```
-
-* var - can 'leak' when its not inside a function:
-
-```js
-var width = 20
-
-if ( width > 12 ) {
-  var width = 4
-  console.log(width)
-}
-```
-
-```sh
-> width
-```
-
-### let
-
-* `let` variables can only be declared once but they can be reassigned, so this is possible:
-
-```js
-let width = 20
-width = 11
-```
-
-`var` 'leaks' outside the `{ }` block.
-
-* let and const are scoped to the block (function and otherwise - anywhere we have curly brackets)
-
-```sh
-let width = 20
-
-if ( width > 12 ) {
-  let width = 4
-  console.log(width)
-}
-
-width
-```
-
-versus:
-
-```sh
-var width = 20
-
-if ( width > 12 ) {
-  var width = 4
-  console.log(width)
-}
-
-width
-```
-
-`let` allows you to declare variables that are limited in scope to the block, statement, or expression in which it is used unlike the `var` keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
-
-### const
-
-* The value of a constant cannot change through re-assignment, and it can't be redeclared.
-
-```js
-const testString = '1234abcd'
-```
-
-So these are not possible:
-
-```js
-const testString = 'abcd1234'
-
-testString = 'xyz'
-```
-
-Note: constants are not 'immutable', they just create an immutable binding. For instance, in the case where the content is an object, the object's contents (e.g., its parameters) can be altered.
-
-So you can still do this:
-
-```js
-const me = {
-  hair: true,
-  age: 48
-}
-
-me
-
-me.age = 49
-
-me
-``` -->
-
 ## DOM Scripting
 
 DOM scripting is not really 'pure' JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
@@ -492,6 +355,27 @@ for (let i=0; i < navList.length; i++ ){
 }
 ```
 
+The innerHTML property can be used to both get and set HTML content in an element.
+
+```js
+var elem = document.querySelector(',site-wrap');
+
+// Get HTML content
+var html = elem.innerHTML;
+
+// Set HTML content
+elem.innerHTML = 'We can dynamically change the HTML to include HTML elements like <a href="#">this link</a>.';
+
+// Add HTML to the end of an element's existing content
+elem.innerHTML += ' Add this after what is already there.';
+
+// Add HTML to the beginning of an element's existing content
+elem.innerHTML = 'We can add this to the beginning. ' + elem.innerHTML;
+
+// You can inject entire elements into other ones, too
+elem.innerHTML += '<p>A new paragraph</p>';
+```
+
 Problem: we are using the existing `<li>` elements but there are 8 items in our `navItemsArray` array.
 
 Solution: dynamically generate the nav from items in the array.
@@ -512,8 +396,33 @@ nav.innerHTML = ''
 
 Append a `<ul>` tag to nav using:
 
-* [createElement](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/) and
-* [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/)
+1. [document.createElement()](https://plainjs.com/javascript/manipulation/create-a-dom-element-51/) creates an element, e.g. `var div = document.createElement('div');`. 
+2. [append](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/).
+
+JavaScript offers a number of methods to determine the insertion point.
+
+```js
+// Create a new HTML element and add some text
+var div = document.createElement('div');
+div.textContent = 'Hello world';
+
+// Get the element to add your new HTML element before, after, or within
+const target = document.getElementById('main');
+
+// Inject the `div` element before the `#app` element
+target.before(div);
+
+// Inject the `div` element after the `#app` element
+target.after(div);
+
+// Inject the `div` element before the first item *inside* the `#app` element
+target.prepend(div);
+
+// Inject the `div` element after the first item *inside* the `#app` element
+target.append(div);
+```
+
+Let's empty the html content of our nav and append a new div:
 
 ```js
 // your scripts go here
@@ -523,10 +432,10 @@ const nav = document.getElementById('main');
 nav.innerHTML = '';
 
 const navList = document.createElement('ul');
-nav.appendChild(navList);
+nav.append(navList);
 ```
 
-NOte the `<ul>` in the header.
+Note the `<ul>` in the header.
 
 * dynamically create the nav based on the number of items in the array using a for loop:
 
@@ -535,7 +444,7 @@ for (let i=0; i < navItemsArray.length; i++ ){
   let listItem = document.createElement('li')
   let linkText = navItemsArray[i]
   listItem.innerHTML = '<a href="#">' + linkText + '</a>'
-  navList.appendChild(listItem)
+  navList.append(listItem)
 }
 ```
 
@@ -554,10 +463,10 @@ for (let i=0; i < navItemsArray.length; i++ ){
   let listItem = document.createElement('li')
   let linkText = navItemsArray[i]
   listItem.innerHTML = '<a href="#">' + linkText + '</a>'
-  navList.appendChild(listItem)
+  navList.append(listItem)
 }
 
-nav.appendChild(navList);
+nav.append(navList);
 ```
 
 Our nav bar now displays all the items in our array.
@@ -749,17 +658,17 @@ for (let i =0; i < navItems.length; i++ ){
 }
 ```
 
-Inspect the code and note that, thanks to the multiple name / value pairs in navItems we now have page fragment links in our html and are able to navigate within our page.
+Navigate and nspect the code and note that, thanks to the multiple name / value pairs in navItems we now have anchor tags with page fragment links in our html and are able to navigate within our page.
 
 Note the hash in the url location string.
 
 ### Array Methods
 
-Let's look at another method for developing our nav - using an Array method.
+We'll use another method for developing our nav - using an Array method called `map`.
+
+First let's look at another Array method - `filter` and arrow functions.
 
 #### Array Methods: [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
-
-<!-- Refer to `_Array-methods/array-methods.html` -->
 
 Uncomment the inventors sample data in `navitems.js`:
 
@@ -788,17 +697,17 @@ const fifteen = inventors.filter (
 console.table(fifteen);
 ```
 
-##### [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
-
-Arrow functions are commonly used to shorten the syntax for anonymous functions. Much of the documentation you will read uses them so let start exposing ourselves to them.
+[Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) have a number of features and are commonly used as a shorter syntax for anonymous functions. Much of the documentation you will read uses them.
 
 Refactor using an arrow function with implicit return:
 
 ```js
-const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
+const fifteen = inventors.filter(
+  inventor => (inventor.year >= 1500 && inventor.year < 1600)
+  )
 ```
 
-##### Array Methods: [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
+#### Array Methods: [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
 Provide an array of the inventors first and last names:
 
@@ -813,16 +722,19 @@ console.log('Full names: ' + fullNames);
 
 Notice the commas separating the names.
 
-Refactored to use an arrow function and to join the results with a comma:
+Refactored it to use an arrow function and join the results with a comma:
 
 ```js
-const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`).join(', ');
+const fullNames = inventors.map(
+  inventor => `${inventor.first} ${inventor.last}`
+  ).join(', ');
+
 console.log('Full names: ' + fullNames);
 ```
 
 Note the use of `join()` to add a space after the comma.
 
-### EXERCISE - using [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to generate markup
+## EXERCISE - using [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to generate markup
 
 An alternate method for creating the list items using map() and template strings:
 
@@ -859,6 +771,11 @@ nav.innerHTML = markup;
 Refactor using an arrow function:
 
 ```js
+// your scripts go here
+
+const nav = document.getElementById('main');
+
+nav.innerHTML = '';
 
 const markup = `
 <ul>
@@ -868,26 +785,6 @@ const markup = `
 
 nav.innerHTML = markup;
 ```
-
-Since we are including a `<ul>` in our markup constant we can remove it from our script.
-
-Final script:
-
-```html
-<script src="js/navitems.js"></script>
-
-<script>
-const nav = document.getElementById('main');
-const markup = `
-    <ul>
-      ${navItems.map( navItem => `<li><a href="${navItem.link}">${navItem.label}</a></li>`).join('')}
-    </ul>
-    `;
-nav.innerHTML = markup;
-</script>
-```
-
-Try translating this into ECMAScript 2015 (ECMAScript 6 / ES6) at [babeljs](babeljs.io).
 
 ## EXERCISE - Sticky Menu
 
@@ -1010,7 +907,6 @@ Note `paddingTop` (camel case) - I used Javascript for this because the height o
 ## EXERCISE - Adding the SVG Image
 
 ```js
-
 const logo = document.querySelector('#main ul li');
 logo.classList.add('logo');
 logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
@@ -1056,7 +952,7 @@ These allow us to navigate (`index.html#research`) to sections of the document m
 
 `<p id="watchlist">`
 
-Note that clicking on an hashed link doesn't refresh the page. This makes hashes an important feature for creating SPAs - they are used to load different content via AJAX from a server with no page refresh.
+Note that clicking on an hashed link doesn't refresh the page. This makes hashes an important feature for creating Single Page Applications (SPAs) - they are used to load different content via AJAX from a server with no page refresh.
 
 We'll set up our page emulate a single page application.
 
@@ -1126,8 +1022,6 @@ function prepContent(e){
 ### Notes
 
 [vh and vw in CSS](https://css-tricks.com/viewport-sized-typography/)
-
-#### OLD HW - CSS Flexible Box Layout Module
 
 Flexbox can be quite difficult to master. You could do worse than checking out:
 
