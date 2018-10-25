@@ -26,7 +26,7 @@ In this class we will be using [Visual Studio Code](https://code.visualstudio.co
 
 In VSCode press `cmd + shift + p` and type in the word `shell`. Select `Install code command in PATH`
 
-![Image of layout](images/vscode.png)
+![Image of layout](other/images/vscode.png)
 
 ## The Command Line
 
@@ -111,37 +111,17 @@ Create the NPM script using the Browser Sync command line documentation:
   },
 ```
 
-Or, on a Windows PC:
-
-```js
-"start": "browser-sync start --server \"app\" --files \"app\""
-```
-
 And run the process:
 
 ```sh
 $ npm run start
 ```
 
+![Image of layout](other/images/layout.png)
+
 This will open `index.html` in your browser - examine the html and css in the inspector.
 
-Note: Browser Sync has an interface running at port 3001.
-
-Demo - adding a `--directory` option:
-
-```js
-  "scripts": {
-    "startmac": "browser-sync start --directory --server 'app' --files 'app'",
-    "startpc": "browser-sync start --directory --server \"app\" --files \"app\""
-  },
-```
-
-Demo - adding a `--browser` option (note the PC browser name):
-
-```js
-"startmac": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
-"startpc": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\""
-```
+Note: Browser Sync has an interface running at port 3001: [http://localhost:3001](http://localhost:3001)
 
 <!-- ## EXERCISE JavaScript Variables
 
@@ -281,8 +261,6 @@ me
 ``` -->
 
 ## DOM Scripting
-
-![Image of layout](images/layout.png)
 
 DOM scripting is not really 'pure' JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
 
@@ -441,17 +419,17 @@ var car = {type:"Fiat", model:"500", color:"white"}
 
 Note that an Array is an object in JavaScript. Because an array is an object at its core you can add properties to it:
 
-```sh
+```js
 var box = []
-box['size'] = 9
+typeof box // an array is an object at its core 
+Array.isArray(box) // test if the object is in fact an array
+box['size'] = 9 // because an array is an object at its core you can add properties to it
 box['size']  // returns 9
 box.size // alternate syntax for box['size']
-typeof box // because an array is an object at its core you can add properties to it
 box[0] // undefined because there is no first item yet
 box.push('test') // add an item
 box[0] // returns test
 box
-Array.isArray(box) // to test if the object is an array
 ```
 
 Add to `myScripts.js`:
@@ -469,13 +447,11 @@ const nav = document.getElementById('main');
 
 Alternatively we could use `querySelector()`.
 
-* DOM Method [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+* DOM Method [querySelector()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
 
 ```js
 const nav = document.querySelector('#main');
 ```
-
-But since an ID occurs only once in an HTML document it might be more efficient to let the browser know we are looking for an ID.
 
 When you want to select multiple items use `querySelectorAll()`.
 
@@ -494,17 +470,22 @@ const navList = nav.querySelectorAll('li a');
 
 Leave these two lines as the only items in your script block.
 
-Compare navList and navItemsArray in the console - Array vs nodeList types and prototypes.
+Compare `navList` and `navItemsArray` in the console and note the `prototypes` in the inspector. `navLIst` comes from our JavaScript `const navList = nav.querySelectorAll('li a');` while `navItemsArray` comes from '`navItems.js`. 
 
-A nodeList has a length property - `> navList.length` vs `> navItemsArray.length`.
+Both have a length property - `navList.length` and `navItemsArray.length`.
 
 Note that we have 8 items in the `navItemsArray` but only 6 in our `navList`.
 
 ### Replace our placeholder nav items with content from an array
 
-* for loop and innerHTML
+* use a `for` loop and `innerHTML`:
 
 ```js
+// your scripts go here
+
+const nav = document.getElementById('main');
+const navList = nav.querySelectorAll('li a');
+
 for (let i=0; i < navList.length; i++ ){
   console.log(i)
   navList[i].innerHTML = navItemsArray[i];
@@ -535,12 +516,17 @@ Append a `<ul>` tag to nav using:
 * [appendChild](https://plainjs.com/javascript/manipulation/append-or-prepend-to-an-element-29/)
 
 ```js
+// your scripts go here
+
 const nav = document.getElementById('main');
-nav.innerHTML = ''
+
+nav.innerHTML = '';
 
 const navList = document.createElement('ul');
 nav.appendChild(navList);
 ```
+
+NOte the `<ul>` in the header.
 
 * dynamically create the nav based on the number of items in the array using a for loop:
 
@@ -553,11 +539,32 @@ for (let i=0; i < navItemsArray.length; i++ ){
 }
 ```
 
+E.g.:
+
+```js
+// your scripts go here
+
+const nav = document.getElementById('main');
+
+nav.innerHTML = '';
+
+const navList = document.createElement('ul');
+
+for (let i=0; i < navItemsArray.length; i++ ){
+  let listItem = document.createElement('li')
+  let linkText = navItemsArray[i]
+  listItem.innerHTML = '<a href="#">' + linkText + '</a>'
+  navList.appendChild(listItem)
+}
+
+nav.appendChild(navList);
+```
+
 Our nav bar now displays all the items in our array.
 
 #### Aside - Template Strings (aka Template literals)
 
-Compare old school concatenation and the variable 'sentence' below:
+Note that we used single quotes in the construction of our innerHTML: `listItem.innerHTML = '<a href="#">' + linkText + '</a>'`. Compare old school concatenation and the variable 'sentence' below:
 
 ```js
 const name = 'Yorik';
@@ -567,7 +574,7 @@ const sentence = `My dog ${name} is ${age * 7} years old.`;
 console.log(sentence);
 ```
 
-Note the use of tick marks instead of quotes and that we have the ability to access variables and convert dog years to human years using JS inside the curly brackets.
+Note the use of tick marks instead of single quotes and that we have the ability to access variables and convert dog years to human years using JS inside the curly brackets.
 
 #### Using [Template Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
@@ -593,7 +600,7 @@ Note: template strings and `let` and `const` variables are ES6 (Ecmascript versi
 
 #### Aside: Objects
 
-Open for reference: `_Objects > objects.html`
+Open for reference: `other > javascript > _Objects > objects.html`
 
 Examine the sample object in that file in the browser console:
 
