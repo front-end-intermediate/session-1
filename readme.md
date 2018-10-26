@@ -12,7 +12,17 @@ Install [Node.js](https://nodejs.org/en/) on your laptop now.
 
 ## Homework
 
-<!-- Review the notes below. Download and unzip the files as completed by me at the end of the class [here](http://daniel.deverell.com/intermediate/session-1.zip). 'cd' into the directory and run `npm install` and then `npm run start`. (Windows users may need to edit the script in `package.json` to read `"start": "browser-sync start --server \"app\" --files \"app\""` as noted below.) Follow the instructions that begin [here](https://github.com/front-end-intermediate/session-1#exercise---faking-it), to hijack one of the hashes and emulate a single page application for the Workbook link. -->
+Review the notes below. Download and unzip the files as completed by me at the end of the class [here](https://github.com/front-end-intermediate/session-1/tree/fall2018-done). 'cd' into the directory and run `npm install` and then `npm run start`. (Windows users may need to edit the script as noted below.) Add a new category of New York Times articles using _your own_ api key.
+
+Here are the [NY Times](https://developer.nytimes.com) instructions for getting a key. You can get a key [here](https://developer.nytimes.com/signup).
+
+The specific API endpoint you want for this one is their [top stories endpoint](https://developer.nytimes.com/top_stories_v2.json). It let’s you request the top stories from a specific section of their publication.
+
+```
+https://api.nytimes.com/svc/topstories/v2/{section_name}.json?api-key=1234_my_api_key_5678
+```
+
+## Reading etc.
 
 * Watch this video on Node and NPM: [Node.js Tutorial for Absolute Beginners](https://youtu.be/U8XF6AFGqlc) on YouTube
 * Install [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your laptop
@@ -76,7 +86,7 @@ NPM case study - A static site generator. (What is a [static site generator?](ht
 $ code .
 ```
 
-Open the integrated terminal in VSCode (`View > Terminal`) with `ctrl + ~`
+Open the integrated terminal in VSCode (`View > Terminal`) with `ctrl + ~` (control + tilde).
 
 For our first foray into NPM we will install and use [Browser Sync](https://www.browsersync.io).
 
@@ -84,19 +94,19 @@ For our first foray into NPM we will install and use [Browser Sync](https://www.
 $ npm init -y
 ```
 
-* `npm init -y` creates `package.json`
+* `npm init -y` creates `package.json` - examine it.
 
 ```sh
 $ npm install browser-sync --save-dev
 ```
 
-* `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder. `--save-dev` adds the software to a list of development dependencies in `package.json`
+* `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into a newly created `node_modules` folder. `--save-dev` adds the software to a list of development dependencies in `package.json` - examine it.
 
 ```sh
 touch .gitignore
 ```
 
-`touch .gitignore` creates a `.gitignore` file. Edit it to include `node_modules` so Git does not track the `node_modules` folder.
+`touch .gitignore` creates a `.gitignore` file. Edit and add `node_modules`, save and close. Git will not track the `node_modules` folder.
 
 ### Editing package.json
 
@@ -125,11 +135,11 @@ Note: Browser Sync has an interface running at port 3001: [http://localhost:3001
 
 ## DOM Scripting
 
-DOM scripting is not really 'pure' JavaScript. It uses JavaScript - but only in the browser - and extends vanilla JavaScript functionality with a wide variety of custom methods. The HTML DOM (Document Object Model) allows JavaScript to access and manipulate the elements of an HTML document.
+DOM scripting is JavaScript in the browser. The HTML DOM (Document Object Model) specification allows JavaScript to access and manipulate the elements of an HTML document.
 
-See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting.
+<!-- See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting. -->
 
-### Getting elements in the DOM
+### Selecting elements in the DOM
 
 Use document`.querySelectorAll()` to find all matching elements on a page. You can use any valid CSS selector.
 
@@ -141,7 +151,7 @@ var elems = document.querySelectorAll('#main a');
 var elemsPara = document.querySelectorAll('p');
 ```
 
-Use `document.querySelector()` to find the first matching element on a page.
+Use `document.querySelector()` (without the 'All') to find the first matching element on a page.
 
 ```js
 // The first div
@@ -157,7 +167,7 @@ var elem = document.querySelector('[data-headline="main"]');
 var elemNone = document.querySelector('.foo');
 ```
 
-If an element isn’t found, `querySelector()` returns null. If you try to do something with the nonexistant element, an error will get thrown. You should check that a matching element was found before using it.
+If an element isn’t found, `querySelector()` returns null. If you try to do something with the nonexistant element you'll get an error. You can check that a matching element was found before using it.
 
 ```js
 // Verify element exists before doing anything with it
@@ -168,7 +178,9 @@ if (elemNone) {
 
 ### Looping through items
 
-In JavaScript, you use `for` to loop through array and node list items.
+#### Arrays and NodeLists
+
+In JavaScript, you can use a `for` to loop through array and node list items.
 
 ```js
 var elems = document.querySelectorAll('#main a');
@@ -178,6 +190,8 @@ for (var i = 0; i < elems.length; i++) {
     console.log(elems[i]) // value
 }
 ```
+
+#### Objects
 
 A `for...in` loop is a modified version of a `for` loop that you can use to loop through _objects_.
 
@@ -229,7 +243,8 @@ The `Array.forEach()` method only works with arrays, not NodeLists (like those r
 You can convert NodeLists into Arrays with the `Array.from()` method and use `Array.forEach()` on that.
 
 ```js
-Array.from(document.querySelectorAll('#main a')).forEach(function (item, index) {
+Array.from(document.querySelectorAll('#main a'))
+.forEach(function (item, index) {
     // Do something...
     console.log(item);
     console.log(index)
@@ -493,7 +508,7 @@ Switch out the concatenation for a *template string*:
 listItem.innerHTML = `<a href="#">${linkText}</a>`
 ```
 
-Since template strings accept JavaScript inside the curly braces we can further refactor to expand the use of JS:
+Since template strings accept JavaScript inside the curly braces we can further refactor:
 
 ```js
 for (let i = 0; i < navItemsArray.length; i++) {
@@ -550,7 +565,7 @@ Note: this is what the above would look like without using template strings (cou
 var content = "\n<div>\n  <h2>\n    " + me.first + " " + me.last + "\n  </h2>\n    <span>" + me.job + "</span>\n    <p>Twitter: " + tw + "</p>\n    <p>Blog: " + me.links.web.blog + "</p>\n</div>\n";
 ```
 
-#### Aside: Destructuring
+<!-- #### Aside: Destructuring
 
 Destructuring allows us to extract properties from objects and arrays. The curly brackets to the left of the equals sign below *do not* create an object. The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects.
 
@@ -601,7 +616,7 @@ const content = `
   <p>Blog: ${bg}</p>
 </div>
 `
-```
+``` -->
 
 ## EXERCISE - dynamic generation with an array of objects
 
@@ -904,19 +919,22 @@ function fixNav() {
 
 Note `paddingTop` (camel case) - I used Javascript for this because the height of the nav bar (`offSetHeight`) could vary. Otherwise I would have used the CSS file. Always try to use CSS instead of Javascript wherever possible.
 
-## EXERCISE - Adding the SVG Image
+## Adding an SVG Image
+
+Select the first list item on the nav, add a class and set the innerHTML:
 
 ```js
-const logo = document.querySelector('#main ul li');
+const logo = nav.querySelector('#main ul li');
 logo.classList.add('logo');
 logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
 ```
 
-* Examine the SVG file
-* some interesting applications of SVG:
+Examine the SVG file
 
-[Responsive logos](http://responsivelogos.co.uk)
-[Background generator](http://www.svgeneration.com/recipes/Beam-Center/)
+Some interesting applications of SVG:
+
+* [Responsive logos](http://responsivelogos.co.uk)
+* [Background generator](http://www.svgeneration.com/recipes/Beam-Center/)
 
 Format the logo and create the sliding logo behavior. Note: CSS only, no JavaScript:
 
@@ -941,6 +959,198 @@ li.logo {
 ```
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
+
+## AJAX
+
+APIs, or Application Programming Interfaces, allow software (or in our case, websites and web apps) to talk to and share data with a server.
+
+AJAX is the primary method you’ll use to get and send data to APIs.
+
+_AJAX stands for Asynchronous JavaScript And XML. In a nutshell, it is the use of the XMLHttpRequest object to communicate with servers. It can send and receive information in various formats, including JSON, XML, HTML, and text files. AJAX’s most appealing characteristic is its “asynchronous” nature, which means it can communicate with the server, exchange data, and update the page without having to refresh the page._
+
+[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)
+
+Making AJAX requests with the `XMLHttpRequest()` method, often referred to as XHR, is a three step process:
+
+1. Set up our request by creating a new XMLHttpRequest().
+2. Create an onreadystatechange callback to run when the request state changes.
+3. Open and send our request.
+
+Here's an example that requests data from [JSON Placeholder](https://jsonplaceholder.typicode.com/), a site that provides real API endpoints and sends back placeholder content.
+
+First, let’s set up a new XHR request.
+
+```js
+// Set up our HTTP request
+var xhr = new XMLHttpRequest();
+```
+
+Next, let’s create an onload event that will run when our request completes and data is sent back.
+
+The XHR request will return with a status property that contains an HTTP status code. Codes from 200 to 299 are consider a success. Anything else is not.
+
+We can check that our request was successful by making sure the `xhr.status` was greater than or equal to 200 and less than 300.
+
+```js
+// Set up our HTTP request
+var xhr = new XMLHttpRequest();
+
+// Setup our listener to process request state changes
+xhr.onreadystatechange = function () {
+
+    // Only run if the request is complete
+    if (xhr.readyState !== 4) return;
+
+    // Process our return data
+    if (xhr.status >= 200 && xhr.status < 300) {
+        // This will run when the request is successful
+        console.log('success!', xhr);
+    } else {
+        // This will run when it's not
+        console.log('The request failed!');
+    }
+
+    // This will run either way
+    // All three of these are optional, depending on what you're trying to do
+    console.log('This always runs...');
+
+};
+```
+
+Finally, we’ll open our request, specifying the request type (more on that in the next lesson), and the URL to make our request to.
+
+Then, we’ll send our request.
+
+```js
+// Set up our HTTP request
+var xhr = new XMLHttpRequest();
+
+// Setup our listener to process request state changes
+xhr.onreadystatechange = function () {
+
+    // Only run if the request is complete
+    if (xhr.readyState !== 4) return;
+
+    // Process our return data
+    if (xhr.status >= 200 && xhr.status < 300) {
+        // This will run when the request is successful
+        console.log('success!', xhr);
+    } else {
+        // This will run when it's not
+        console.log('The request failed!');
+    }
+
+    // This will run either way
+    // All three of these are optional, depending on what you're trying to do
+    console.log('This always runs...');
+
+};
+
+// Create and send a GET request
+// The first argument is the post type (GET, POST, PUT, DELETE, etc.)
+// The second argument is the endpoint URL
+xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+xhr.send();
+```
+
+Copy and paste the above into the console of your browser.
+
+We used a GET request to get a list of posts from JSON Placeholder, but, there are a handful of possible request types you can make. HTTP methods are typically verbs that describe what the request your making does.
+
+The four most common are GET, POST, PUT, and DELETE. We will be using the others laster. You can see a list at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
+
+The way you send information to an API will vary from API to API. For example, to get post 42 on JSON Placeholder, you’d use `https://jsonplaceholder.typicode.com/post/42`.
+
+The most common response type from API calls is JSON, an acronym for JavaScript Object Notation. It has the same structure and format (for the most part) as a JavaScript object (sometimes it’s wrapped in an array).
+
+The response data can be accessed from the responseText property on the XMLHttpRequest object.
+
+```js
+var xhr = new XMLHttpRequest();
+// ...
+var data = xhr.responseText;
+```
+
+Here it is in context. Note that it requests on post number 10. 
+
+Paste this into the console:
+
+```js
+// Set up our HTTP request
+var xhr = new XMLHttpRequest();
+
+// Setup our listener to process request state changes
+xhr.onreadystatechange = function () {
+
+    // Only run if the request is complete
+    if (xhr.readyState !== 4) return;
+
+    // Process our return data
+    if (xhr.status >= 200 && xhr.status < 300) {
+        // This will run when the request is successful
+        console.log(xhr.responseText);
+    } else {
+        // This will run when it's not
+        console.log(xhr.responseText);
+    }
+
+};
+
+// Create and send a GET request
+// The first argument is the post type (GET, POST, PUT, DELETE, etc.)
+// The second argument is the endpoint URL
+xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/10');
+xhr.send();
+```
+
+## Converting `xhr.responseText` from a string to an object
+
+However, the JSON response you get back is sent as a string, and to work with the data, you need to convert it back into an object. You do this with the `JSON.parse()` method.
+
+```js
+// Convert data string to an object
+var data = JSON.parse(xhr.responseText);
+
+// Get the first item
+var firstPost = data[0];
+
+// Loop through each post
+data.forEach(function (post) {
+    console.log(post);
+});
+```
+
+Here it is in full context.
+
+```js
+// Set up our HTTP request
+var xhr = new XMLHttpRequest();
+
+// Setup our listener to process request state changes
+xhr.onreadystatechange = function () {
+
+    // if the request is complete
+    if (xhr.readyState !== 4) return;
+
+    // Process our return data
+    if (xhr.status >= 200 && xhr.status < 300) {
+        // successful
+        console.log(JSON.parse(xhr.responseText));
+    } else {
+        // unsuccessful
+        console.log(JSON.parse(xhr.responseText));
+    }
+
+};
+
+xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+xhr.send();
+```
+
+
+
+
+
 
 <!-- TESTING  -->
 ```js
@@ -974,29 +1184,219 @@ function requestStories(url) {
 requestStories()
 ```
 
+## EXERCISE - Setting the Content
+
+Once you get API data, you’ll typically want to use it to create some markup an add it to your site or app. 
+
+We will use the [NY Times developer](https://developer.nytimes.com) API for getting a data using my key.
+
+The specific API endpoint for this is their [top stories endpoint](https://developer.nytimes.com/top_stories_v2.json). It let’s us request the top stories from a specific section of their publication.
+
+Start by storing the API key and the element we want to manipulate in a variable:
+
 ```js
 var elem = document.querySelector('.site-wrap');
 var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+```
 
+Add a function that uses xhr to get the data:
+
+```js
+function requestStories(url) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    // Only run if the request is complete
+    if (request.readyState !== 4) return;
+    
+    // Process our return data
+    if (request.status === 200) {
+      // Success!
+      console.log(request);
+    } else {
+      // Request failed
+      console.log('boo hoo')
+    }
+  };
+  request.open('GET', 'https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=' + nytapi)
+  request.send();
+}
+```
+
+And the call that function:
+
+```js
+requestStories()
+```
+
+What we get back is the entire request. Let's send that to another function called `renderStories()` which will add the content we want from the request to the DOM.
+
+First, change `console.log(request);` to a call to the function that passes the data `renderStories(request);`
+
+```js
+function requestStories(url) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    // Only run if the request is complete
+    if (request.readyState !== 4) return;
+    
+    // Process our return data
+    if (request.status === 200) {
+      // Success!
+      renderStories(request); // NEW
+    } else {
+      // Request failed
+      console.log('boo hoo')
+    }
+  };
+  request.open('GET', 'https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=' + nytapi)
+  request.send();
+}
+```
+
+Then add the `renderStories Function passing the request in a `data`::
+
+```js
+function renderStories(data) {
+  console.log(data)
+}
+```
+
+Note the prototype of the returned info: `XMLHttpRequest`.
+
+Convert the data to JSON:
+
+```js
 function renderStories(data) {
   var content = (JSON.parse(data.responseText));
-  console.log(content.results)
+  console.log(content)
+}
+```
+
+Note the prototype of the content variable: `Object`. This is something we can work with.
+
+Lets access the `results` portion of the data (the articles) and put them in a new variable `stories`:
+
+```js
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  var stories = content.results;
+  console.log(stories)
+}
+```
+
+Note the prototype of the stories variable: `Array` and recall that we can use the `forEach` method on a variable. THe `forEach` method requires a function:
+
+```js
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  var stories = content.results;
+  stories.forEach(function (story) {
+    console.log(story.title)
+  });
+}
+```
+
+Now, within the `forEach` we'll make a `div`s and set their contents. The `innerHTML` property and the `textContent` property are good candidates. 
+
+```js
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
   var stories = content.results;
   stories.forEach(function (story) {
     var storyEl = document.createElement('div');
-    storyEl.className = 'feed-item';
+    storyEl.className = 'entry';
     storyEl.innerHTML = `
-    <div class="entry">
+      <p>${story.abstract}</p>
+    `;
+    console.log(storyEl)
+  });
+}
+```
+
+Next, we'll add the `storyEl` to the DOM with `prepend`:
+
+```js
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  var stories = content.results;
+  stories.forEach(function (story) {
+    var storyEl = document.createElement('div');
+    storyEl.className = 'entry';
+    storyEl.innerHTML = `
+      <p>${story.abstract}</p>
+    `;
+    elem.prepend(storyEl); // NEW
+  });
+}
+```
+
+Note that we are using the variable we set up earlier `var elem = document.querySelector('.site-wrap');` as the target for the `prepend`.
+
+Let's expand the content to include images, links, headers and headlines:
+
+```js
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  var stories = content.results;
+  stories.forEach(function (story) {
+    var storyEl = document.createElement('div');
+    storyEl.className = 'entry';
+    storyEl.innerHTML = `
+      <p>${story.abstract}</p>
       <h4>${story.section}</h4>
       <div>
       <img src="${story.multimedia[0].url}" /> 
       <h3><a target="_blank" href="${story.short_url}">${story.title}</a></h3>
       </div>
       <p>${story.abstract}</p>
-    </div>
     `;
-    elem.prepend(storyEl);
-  })
+    elem.prepend(storyEl); // NEW
+  });
+}
+```
+
+Add some new css to support the new elements:
+
+```css
+.entry h4 {
+  margin: 0.25rem 0;
+}
+.entry p {
+  margin: 0;
+}
+.entry img {
+  float: left;
+  width: 75px;
+  padding: 0 0.5rem 0 0;
+}
+.entry a {
+  color: #007eb6;
+  text-decoration: none;
+}
+```
+
+Here is the full script required:
+
+```js
+var elem = document.querySelector('.site-wrap');
+var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  var stories = content.results;
+  stories.forEach(function (story) {
+    var storyEl = document.createElement('div');
+    storyEl.className = 'entry';
+    storyEl.innerHTML = `
+      <h4>${story.section}</h4>
+      <div>
+      <img src="${story.multimedia[0].url}" /> 
+      <h3><a target="_blank" href="${story.short_url}">${story.title}</a></h3>
+      </div>
+      <p>${story.abstract}</p>
+    `;
+    elem.prepend(storyEl); // NEW
+  });
 }
 
 function requestStories(url) {
@@ -1004,7 +1404,6 @@ function requestStories(url) {
   request.onreadystatechange = function () {
     // Only run if the request is complete
     if (request.readyState !== 4) return;
-    
     // Process our return data
     if (request.status === 200) {
       // Success!
@@ -1019,256 +1418,115 @@ function requestStories(url) {
 }
 
 requestStories()
-
 ```
 
+Let's limit the number of stories and create a new section for them.
 
-<!-- END TESTING -->
-
-
-## EXERCISE - Faking It
-
-Note the use of hashes in the navigation:
-
-`<a href="#watchlist">Watchlist</a>`
-
-These allow us to navigate (`index.html#research`) to sections of the document marked up with the corresponding id:
-
-`<p id="watchlist">`
-
-Note that clicking on an hashed link doesn't refresh the page. This makes hashes an important feature for creating Single Page Applications (SPAs) - they are used to load different content via AJAX from a server with no page refresh.
-
-We'll set up our page emulate a single page application.
-
-Run `window.location` in the console.
-
-Sample of a page fragment redirect using `setTimeout()`:
+Go into `navitems.js` and change the data in the `navItems` array to create a new section for travel:
 
 ```js
-window.onload = function(){
-  window.location.hash = '#'
-  setTimeout( () => window.location.hash = '#watchlist' , 1500)
-}
+const navItems = [
+    {
+      label: 'LOGO',
+      link: '#'
+    },
+    {
+      label: 'Travel',
+      link: '#travel'
+    },
 ```
 
-Delete the code above.
+Then change the target for our prepend and add a travel id so the navigation link works:
 
 ```js
-const navTest = document.querySelectorAll('#main ul li a');
-for (let i=0; i<navTest.length; i++){
-  console.log('hash ', navTest[i].hash);
-}
+var elem = document.querySelector('.site-wrap #travel'); // NEW
+elem.innerHTML = `<div id="travel></div>`; // NEW
+var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
 ```
 
-Add an event listener to the links in the nav:
+And create a limit variable:
 
 ```js
-const navTest = document.querySelectorAll('#main ul li a');
-for (let i=0; i<navTest.length; i++){
-  navTest[i].addEventListener('click', prepContent)
-}
-
-function prepContent(e){
-  if (this.hash == "#workbook"){
-    e.preventDefault();
-  }
-}
+var elem = document.querySelector('.site-wrap #travel');
+elem.innerHTML = `<div id="travel></div>`;
+var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+limit = 3; // NEW
 ```
 
-We have hijacked the normal functioning on the workbook link.
+Now we'll use a new [Array method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice), `slice()` on our `stories` variable. 
 
-Let's use the fakeContent provided in our sample data file for the content of a new variable `siteWrap`. Update the script above to:
+The slice() method returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). 
 
-1. create a reference to `site-wrap`
-1. access fake header and content from the `navitems.js` array
-1. use `innerHTML` to apply that content to the document
+We'll use it on our `stories` variable:
 
 ```js
-const sitewrap = document.querySelector('.site-wrap');
-const navTest = document.querySelectorAll('#main ul li a');
-for (let i=0; i<navTest.length; i++){
-  navTest[i].addEventListener('click', prepContent)
-}
-
-function prepContent(e){
-  if (this.hash == "#workbook"){
-    const header = fakeContent[0].header;
-    const content = fakeContent[0].content;
-    sitewrap.innerHTML = `
-      <h2>${header}</h2>
-      <p>${content}</p>
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  var stories = content.results.slice(0, limit); //NEW
+  stories.forEach(function (story) {
+    var storyEl = document.createElement('div');
+    storyEl.className = 'entry';
+    storyEl.innerHTML = `
+      <h4>${story.section}</h4>
+      <div>
+      <img src="${story.multimedia[0].url}" /> 
+      <h3><a target="_blank" href="${story.short_url}">${story.title}</a></h3>
+      </div>
+      <p>${story.abstract}</p>
     `;
-    e.preventDefault();
-  }
+    elem.prepend(storyEl);
+  });
 }
+```
+
+Here, again, is the full script:
+
+```js
+var elem = document.querySelector('.site-wrap #travel');
+elem.innerHTML = `
+<div id="travel></div>
+`;
+var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+limit = 3;
+
+function renderStories(data) {
+  var content = (JSON.parse(data.responseText));
+  var stories = content.results.slice(0, limit); //NEW
+  stories.forEach(function (story) {
+    var storyEl = document.createElement('div');
+    storyEl.className = 'entry';
+    storyEl.innerHTML = `
+      <h4>${story.section}</h4>
+      <div>
+      <img src="${story.multimedia[0].url}" /> 
+      <h3><a target="_blank" href="${story.short_url}">${story.title}</a></h3>
+      </div>
+      <p>${story.abstract}</p>
+    `;
+    elem.prepend(storyEl);
+  });
+}
+
+function requestStories(url) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    // Only run if the request is complete
+    if (request.readyState !== 4) return;
+    // Process our return data
+    if (request.status === 200) {
+      // Success!
+      renderStories(request);
+    } else {
+      // Request failed
+      console.log('boo hoo')
+    }
+  };
+  request.open('GET', 'https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=' + nytapi)
+  request.send();
+}
+
+requestStories()
 ```
 
 ### Notes
 
-[vh and vw in CSS](https://css-tricks.com/viewport-sized-typography/)
-
-Flexbox can be quite difficult to master. You could do worse than checking out:
-
-* Free Code Camp's [article on Medium.com](https://medium.freecodecamp.com/understanding-flexbox-everything-you-need-to-know-b4013d4dc9af#.usjz1l93w), or
-
-* A simple guide to the various CSS properties on [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-
-`<img src="other/hero-1.png">`
-
-[Use a system font instead of a custom font?](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/) [In SVG?](https://css-tricks.com/system-fonts-svg/)
-
-```css
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
-```
-
-```css
-.site-nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.site-nav li {
-  width: 100px;
-  height: 100px;
-  background-color: #8cacea;
-  margin: 8px;
-}
-```
-
-```css
-.account-dropdown ul {
-  display: none;
-}
-
-.site-header {
-  background: #0D1313;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding:0.5rem;
-}
-
-.logo {
-  text-decoration: none;
-  color: white;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  padding: 10px;
-}
-
-a {
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #CDD0D0;
-  padding: 20px;
-  display: inline-block;
-}
-
-.active a {
-  font-weight: bold;
-  color: #62DEBE;
-  background: darken(#62DEBE, 40%);
-}
-
-.account-actions {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.sign-out-link {
-  color: #62DEBE;
-  font-size: 0.8rem;
-  margin-left: 10px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 600px) {
-  .site-header {
-    flex-wrap: wrap;
-  }
-  .site-nav {
-    order: 2;
-    background: #333;
-    width: 100%;
-  }
-}
-```
-
-[Font Awesome](http://fontawesome.io/)
-
-```html
-<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
-
-<i class="fa fa-bullseye fa-3x"></i>
-
-<i class="fa fa-gear"></i>
-
-```
-
-Comment out the contents of the ul:
-
-```html
-<nav class="site-nav">
-  <ul>
-    <!-- <li class="active"><a href="#0">Recipes</a></li>
-    <li><a href="#0">Reviews</a></li>
-    <li><a href="#0">Delivery</a></li> -->
-  </ul>
-</nav>
-```
-
-```html
-<div class="site-wrap">
-  <h4>Homework</h4>
-
-  <p>The items below all come from today's work on the Basic DOM scripting page. You should attempt each one if possible.</p>
-
-  <ol>
-    <li>Create an object with a new set of labels and links for the site-nav li's above and use the JavaScript techniques we covered today to dynamically generate the nav menu</li>
-
-    <li>Use classList to assign the active class to a link when clicked (be sure to remove it from the previously highlighted link as well)</li>
-
-    <li>Add some paragraphs to the page and make the navigation sticky</li>
-  </ol>
-
-  <p>Post your efforts to the class Slack Channel and a web server (if you don't have I can provide)</p>
-</div>
-```
-
-##### ALT loader
-
-```js
-function loadDoc1() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById(“textbox”).innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open(“GET”, “texts/latestnews.html”, true);
-  xhttp.send();
-}
-```
-
-```html
-<nav>
-  <ul class=“nav”>
-    <li class=“latestnews”><a href=“#” onclick=“loadDoc1()“>LATEST NEWS</a></li>
-    <li class=“eswnyc”><a href=“#” onclick=“loadDoc2()“>ESW-NYC</a></li>
-    <li class=“team”><a href=“#” onclick=“loadDoc3()“>TEAM</a></li>
-    <li class=“projects”><a href=“#” onclick=“loadDoc4()“>PROJECTS</a></li>
-    <li class=“contactus”><a href=“#” onclick=“loadDoc5()“>CONTACT US</a></li>
-    <li class=“participate”><a href=“#” onclick=“loadDoc6()“>PARTICIPATE</a></li>
-    <li class=“donate”><a href=“#” onclick=“loadDoc7();“>DONATE</a></li>
-  </ul>
-</nav>
-
-```
