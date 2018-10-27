@@ -185,7 +185,7 @@ In JavaScript, you can use a `for` to loop through array and node list items.
 ```js
 var elems = document.querySelectorAll('#main a');
 
-for (var i = 0; i < elems.length; i++) {
+for (let i = 0; i < elems.length; i++) {
     console.log(i) // index
     console.log(elems[i]) // value
 }
@@ -210,7 +210,7 @@ var dinner = {
   alcohol: true,
 };
 
-for (var key in dinner) {
+for (let key in dinner) {
   if (dinner.hasOwnProperty(key)) {
     console.log(key); // key
     console.log(dinner[key]); // value
@@ -1144,7 +1144,7 @@ Start by storing the API key and the element we want to manipulate in a variable
 
 ```js
 var elem = document.querySelector('.site-wrap');
-var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+const nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
 ```
 
 Add a function that uses xhr to get the data:
@@ -1306,20 +1306,24 @@ function renderStories(data) {
 Add some new css to support the new elements:
 
 ```css
+.entry {
+    margin-bottom: 1.5rem;
+}
 .entry h4 {
-  margin: 0.25rem 0;
+    margin: 0.25rem 0;
 }
 .entry p {
-  margin: 0;
+    margin: 0;
+    margin-left: 75px;
 }
 .entry img {
-  float: left;
-  width: 75px;
-  padding: 0 0.5rem 0 0;
+    float: left;
+    width: 75px;
+    padding: 0 0.5rem 0 0;
 }
 .entry a {
-  color: #007eb6;
-  text-decoration: none;
+    color: #007eb6;
+    text-decoration: none;
 }
 ```
 
@@ -1327,7 +1331,7 @@ Here is the full script:
 
 ```js
 var elem = document.querySelector('.site-wrap');
-var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+const nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
 
 function renderStories(data) {
   var content = (JSON.parse(data.responseText));
@@ -1389,7 +1393,7 @@ Then change the target for our prepend and add a travel id so the navigation lin
 ```js
 var elem = document.querySelector('.site-wrap #travel'); // NEW
 elem.innerHTML = `<div id="travel></div>`; // NEW
-var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+const nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
 ```
 
 And create a limit variable:
@@ -1397,15 +1401,15 @@ And create a limit variable:
 ```js
 var elem = document.querySelector('.site-wrap #travel');
 elem.innerHTML = `<div id="travel></div>`;
-var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
-limit = 3; // NEW
+const nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+const limit = 3; // NEW
 ```
 
 Now we'll use a new [Array method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice), `slice()` on our `stories` variable. 
 
-The slice() method returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). 
+The `slice()` method returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). 
 
-We'll use it on our `stories` variable:
+We'll use it on our `stories` variable - starting with the first item and going to the limit of 3 set in our variable:
 
 ```js
 function renderStories(data) {
@@ -1431,11 +1435,9 @@ Here, again, is the full script:
 
 ```js
 var elem = document.querySelector('.site-wrap #travel');
-elem.innerHTML = `
-<div id="travel></div>
-`;
-var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
-limit = 3;
+elem.innerHTML = `<div id="travel></div>`;
+const nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
+const limit = 3;
 
 function renderStories(data) {
   var content = (JSON.parse(data.responseText));
