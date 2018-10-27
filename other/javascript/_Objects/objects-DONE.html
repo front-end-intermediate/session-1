@@ -7,7 +7,7 @@
 
 <body>
   <script>
-
+    
     const me = {
       first: 'Daniel',
       last: 'Deverell',
@@ -22,27 +22,27 @@
         }
       }
     }
-
+    
     const { first, last } = me;
-
+    
     const { twitter: tw, facebook: fb } = me.links.social;
-
+    
     console.log(fb)
-
+    
     const content =
-      `
-<div class="person">
-  <h2>
-    ${me.first} ${me.last}
-  </h2>
-    <span>${me.job}</span>
-    <p>Twitter: ${tw}</p>
-    <p>Blog: ${me.links.web.blog}</p>
-</div>
-`
-
+    `
+    <div class="person">
+      <h2>
+        ${me.first} ${me.last}
+      </h2>
+      <span>${me.job}</span>
+      <p>Twitter: ${tw}</p>
+      <p>Blog: ${me.links.web.blog}</p>
+    </div>
+    `
+    
     document.body.innerHTML = content;
-
+    
   </script>
 </body>
 
