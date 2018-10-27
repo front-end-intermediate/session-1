@@ -712,7 +712,7 @@ const fifteen = inventors.filter (
 console.table(fifteen);
 ```
 
-[Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) have a number of features and are commonly used as a shorter syntax for anonymous functions. Much of the documentation you will read uses them.
+[Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) are commonly used as a shorter syntax for anonymous functions. Much of the documentation you will read uses them and so shall we.
 
 Refactor using an arrow function with implicit return:
 
@@ -921,12 +921,12 @@ Note `paddingTop` (camel case) - I used Javascript for this because the height o
 
 ## Adding an SVG Image
 
-Select the first list item on the nav, add a class and set the innerHTML:
+Select the first list item on the nav, add a class and set the innerHTML so that we get a link which will return us to the top of the page:
 
 ```js
 const logo = nav.querySelector('#main ul li');
 logo.classList.add('logo');
-logo.firstChild.innerHTML = '<img src="img/logo.svg" />';
+logo.firstChild.innerHTML = '<a href="#"><img src="img/logo.svg" /></a>';
 ```
 
 Examine the SVG file
