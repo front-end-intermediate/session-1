@@ -12,7 +12,7 @@ Install [Node.js](https://nodejs.org/en/) on your laptop now.
 
 ## Homework
 
-Review the notes below. Download and unzip the files as completed by me at the end of the class [here](https://github.com/front-end-intermediate/session-1/tree/fall2018-done). 'cd' into the directory and run `npm install` and then `npm run start`. (Windows users may need to edit the script as noted below.) Add a new category of New York Times articles using _your own_ api key.
+Review the notes below. Download and unzip the files as completed by me at the end of the class [here](https://github.com/front-end-intermediate/session-1/tree/fall2018-done). 'cd' into the directory and run `npm install` and then `npm run start`. Add a new category of New York Times articles using _your own_ api key.
 
 Here are the [NY Times](https://developer.nytimes.com) instructions for getting a key. You can get a key [here](https://developer.nytimes.com/signup).
 
@@ -21,6 +21,7 @@ The specific API endpoint you want for this one is their [top stories endpoint](
 ```
 https://api.nytimes.com/svc/topstories/v2/{section_name}.json?api-key=1234_my_api_key_5678
 ```
+
 
 ## Reading etc.
 
@@ -550,59 +551,6 @@ Note: this is what the above would look like without using template strings (cou
 var content = "\n<div>\n  <h2>\n    " + me.first + " " + me.last + "\n  </h2>\n    <span>" + me.job + "</span>\n    <p>Twitter: " + tw + "</p>\n    <p>Blog: " + me.links.web.blog + "</p>\n</div>\n";
 ```
 
-<!-- #### Aside: Destructuring
-
-Destructuring allows us to extract properties from objects and arrays. The curly brackets to the left of the equals sign below *do not* create an object. The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects.
-
-Add the below to objects.html:
-
-```js
-// const first = me.first;
-// const last = me.last;
-const { first, last } = me;
-```
-
-Access these two variables in the console:
-
-```sh
-> first
-> last
-```
-
-Instead of creating multiple variables (the commented out material above), we use destructuring syntax (the curly braces) to extract information and create multiple variables. This comes in handy:
-
-* when the data you need to access is deeply nested in an object
-* when accessing third party data where you might have a variable name clash
-
-```js
-const { twitter, facebook } = me.links.social;
-```
-
-When accessing third party data where you have a variable name clash (e.g., you already have a constant variable in use called blog but you want to access content from a database that also uses that name) you can avoid issues by destructuring and renaming:
-
-```js
-const { twitter:tw, facebook:fb } = me.links.social;
-```
-
-```js
-const { blog:bg } = me.links.web;
-```
-
-Our `content` variable would then be written as:
-
-```js
-const content = `
-<div class="person">
-  <h2>
-    ${first} ${last}
-  </h2>
-  <span>${me.job}</span>
-  <p>Twitter: ${tw}</p>
-  <p>Blog: ${bg}</p>
-</div>
-`
-``` -->
-
 ## EXERCISE - dynamic generation with an array of objects
 
 In the previous portion of this exercise we worked with an simple array.
@@ -613,38 +561,30 @@ The links for our page are in `navitems.js` - in the navItems array:
 
 ```js
 var navItems = [
-{
-  label: 'LOGO',
-  link: '#'
-},
-{
-  label: 'Watchlist',
-  link: '#watchlist'
-},
-{
-  label: 'Research',
-  link: '#research'
-},
-{
-  label: 'Markets',
-  link: '#markets'
-},
-{
-  label: 'Workbook',
-  link: '#workbook'
-},
-{
-  label: 'Connect',
-  link: '#connect'
-},
-{
-  label: 'Desktop',
-  link: '#desktop'
-},
-{
-  label: 'FAQ',
-  link: '#faq'
-}
+  {
+    label: 'LOGO', link: '#'
+  },
+  {
+    label: 'Watchlist', link: '#watchlist'
+  },
+  {
+    label: 'Research', link: '#research'
+  },
+  {
+    label: 'Markets', link: '#markets'
+  },
+  {
+    label: 'Workbook', link: '#workbook'
+  },
+  {
+    label: 'Connect', link: '#connect'
+  },
+  {
+    label: 'Desktop', link: '#desktop'
+  },
+  {
+    label: 'FAQ', link: '#faq'
+  }
 ];
 ```
 
@@ -658,9 +598,7 @@ for (let i =0; i < navItems.length; i++ ){
 }
 ```
 
-Navigate and nspect the code and note that, thanks to the multiple name / value pairs in navItems we now have anchor tags with page fragment links in our html and are able to navigate within our page.
-
-Note the hash in the url location string.
+Navigate and inspect the code and note that we now have anchor tags with page fragment links in our html and are able to navigate within our page.
 
 ### Array Methods
 
@@ -670,7 +608,7 @@ First let's look at another Array method - `filter` and arrow functions.
 
 #### Array Methods: [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
-Uncomment the inventors sample data in `navitems.js`:
+Note the inventors sample data in `navitems.js`:
 
 ```js
 const inventors = [
@@ -722,7 +660,7 @@ console.log('Full names: ' + fullNames);
 
 Notice the commas separating the names.
 
-Refactored it to use an arrow function and join the results with a comma:
+Refactor it to use an arrow function and join the results with a comma:
 
 ```js
 const fullNames = inventors.map(
@@ -734,9 +672,9 @@ console.log('Full names: ' + fullNames);
 
 Note the use of `join()` to add a space after the comma.
 
-## EXERCISE - using [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to generate markup
+## EXERCISE - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
-An alternate method for creating the list items using `map()` and template strings:
+Here's an alternate method for creating the list items using `map()` and template strings:
 
 ```js
 const markup = `
@@ -945,23 +883,21 @@ li.logo {
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
 
-## Notes: AJAX
+## AJAX and APIs
 
-APIs, or Application Programming Interfaces, allow software (or in our case, websites and web apps) to talk to and share data with a server.
+APIs, or Application Programming Interfaces, allow websites and web apps to talk to and share data with a server.
 
-AJAX is the primary method you’ll use to get and send data to APIs.
+AJAX is a method you can use to get and send data to APIs.
 
-_AJAX stands for Asynchronous JavaScript And XML. In a nutshell, it is the use of the XMLHttpRequest object to communicate with servers. It can send and receive information in various formats, including JSON, XML, HTML, and text files. AJAX’s most appealing characteristic is its “asynchronous” nature, which means it can communicate with the server, exchange data, and update the page without having to refresh the page._
+_AJAX stands for Asynchronous JavaScript And XML. In a nutshell, it is the use of the XMLHttpRequest object to communicate with servers. It can send and receive information in various formats, including JSON, XML, HTML, and text files. AJAX’s most appealing characteristic is its “asynchronous” nature, which means it can communicate with the server, exchange data, and update the page without having to refresh the page._ - [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)
 
-[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)
-
-Making AJAX requests with the `XMLHttpRequest()` method, often referred to as XHR, is a three step process:
+Making AJAX requests with the `XMLHttpRequest()` method, often referred to as `XHR`, is a three step process:
 
 1. Set up our request by creating a new XMLHttpRequest().
-2. Create an onreadystatechange callback to run when the request state changes.
+2. Create an `onreadystatechange` function to run when the request state changes.
 3. Open and send our request.
 
-Here's an example that requests data from [JSON Placeholder](https://jsonplaceholder.typicode.com/), a site that provides real API endpoints and sends back placeholder content.
+Here's an example that requests data from [JSON Placeholder](https://jsonplaceholder.typicode.com/), a site that provides real API endpoints and sends back placeholder content for testing.
 
 First, let’s set up a new XHR request.
 
@@ -1002,7 +938,7 @@ xhr.onreadystatechange = function () {
 };
 ```
 
-Finally, we’ll open our request, specifying the request type (more on that in the next lesson), and the URL to make our request to.
+Finally, we’ll open our request, specifying the request type and the URL to make our request to.
 
 Then, we’ll send our request.
 
@@ -1056,7 +992,7 @@ var xhr = new XMLHttpRequest();
 var data = xhr.responseText;
 ```
 
-Here it is in context. Note that it requests on post number 10. 
+Here it is in context. (Note that this example requests only post number 10.) 
 
 Paste this into the console:
 
@@ -1090,7 +1026,7 @@ xhr.send();
 
 ## Converting `xhr.responseText` from a string to an object
 
-However, the JSON response you get back is sent as a string, and to work with the data, you need to convert it back into an object. You do this with the `JSON.parse()` method.
+The JSON response you get back is sent as a string and, to work with the data, we need to convert it back into an object. You do this with the `JSON.parse()` method.
 
 ```js
 // Convert data string to an object
@@ -1105,7 +1041,7 @@ data.forEach(function (post) {
 });
 ```
 
-Here it is in full context.
+Here it is in full context:
 
 ```js
 // Set up our HTTP request
@@ -1138,7 +1074,7 @@ Once you get API data, you’ll typically want to use it to create some markup a
 
 We will use the [NY Times developer](https://developer.nytimes.com) API for getting a data using my key.
 
-The specific API endpoint for this is their [top stories endpoint](https://developer.nytimes.com/top_stories_v2.json). It let’s us request the top stories from a specific section of their publication.
+The specific API endpoint for this is their [top stories endpoint](https://developer.nytimes.com/top_stories_v2.json). It lets us request the top stories from a specific section of their publication.
 
 Start by storing the API key and the element we want to manipulate in a variable:
 
@@ -1388,7 +1324,7 @@ const navItems = [
     },
 ```
 
-Then change the target for our prepend and add a travel id so the navigation link works:
+Then change the target for our prepend:
 
 ```js
 var elem = document.querySelector('.site-wrap #travel'); // NEW
