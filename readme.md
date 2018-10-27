@@ -253,23 +253,6 @@ Array.from(document.querySelectorAll('#main a'))
 
 ## EXERCISE - generated content from an array
 
-Note the CSS for the links:
-
-```css
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2.5rem;
-}
-
-nav li {
-    flex: 1;
-    text-align: center;
-}
-```
-
 We will replace the existing nav labels with items from an array using a `for loop`.
 
 Examine the provided JS files. Note that they are added in index.html:
@@ -288,6 +271,8 @@ In the console:
 ```
 
 Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers an array of objects consisting of key/value pairs.
+
+### Objects
 
 JavaScript objects are containers for named values.
 
@@ -354,7 +339,7 @@ Both have a length property - `navList.length` and `navItemsArray.length`.
 
 Note that we have 8 items in the `navItemsArray` but only 6 in our `navList`.
 
-### Replace our placeholder nav items with content from an array
+### EXERCISE - Replace our placeholder nav items with content from an array
 
 * use a `for` loop and `innerHTML`:
 
@@ -751,7 +736,7 @@ Note the use of `join()` to add a space after the comma.
 
 ## EXERCISE - using [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to generate markup
 
-An alternate method for creating the list items using map() and template strings:
+An alternate method for creating the list items using `map()` and template strings:
 
 ```js
 const markup = `
@@ -919,7 +904,7 @@ function fixNav() {
 
 Note `paddingTop` (camel case) - I used Javascript for this because the height of the nav bar (`offSetHeight`) could vary. Otherwise I would have used the CSS file. Always try to use CSS instead of Javascript wherever possible.
 
-## Adding an SVG Image
+## EXERCISE - Adding an SVG Image
 
 Select the first list item on the nav, add a class and set the innerHTML so that we get a link which will return us to the top of the page:
 
@@ -960,7 +945,7 @@ li.logo {
 
 (Note the use of max-width above. We are using this because transitions do not animate width.)
 
-## AJAX
+## Notes: AJAX
 
 APIs, or Application Programming Interfaces, allow software (or in our case, websites and web apps) to talk to and share data with a server.
 
@@ -1145,43 +1130,6 @@ xhr.onreadystatechange = function () {
 
 xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
 xhr.send();
-```
-
-
-
-
-
-
-<!-- TESTING  -->
-```js
-var elem = document.querySelector('.site-wrap');
-var nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
-
-function renderStories(data) {
-  var content = (JSON.parse(data.responseText));
-  console.log(content.results)
-}
-
-function requestStories(url) {
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function () {
-    // Only run if the request is complete
-    if (request.readyState !== 4) return;
-    
-    // Process our return data
-    if (request.status === 200) {
-      // Success!
-      renderStories(request);
-    } else {
-      // Request failed
-      console.log('boo hoo')
-    }
-  };
-  request.open('GET', 'https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=' + nytapi)
-  request.send();
-}
-
-requestStories()
 ```
 
 ## EXERCISE - Setting the Content
@@ -1375,7 +1323,7 @@ Add some new css to support the new elements:
 }
 ```
 
-Here is the full script required:
+Here is the full script:
 
 ```js
 var elem = document.querySelector('.site-wrap');
