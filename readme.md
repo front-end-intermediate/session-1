@@ -39,11 +39,15 @@ In VSCode press `cmd + shift + p` and type in the word `shell`. Select `Install 
 
 ![Image of layout](other/images/vscode.png)
 
+
+
 ## The Command Line
 
-In order to create websites you need to have a minimal set of terminal commands at your disposal.
+In this class you are goig to need to have a minimal set of terminal commands at your disposal.
 
 Note: Windows users normally use Powershell (run as Administrator) but can try the Git Bash terminal that is installed along with Git when things go wrong. Some of the commands below may be different on Windows or have alternatives.
+
+Start the terminal app (Mac OS) or PowerShell (Windows).
 
 ```sh
 $ cd  // change directory
@@ -67,19 +71,6 @@ $ code .
 [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
 
 Install [node.js](https://nodejs.org/en/) on your laptop now.
-
-<!-- ## Node Package Manager (NPM) - Demo
-
-NPM case study - A static site generator. (What is a [static site generator?](https://davidwalsh.name/introduction-static-site-generators)).
-
-* [Wintersmith](https://github.com/jnordberg/wintersmith) - `git clone`, `npm install -g`
-* [Markdown](https://en.wikipedia.org/wiki/Markdown)
-* [Pug](https://www.npmjs.com/package/pug) is a [template processing language](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
-* [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
-* [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
-* [CoffeeScript](http://coffeescript.org) -->
-
-## NPM Manifests
 
 `cd` into today's working directory and type:
 
@@ -140,6 +131,12 @@ DOM scripting is JavaScript in the browser. The HTML DOM (Document Object Model)
 
 <!-- See the [Mozilla Developer's Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) entry on JS and on [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) scripting. -->
 
+The process we will use is:
+
+1. Select an html element to work on
+1. Add an event listener to the selected element (e.g.click)
+1. Create commands to run when the event occurs on the listener
+
 ### Selecting elements in the DOM
 
 Use document`.querySelectorAll()` to find all matching elements on a page. You can use any valid CSS selector.
@@ -151,6 +148,8 @@ var elems = document.querySelectorAll('#main a');
 // Get all paragraphs
 var elemsPara = document.querySelectorAll('p');
 ```
+
+Returns a NodeList.
 
 Use `document.querySelector()` (without the 'All') to find the first matching element on a page.
 
@@ -168,18 +167,20 @@ var elem = document.querySelector('[data-headline="main"]');
 var elemNone = document.querySelector('.foo');
 ```
 
+Returns an HTML element
+
 If an element isn’t found, `querySelector()` returns null. If you try to do something with the nonexistant element you'll get an error. You can check that a matching element was found before using it.
 
 ```js
 // Verify element exists before doing anything with it
-if (elemNone) {
+if (elem) {
     // Do something...
 }
 ```
 
-### Looping through items
+## Looping through items
 
-#### Arrays and NodeLists
+### Arrays and NodeLists
 
 In JavaScript, you can use a `for` to loop through array and node list items.
 
@@ -192,7 +193,7 @@ for (let i = 0; i < elems.length; i++) {
 }
 ```
 
-#### Objects
+### Objects
 
 A `for...in` loop is a modified version of a `for` loop that you can use to loop through _objects_.
 
