@@ -199,8 +199,6 @@ A `for...in` loop is a modified version of a `for` loop that you can use to loop
 
 The first part, `key`, is a variable that gets assigned to the object key on each loop. The second part is the object to loop over.
 
-We also want to check that the property belongs to this object, and isn’t inherited from further up the object chain (for nested or deep objects). `if (obj.hasOwnProperty(key))` handles that for us.
-
 ```js
 var dinner = {
   // key: value
@@ -213,10 +211,8 @@ var dinner = {
 };
 
 for (let key in dinner) {
-  if (dinner.hasOwnProperty(key)) {
     console.log(key); // key
     console.log(dinner[key]); // value
-  }
 }
 ```
 
@@ -257,11 +253,13 @@ Array.from(document.querySelectorAll('#main a'))
 
 We will replace the existing nav labels with items from an array using a `for loop`.
 
-Examine the provided JS files. Note that they are added in index.html:
+Examine the provided JS files. Note that they are available in `index.html` via the script tag at the bottom of that document:
 
 ```html
 <script src="js/navitems.js"></script>
 ```
+
+Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers an array of objects consisting of key/value pairs.
 
 In the console:
 
@@ -272,8 +270,6 @@ In the console:
 > Array.isArray(navItemsArray)
 ```
 
-Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers an array of objects consisting of key/value pairs.
-
 ### Objects
 
 JavaScript objects are containers for named values.
@@ -282,7 +278,9 @@ JavaScript objects are containers for named values.
 var car = {type:"Fiat", model:"500", color:"white"}
 ```
 
-Note that an Array is an object in JavaScript. Because an array is an object at its core you can add properties to it:
+Note that an Array is an object in JavaScript. Because an array is an object at its core you can add properties to it.
+
+In the console:
 
 ```js
 var box = []
@@ -304,23 +302,13 @@ console.log(navItemsArray[2])
 console.log(navItemsArray.length)
 ```
 
-* DOM Method [getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
-
-```js
-const nav = document.getElementById('main');
-```
-
-Alternatively we could use `querySelector()`.
-
-* DOM Method [querySelector()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+Select the element with the id main:
 
 ```js
 const nav = document.querySelector('#main');
 ```
 
-When you want to select multiple items use `querySelectorAll()`.
-
-* DOM Method [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll)
+Select all the links in nav:
 
 ```js
 const navList = document.querySelectorAll('#main li a');
@@ -333,7 +321,7 @@ const nav = document.getElementById('main');
 const navList = nav.querySelectorAll('li a');
 ```
 
-Leave these two lines as the only items in your script block.
+Leave the two lines above as the only items in your script block.
 
 Compare `navList` and `navItemsArray` in the console and note the `prototypes` in the inspector. `navLIst` comes from our JavaScript `const navList = nav.querySelectorAll('li a');` while `navItemsArray` comes from '`navItems.js`. 
 
@@ -341,7 +329,7 @@ Both have a length property - `navList.length` and `navItemsArray.length`.
 
 Note that we have 8 items in the `navItemsArray` but only 6 in our `navList`.
 
-### EXERCISE - Replace our placeholder nav items with content from an array
+Replace our placeholder nav items with content from an array
 
 * use a `for` loop and `innerHTML`:
 
@@ -357,10 +345,10 @@ for (let i=0; i < navList.length; i++ ){
 }
 ```
 
-The innerHTML property can be used to both get and set HTML content in an element.
+The `innerHTML` property can be used to both get and set HTML content in an element.
 
 ```js
-var elem = document.querySelector(',site-wrap');
+var elem = document.querySelector('.site-wrap');
 
 // Get HTML content
 var html = elem.innerHTML;
