@@ -366,7 +366,7 @@ elem.innerHTML = 'We can add this to the beginning. ' + elem.innerHTML;
 elem.innerHTML += '<p>A new paragraph</p>';
 ```
 
-Problem: we are using the existing `<li>` elements but there are 8 items in our `navItemsArray` array.
+We are using the existing `<li>` elements in the DOM but there are 8 items in our `navItemsArray` array.
 
 Solution: dynamically generate the nav from items in the array.
 
@@ -397,7 +397,7 @@ var div = document.createElement('div');
 div.textContent = 'Hello world';
 
 // Get the element to add your new HTML element before, after, or within
-const target = document.getElementById('main');
+const target = document.querySelector('#main');
 
 // Inject the `div` element before the `#app` element
 target.before(div);
@@ -497,9 +497,13 @@ Note: template strings and `let` and `const` variables are ES6 (Ecmascript versi
 
 * Translate the code back to ES5 at [Babeljs.io](https://babeljs.io).
 
+#### Aside: React
+
+Open for reference `other > React > 1-react.html`
+
 #### Aside: Objects
 
-Open for reference: `other > javascript > _Objects > objects.html`
+Open for reference: `other > javascript > Objects > objects.html`
 
 Examine the sample object in that file in the browser console:
 
@@ -542,11 +546,9 @@ var content = "\n<div>\n  <h2>\n    " + me.first + " " + me.last + "\n  </h2>\n 
 
 ## EXERCISE - dynamic generation with an array of objects
 
-In the previous portion of this exercise we worked with an simple array.
+We have been working with a simple array.
 
 An array of objects is a very common data structure.
-
-The links for our page are in `navitems.js` - in the navItems array:
 
 ```js
 var navItems = [
@@ -577,7 +579,7 @@ var navItems = [
 ];
 ```
 
-Add the links using `navItems` instead of `navItemsArray`:
+Add the links using `navItems` instead of `navItemsArray`. Note the the 'dot' accessor notation for dealing with an object and the addition of the anchor tags:
 
 ```js
 for (let i =0; i < navItems.length; i++ ){
@@ -661,7 +663,7 @@ console.log('Full names: ' + fullNames);
 
 Note the use of `join()` to add a space after the comma.
 
-## EXERCISE - [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+## EXERCISE - Using .map
 
 Here's an alternate method for creating the list items using `map()` and template strings:
 
