@@ -1370,7 +1370,7 @@ const limit = 3;
 
 function renderStories(data) {
   var content = (JSON.parse(data.responseText));
-  var stories = content.results.slice(0, limit); //NEW
+  var stories = content.results.slice(0, limit);
   stories.forEach(function (story) {
     var storyEl = document.createElement('div');
     storyEl.className = 'entry';
