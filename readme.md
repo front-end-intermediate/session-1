@@ -840,7 +840,7 @@ Select the first list item on the nav, add a class and set the innerHTML so that
 ```js
 const logo = nav.querySelector('#main ul li');
 logo.classList.add('logo');
-logo.firstChild.innerHTML = '<a href="#"><img src="img/logo.svg" /></a>';
+logo.innerHTML = '<a href="#"><img src="img/logo.svg" /></a>';
 ```
 
 Examine the SVG file
@@ -1171,7 +1171,7 @@ function renderStories(data) {
 }
 ```
 
-Now, within the `forEach` we'll make a `div`s and set their contents. The `innerHTML` property and the `textContent` property are good candidates. 
+Now, within the `forEach` we'll make a `div` and set its contents. The `innerHTML` property and the `textContent` property are good candidates. 
 
 ```js
 function renderStories(data) {
@@ -1217,8 +1217,6 @@ function renderStories(data) {
     var storyEl = document.createElement('div');
     storyEl.className = 'entry';
     storyEl.innerHTML = `
-      <p>${story.abstract}</p>
-
       <div>
       <img src="${story.multimedia[0].url}" /> 
       <h3><a target="_blank" href="${story.short_url}">${story.title}</a></h3>
@@ -1315,11 +1313,15 @@ const navItems = [
     },
 ```
 
+```html
+<p id="travel"><em>Watchlist</em>
+```
+
 Then change the target for our prepend:
 
 ```js
 var elem = document.querySelector('.site-wrap #travel'); // NEW
-elem.innerHTML = `<div id="travel></div>`; // NEW
+// elem.innerHTML = `<div id="travel></div>`; // NEW
 const nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
 ```
 
@@ -1327,7 +1329,7 @@ And create a limit variable:
 
 ```js
 var elem = document.querySelector('.site-wrap #travel');
-elem.innerHTML = `<div id="travel></div>`;
+// elem.innerHTML = `<div id="travel></div>`;
 const nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
 const limit = 3; // NEW
 ```
@@ -1362,7 +1364,7 @@ Here, again, is the full script:
 
 ```js
 var elem = document.querySelector('.site-wrap #travel');
-elem.innerHTML = `<div id="travel></div>`;
+// elem.innerHTML = `<div id="travel></div>`;
 const nytapi = 'd7d88f32a04d4c6aab4e46735441d0ee';
 const limit = 3;
 
@@ -1412,7 +1414,8 @@ Using `.map` instead of `forEach`:
 ```js
 function renderStories(data) {
   var content = (JSON.parse(data.responseText));
-  var stories = content.results.slice(0, limit); //NEW
+  var stories = content.results.slice(0, limit);
+  //NEW
   const htmlFrag = stories.map(story => `
     <div class="entry">
     <div>
