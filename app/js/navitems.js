@@ -6,8 +6,8 @@ const navItems = [
       link: '#'
     },
     {
-      label: 'Watchlist',
-      link: '#watchlist'
+      label: 'Travel',
+      link: '#travel'
     },
     {
       label: 'Research',

@@ -81,3 +81,65 @@ nav a {
 img {
     width: 100%;
 }
+
+body.fixed-nav nav {
+    position: fixed;
+    top: 0;
+    box-shadow:0 5px 3px rgba(0,0,0,0.1);
+    width: 100%;
+    z-index: 1;
+}
+
+.site-wrap {
+    max-width: 780px;
+    margin: 40px auto;
+    background:white;
+    padding:40px;
+    text-align: justify;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+    /* add these two */
+    transform: scale(0.98);
+    transition: transform 0.5s;
+}
+
+body.fixed-nav .site-wrap {
+    transform: scale(1);
+}
+
+li.logo img {
+    padding-top: 0.25rem;
+    width: 2.5rem;
+}
+
+li.logo {
+    max-width:0;
+    overflow: hidden;
+    background: white;
+    transition: all 0.5s;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.fixed-nav li.logo {
+    max-width:500px;
+}
+
+.entry {
+    margin-bottom: 1.5rem;
+}
+.entry h4 {
+    margin: 0.25rem 0;
+}
+.entry p {
+    margin: 0;
+    margin-left: 75px;
+}
+.entry img {
+    float: left;
+    width: 75px;
+    padding: 0 0.5rem 0 0;
+}
+.entry a {
+    color: #007eb6;
+    text-decoration: none;
+}

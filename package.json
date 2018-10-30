@@ -1,0 +1,23 @@
+{
+  "name": "session-1",
+  "version": "1.0.0",
+  "description": "Today we begin introducing much of the JavaScript you will need for this semester - arrays, objects, template strings, and functions. We will be doing this in the context of DOM scripting. DOM is an acronym for Document Object Model.",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync start --server 'app' --files 'app'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/front-end-intermediate/session-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/front-end-intermediate/session-1/issues"
+  },
+  "homepage": "https://github.com/front-end-intermediate/session-1#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.3"
+  }
+}
