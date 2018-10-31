@@ -1,4 +1,4 @@
-# I - JavaScript and DOM Manipulation
+# I - JavaScript, AJAX and DOM Manipulation
 
 Today we begin introducing much of the JavaScript you will need for this semester - arrays, objects, template strings, and functions. We will be doing this in the context of DOM scripting. DOM is an acronym for Document Object Model.
 
