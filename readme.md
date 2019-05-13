@@ -19,7 +19,7 @@ Add a new category of New York Times articles using _your own_ api key.
 
 1. Download and unzip the files as completed by me at the end of the class. `cd` into the directory and run `npm install` and then `npm run start`
 
-1. Follow the instructions for getting a developer key [here](https://developer.nytimes.com/signup)
+1. Follow the instructions for getting a developer key [here](https://developer.nytimes.com/get-started)
 
 1. Use the [top stories API endpoint](https://developer.nytimes.com/docs/top-stories-product/1/overview)
 
@@ -27,7 +27,7 @@ Add a new category of New York Times articles using _your own_ api key.
 
 ### Part Two
 
-Refactor your JS file to use a helper method for `document.querySelector` and `document.querySelectorAll` following the instructions [here](https://gomakethings.com/an-easier-way-to-get-elements-in-the-dom-with-vanilla-js/).
+Refactor your JS file to use a helper method for `querySelector` and `querySelectorAll` following the instructions [here](https://gomakethings.com/an-easier-way-to-get-elements-in-the-dom-with-vanilla-js/).
 
 ```
 https://api.nytimes.com/svc/topstories/v2/{section_name}.json?api-key=1234_my_api_key_5678
