@@ -2,9 +2,8 @@
 
 Today we begin introducing much of the JavaScript you will need for this semester - arrays, objects, template strings, and functions. We will be doing this in the context of DOM scripting. DOM is an acronym for Document Object Model.
 
-Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop now.
-
-Install [Node.js](https://nodejs.org/en/) on your laptop now.
+* Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop now.
+* Install [Node.js](https://nodejs.org/en/) on your laptop now.
 
 ## Syllabus
 
@@ -12,11 +11,23 @@ Install [Node.js](https://nodejs.org/en/) on your laptop now.
 
 ## Homework
 
-Review the notes below. Download and unzip the files as completed by me at the end of the class [here](https://github.com/front-end-intermediate/session-1/tree/fall2018-done). 'cd' into the directory and run `npm install` and then `npm run start`. Add a new category of New York Times articles using _your own_ api key.
+### Part One
 
-Here are the [NY Times](https://developer.nytimes.com) instructions for getting a key. You can get a key [here](https://developer.nytimes.com/signup).
+Add a new category of New York Times articles using _your own_ api key.
 
-The specific API endpoint you want for this one is their [top stories endpoint](https://developer.nytimes.com/top_stories_v2.json). It let’s you request the top stories from a specific section of their publication.
+#### Steps
+
+1. Download and unzip the files as completed by me at the end of the class. `cd` into the directory and run `npm install` and then `npm run start`
+
+1. Follow the instructions for getting a developer key [here](https://developer.nytimes.com/signup)
+
+1. Use the [top stories API endpoint](https://developer.nytimes.com/docs/top-stories-product/1/overview)
+
+1. Request the top stories from a specific section of their publication and incorporate them into the layout
+
+### Part Two
+
+Refactor your JS file to use a helper method for `document.querySelector` and `document.querySelectorAll` following the instructions [here](https://gomakethings.com/an-easier-way-to-get-elements-in-the-dom-with-vanilla-js/).
 
 ```
 https://api.nytimes.com/svc/topstories/v2/{section_name}.json?api-key=1234_my_api_key_5678
@@ -31,7 +42,7 @@ https://api.nytimes.com/svc/topstories/v2/{section_name}.json?api-key=1234_my_ap
 
 ## VSCode
 
-Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop now.
+Install [Visual Studio Code](https://code.visualstudio.com/) on your laptop.
 
 In this class we will be using [Visual Studio Code](https://code.visualstudio.com/) as our editor. We will discuss its features as needed. For today we will take care of some basic configuration details.
 
@@ -43,11 +54,11 @@ In VSCode press `cmd + shift + p` and type in the word `shell`. Select `Install 
 
 ## The Command Line
 
-In this class you are goig to need to have a minimal set of terminal commands at your disposal.
+You are going to need to have a minimal set of terminal commands at your disposal.
 
-Note: Windows users normally use Powershell (run as Administrator) but can try the Git Bash terminal that is installed along with Git when things go wrong. Some of the commands below may be different on Windows or have alternatives.
+Note: Windows users should use the Git Bash terminal that is installed along with Git. 
 
-Start the terminal app (Mac OS) or PowerShell (Windows).
+Start the terminal app (Mac OS) or Git Bash (Windows).
 
 ```sh
 $ cd  // change directory
@@ -69,14 +80,6 @@ $ code .
 ## Node Package Manager
 
 [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. [Node](https://nodejs.org/en/) includes NPM as part of its install.
-
-Install [node.js](https://nodejs.org/en/) on your laptop now.
-
-`cd` into today's working directory and type:
-
-```sh
-$ code .
-```
 
 Open the integrated terminal in VSCode (`View > Terminal`) with `ctrl + ~` (control + tilde).
 
@@ -216,6 +219,8 @@ for (let key in dinner) {
 }
 ```
 
+## array.forEach()
+
 ES6 introduced a new `forEach()` method for looping over arrays.
 
 You pass a callback function into `forEach()`. The first argument is the current item in the loop. The second is the current index in the array. You can name these two variables anything you want.
@@ -253,19 +258,19 @@ Array.from(document.querySelectorAll('#main a'))
 
 We will replace the existing nav labels with items from an array using a `for loop`.
 
-Examine the provided JS files. Note that they are available in `index.html` via the script tag at the bottom of that document:
+Examine the two provided JS files. Note that they are made available to `index.html` via the script tag at the bottom of that document:
 
 ```html
 <script src="js/navitems.js"></script>
 ```
 
-Note the difference between `navItems` and `navItemsArray`. The latter contains a simple list of values while the former offers an array of objects consisting of key/value pairs.
+Note the difference between `navItemsObject` and `navItemsArray`. The latter contains a simple list of values while the former offers an array of objects consisting of key/value pairs.
 
 In the console:
 
 ```js
 > navItemsArray
-> navItems
+> navItemsObject
 > typeof navItemsArray
 > Array.isArray(navItemsArray)
 ```
